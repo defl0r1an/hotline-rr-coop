@@ -4,6 +4,7 @@ _backup_original/
 
 # Build outputs
 _work/
+_dist/
 coop/dll/build/
 
 # Tools (large binaries, download separately)
