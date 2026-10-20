@@ -1,5 +1,5 @@
 // Begin Step: no game object uses it, so the network state is applied before any game logic runs.
-var st, t, proto, ver, nm, fr;
+var st, t, proto, ver, nm, fr, r_done;
 st = external_call(global.coop_f_state);
 global.coop_role = external_call(global.coop_f_role);
 if (st != last_state)
@@ -91,6 +91,10 @@ while (t >= 0)
     {
         scrCoopReadDespawn();
     }
+    else if (t == 70)
+    {
+        scrCoopReadDoor();
+    }
     else if (t == 80 || t == 81 || t == 82)
     {
         scrCoopReadFire(t);
@@ -125,6 +129,21 @@ while (t >= 0)
             scrCoopRestartBoth();
         }
     }
+    else if (t == 116)
+    {
+        r_done = external_call(global.coop_f_ri);
+        if (r_done == room)
+        {
+            if (global.done == 0)
+            {
+                global.done = 1;
+                if (!instance_exists(objLevelComplete))
+                {
+                    instance_create(x, y, objLevelComplete);
+                }
+            }
+        }
+    }
     else if (t == 96)
     {
         scrCoopReadMeleeDeath();
@@ -155,6 +174,14 @@ if (st == 3)
         {
             scrCoopSendRoom(fr);
             sent_room = fr;
+            sent_done = 0;
+        }
+        if (global.coop_active && global.done == 1 && sent_done == 0)
+        {
+            sent_done = 1;
+            external_call(global.coop_f_begin, 116);
+            external_call(global.coop_f_wi, room);
+            external_call(global.coop_f_end, 1);
         }
     }
     else if (global.coop_role == 2)

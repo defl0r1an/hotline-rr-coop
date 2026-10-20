@@ -498,3 +498,13 @@ sends the client back to menu.
   * Explosions: scrCoopSendShots replicates objExplosion, objExplosionSkippy (client -> host 80) and objExplosion, objExplosionSkippy, objBottleExplosion, objMolotov (host -> client 82).
   * Human shield: scrCoopSendPState now supports objPlayerShieldMouse with proper direction, legs, and mask.
   * Build: 69 co-op code files, 57 hooks. Tested on one PC across 20-30s runs: 60 fps, zero crashes, spectator camera working.
+
+- 2026-10-20 **Doors, STAGE CLEAR gating, Waiter AI, Boss 4 automated test (one PC):**
+  * Synchronized doors: objDoorV, objDoorH, objDoorV2, objDoorH2 and all derived doors replicated from host to client via message 70 (DOOR: x, y, image_angle, swingspeed) in scrCoopSendDoors and scrCoopReadDoor. On host, objCoopPuppet_Step_0 opens doors on contact using proper swing velocities, knocking out enemies behind the door. Zero locals inside with() to ensure runner stability.
+  * Suppressed false STAGE CLEAR / GO TO CAR on client: script.scrCheckMissionComplete.0.prepend exits early on active client. Host sends FLOOR_DONE 116 when global.done == 1. Client receives 116, sets global.done = 1, and spawns objLevelComplete. Client reset in scrCoopClientRoomStart sets global.done = 0.
+  * Waiters: objWaiter.Step.0 and objWaiterStationary.Step.0 added to ai_retarget_special.txt (keepguards). Waiters spot whichever player is closest, drop food trays / wine bottles, pull out uzis and shoot. Mask 11 melee disarm preserved on host.
+  * Automated testing with coop/run_test.ps1 on one PC (host + client):
+    - Level 121 (Deadline): gunfire, entities, ghost retargeting, 60 fps, 0 crashes.
+    - Level 96 (Tension): exit gating (REQ_EXIT rejected while enemies alive, accepted when cleared), transition to floor 97.
+    - Level 135 (Showdown, Boss 4): transition from entrance (135) to main hall (136), bodyguard throwing knives, panthers. Zero crashes.
+  * Build: 71 co-op code files, 58 hooks. All tests passed cleanly.

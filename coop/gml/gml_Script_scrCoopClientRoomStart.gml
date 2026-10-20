@@ -53,3 +53,4 @@ with (objWeapon)
 }
 global.coop_netdestroy = 0;
 ds_map_clear(global.coop_ents);
+global.done = 0;

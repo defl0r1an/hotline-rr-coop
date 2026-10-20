@@ -1,3 +1,4 @@
+var coop_door;
 if (!global.coop_active)
 {
     instance_destroy();
@@ -47,4 +48,51 @@ if (global.coop_role == 1 && p_kind == 1 && sprite_index >= 0)
     global.my_id = coop_saved_my_id;
     speed = 0;
     friction = 0;
+}
+// Host: puppet opens doors on contact so client can push and slam doors
+if (global.coop_role == 1 && p_kind == 1)
+{
+    coop_door = instance_place(x, y, objDoorV);
+    if (coop_door != noone)
+    {
+        with (coop_door)
+        {
+            if (solid == 0 && abs(swingspeed) <= 3.5)
+            {
+                swinger = 1;
+                if (abs(swingspeed) < 2)
+                {
+                    audio_play_sound(sndDoorOpen, 0, false);
+                }
+                if (object_index == objDoorH || object_index == objDoorDoneH)
+                {
+                    if (x > other.x && other.y < y) swingspeed = -7;
+                    else if (x > other.x && other.y > y) swingspeed = 7;
+                    else if (other.y < (y + lengthdir_y(32, image_angle))) swingspeed = -7;
+                    else swingspeed = 7;
+                }
+                else if (object_index == objDoorH2)
+                {
+                    if (x > other.x && other.y < y) swingspeed = 7;
+                    else if (x > other.x && other.y > y) swingspeed = -7;
+                    else if (other.y < (y + lengthdir_y(32, image_angle))) swingspeed = 7;
+                    else swingspeed = -7;
+                }
+                else if (object_index == objDoorV2)
+                {
+                    if (y > other.y && other.x < x) swingspeed = -8;
+                    else if (y > other.y && other.x > x) swingspeed = 8;
+                    else if (other.x < (x + lengthdir_x(32, image_angle + 270))) swingspeed = -8;
+                    else swingspeed = 8;
+                }
+                else
+                {
+                    if (y > other.y && other.x < x) swingspeed = 8;
+                    else if (y > other.y && other.x > x) swingspeed = -8;
+                    else if (other.x < (x + lengthdir_x(32, image_angle + 270))) swingspeed = 8;
+                    else swingspeed = -8;
+                }
+            }
+        }
+    }
 }

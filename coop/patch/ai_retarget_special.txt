@@ -5,7 +5,6 @@
 # Mode "full" also turns instance_exists(objPlayer) into scrCoopHasTarget() (hunt the client while the host is
 # dead) - only for events that never write to objPlayer. "keepguards" (scripted bosses that write
 # objPlayer.persistent / position / speed): the guards stay, so they react to the client only while the host lives.
-# Waiters (objWaiter, objWaiterStationary) are left out: they take the player's weapon (writes ammo / sprite).
 @objSwat.Step.0 full
 @objDogPatrol.Step.0 full
 @objPanther.Step.0 full
@@ -22,3 +21,5 @@
 @objBodyguard.Step.0 keepguards
 @objJonesBoss.Step.0 keepguards
 @objHobo.Step.0 keepguards
+@objWaiter.Step.0 keepguards
+@objWaiterStationary.Step.0 keepguards

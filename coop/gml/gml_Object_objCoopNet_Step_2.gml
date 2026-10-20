@@ -5,9 +5,13 @@ if (global.coop_active)
 {
     scrCoopSendPState();
     scrCoopSendShots();
-    if (global.coop_role == 1 && (coop_frame mod 3) == 0)
+    if (global.coop_role == 1)
     {
-        scrCoopSendEnts();
+        if ((coop_frame mod 3) == 0)
+        {
+            scrCoopSendEnts();
+        }
+        scrCoopSendDoors();
     }
 }
 with (instance_create(0, 0, objCoopMarker))
