@@ -1,0 +1,10 @@
+image_index = 0;
+image_speed = 0;
+ammo = 0;
+bled = 0;
+sprite = 2514;
+scrInitMaskPos();
+scrUpdateMaskPos(sprite_index);
+bag = 0;
+sound = 0;
+energie = round(random(1));

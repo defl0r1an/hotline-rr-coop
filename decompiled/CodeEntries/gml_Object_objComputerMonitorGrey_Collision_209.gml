@@ -1,0 +1,117 @@
+if (sprite_index == sprComputerMonitorGreyBroken)
+{
+    exit;
+}
+image_xscale = 3;
+image_yscale = 3;
+global.my_id = id;
+bullets = 0;
+with (objEBullet)
+{
+    if (place_meeting(x, y, global.my_id))
+    {
+        global.my_id.bullets += 1;
+        my_id = instance_create(x, y, objSmokeHit);
+        my_id.color1 = 8421504;
+        my_id.color2 = 4210752;
+        my_id.image_angle = image_angle;
+        my_id.direction = image_angle;
+        my_id.speed = random(1);
+        instance_destroy();
+        alert = 1;
+    }
+}
+image_xscale = 1;
+image_yscale = 1;
+if (energie <= 0)
+{
+    exit;
+}
+energie -= bullets;
+if (energie > 0)
+{
+    if (sprite_index == sprELisComputerMonitorGrey)
+    {
+        global.shake = 3;
+        audio_play_sound(sndBottleBreak, 0, false);
+        audio_play_sound(sndTaser, 0, false);
+        sprite_index = sprComputerMonitorGreyBreak;
+        i = 0;
+        repeat (12)
+        {
+            my_id = instance_create(x + lengthdir_x(5, (image_angle - 45) + (i * 7.5)), y + lengthdir_y(5, (image_angle - 45) + (i * 7.5)), objTVShards);
+            my_id.direction = (image_angle - 45) + (i * 7.5);
+            my_id.speed = 1 + random(3);
+            i += 1;
+        }
+    }
+}
+else
+{
+    if (life > 0)
+    {
+        audio_play_sound(sndTaser, 0, false);
+    }
+    audio_play_sound(sndExplode, 0, false);
+    image_speed = 0;
+    image_index = choose(0, 1);
+    i = random(1);
+    repeat (8)
+    {
+        length = 1 + random(2);
+        my_id = instance_create(x + lengthdir_x(length, i * 45), y + lengthdir_y(length, i * 45), objFirePuff);
+        my_id.image_angle = (i * 45) - 180;
+        my_id.direction = my_id.image_angle - 180;
+        my_id.speed = 0.5 + random(1);
+        my_id.friction = 0.1;
+        i += 1;
+    }
+    repeat (4)
+    {
+        my_id = instance_create((x - 4) + random(8), (y - 4) + random(8), objFireBall);
+        my_id.direction = point_direction(x, y, my_id.x, my_id.y);
+        my_id.speed = 0.25 + random(0.25);
+    }
+    repeat (16)
+    {
+        my_id = instance_create(x, y, objFireSpark);
+        my_id.direction = random(360);
+        my_id.speed = 3 + random(3);
+        my_id.image_angle = my_id.direction;
+    }
+    repeat (32)
+    {
+        my_id = instance_create((x - 6) + random(12), (y - 6) + random(12), objComputerMonitorGreyParts);
+        my_id.direction = point_direction(x, y, my_id.x, my_id.y);
+        my_id.speed = 2 + random(3);
+    }
+    if (sprite_index == sprELisComputerMonitorGrey)
+    {
+        audio_play_sound(sndBottleBreak, 0, false);
+        i = 0;
+        repeat (12)
+        {
+            my_id = instance_create(x + lengthdir_x(5, (image_angle - 45) + (i * 7.5)), y + lengthdir_y(5, (image_angle - 45) + (i * 7.5)), objTVShards);
+            my_id.direction = (image_angle - 45) + (i * 7.5);
+            my_id.speed = 1 + random(3);
+            i += 1;
+        }
+    }
+    my_id = instance_create(x + 2, y - 2, objComputerMonitorGreyBigParts);
+    my_id.direction = point_direction(x, y, my_id.x, my_id.y);
+    my_id.speed = 1 + random(2);
+    my_id.image_index = 0;
+    my_id = instance_create(x - 2, y + 2, objComputerMonitorGreyBigParts);
+    my_id.direction = point_direction(x, y, my_id.x, my_id.y);
+    my_id.speed = 1 + random(2);
+    my_id.image_index = 1;
+    my_id = instance_create(x - 2, y - 2, objComputerMonitorGreyBigParts);
+    my_id.direction = point_direction(x, y, my_id.x, my_id.y);
+    my_id.speed = 1 + random(2);
+    my_id.image_index = 2;
+    my_id = instance_create(x + 2, y + 2, objComputerMonitorGreyBigParts);
+    my_id.direction = point_direction(x, y, my_id.x, my_id.y);
+    my_id.speed = 1 + random(2);
+    my_id.image_index = 3;
+    sprite_index = sprComputerMonitorGreyBroken;
+}

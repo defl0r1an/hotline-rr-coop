@@ -1,0 +1,9 @@
+image_speed = 0;
+bled = 0;
+hurtindex = 0;
+targetindex = 0;
+scrInitMaskPos();
+scrUpdateMaskPos(sprite_index);
+ammo = objPlayer.ammo;
+sound = 0;
+reload = 6;

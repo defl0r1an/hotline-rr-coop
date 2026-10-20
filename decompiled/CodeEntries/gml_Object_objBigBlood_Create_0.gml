@@ -1,0 +1,9 @@
+sprite_index = choose(sprBigBlood1, sprBigBlood2);
+image_speed = 0;
+image_angle = random(360);
+image_blend = merge_color(c_red, c_maroon, 0.5 + random(0.1));
+image_xscale = 0.8 + random(0.2);
+image_yscale = image_xscale;
+done = 0;
+train = 0;
+surface = 1;

@@ -1,0 +1,1 @@
+global.skinmask[3] = "";

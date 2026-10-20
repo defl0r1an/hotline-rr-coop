@@ -1,0 +1,3 @@
+Info flags: FullScreen, UseNewAudio, Sizeable, ScreenKey, QuitKey, SaveKey, ScreenShotKey, CloseSec, ScaleProgress, DisplayErrors, VariableErrors, CreationEventOrder
+GEN8 info: Fullscreen, SyncVertex1, Scale, Sizeable, ScreenKey, StudioVersionB3, UseAppDataSaveLocation
+Window 1366x768

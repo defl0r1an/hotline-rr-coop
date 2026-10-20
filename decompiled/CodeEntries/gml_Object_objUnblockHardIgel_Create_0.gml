@@ -1,0 +1,13 @@
+on = 0;
+image_xscale = 1.5;
+image_yscale = image_xscale;
+yy = 11;
+shake = 0;
+speedvhs = 0.05;
+sound = 0;
+dir = random(360);
+wait = 5;
+soundd = 0;
+SizeCircle = 0;
+Circle = 0;
+fotonegativ = 0;

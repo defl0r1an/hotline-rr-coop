@@ -1,0 +1,16 @@
+if (!place_free(x, y))
+{
+    speed = 0;
+}
+image_angle += (angle_speed * speed * 3);
+if (global.xbox == 1)
+{
+    scrXboxItemTake();
+}
+if (instance_exists(objVHSTake))
+{
+    if (objVHSTake.on == 1)
+    {
+        on = 1;
+    }
+}

@@ -1,0 +1,10 @@
+image_speed = 0;
+image_angle = random(360);
+advancespeed = 0.2 + random(0.05);
+done = 0;
+image_alpha = 1;
+sprite_index = choose(sprBloodSplat, sprBloodSplat3, sprBloodSplatSmall, sprBloodSmudge, sprBloodSmudge2, sprBloodSmudge3);
+blur = 0;
+image_blend = merge_color(c_red, c_maroon, 0.5);
+train = 1;
+surface = 1;

@@ -1,0 +1,14 @@
+dir = 0;
+start_y = y;
+ldir = 0;
+stop = 0;
+on = 0;
+startangle = 75;
+endangle = 105;
+angle = startangle;
+back = 0;
+attention = 5;
+follow = 0;
+laserx = 0;
+lasery = 0;
+shot = 0;

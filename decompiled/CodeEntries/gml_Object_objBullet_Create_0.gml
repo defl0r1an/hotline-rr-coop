@@ -1,0 +1,14 @@
+image_speed = 0.5;
+image_blend = merge_color(c_white, c_white, random(1));
+image_alpha = 0.7;
+passed = 0;
+caliber = 0;
+bullet = 0;
+global.noguns = 0;
+startx = x;
+starty = y;
+swat = 0;
+alpha = 0.5;
+sprite_index = global.sprite_bullet;
+image_speed = 0;
+image_index = floor(random(4));

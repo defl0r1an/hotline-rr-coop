@@ -1,0 +1,52 @@
+# Enemy AI scripts whose objPlayer.x / objPlayer.y reads become global.coop_tx / global.coop_ty, with
+# scrCoopTarget(); prepended (enemies then react to the nearer of host body and partner puppet).
+# All of them only READ the player position (checked). Death scripts (scrPlayerDie*) must NOT be listed:
+# they act on the real victim.
+scrChasePlayer
+scrDogChasePlayer
+scrDogChaseSearch
+scrDogStep
+scrEFatGunStep
+scrEFatStep
+scrEMeleeStationaryStep
+scrEMeleeStep
+scrEMobileStep
+scrEPatrolStep
+scrERandomStep
+scrEStaticStep
+scrESwatStep
+scrGoGetWeapon
+scrHoboStep
+scrMeleeChaseSearch
+scrPInspectorStep
+scrPoliceGetWeapon
+scrPoliceMeleeStationaryStep
+scrPoliceMeleeStep
+scrPolicePatrolStep
+scrPoliceRandomStep
+scrPoliceStaticStep
+scrSeePlayer
+scrSeePlayerStationary
+scrStayAwayFromPlayer
+scrHearPlayer
+# Called by the scripts above / the special enemies; only read the position (scrHoboGetWeapon also
+# checks instance_exists(objPlayer)).
+scrAim
+scrAimFatGun
+scrDogCharge
+scrHoboGetWeapon
+# Enemy Step events (object.Event.subtype, resolved through the event bindings). Checked: besides
+# instance_exists(objPlayer) and objPlayer.x/.y they only use objPlayer in place_meeting (the host body's own hits).
+# objDogPatrol / objSwat are left out: they also read objPlayer.object_index / .dir / .sprite_index.
+@objEnemy.Step.0
+@objEnemyPatrol.Step.0
+@objEnemyStationary.Step.0
+@objEnemyMelee.Step.0
+@objEnemyMeleeStationary.Step.0
+@objEnemyMobile.Step.0
+@objEnemyFat.Step.0
+@objPolice.Step.0
+@objPolicePatrol.Step.0
+@objPoliceStationary.Step.0
+@objPoliceMelee.Step.0
+@objPoliceMeleeStationary.Step.0

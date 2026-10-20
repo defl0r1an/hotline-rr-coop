@@ -1,0 +1,9 @@
+surface_free(global.surf1);
+global.surf1 = surface_create(1200, 1200);
+surface_set_target(global.surf1);
+draw_clear(c_white);
+surface_reset_target();
+talk = 0;
+reload = 0;
+skip = 0;
+on = 1;

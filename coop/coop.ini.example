@@ -1,0 +1,14 @@
+[coop]
+; Host's address: its Tailscale IP (100.x.y.z), LAN IP, or 127.0.0.1 for two copies on one PC.
+ip=
+; UDP port. The host must allow it in Windows Firewall (Tailscale traffic usually passes).
+port=27515
+; Name shown to your partner.
+name=Player
+; 1 = keep the game windowed (handy for two copies on one PC).
+windowed=0
+; host / join = start the session automatically at boot instead of pressing F7 / F8.
+auto=
+; Test only: extra latency in ms and packet loss in % for packets this PC sends.
+netsim_lag=0
+netsim_loss=0

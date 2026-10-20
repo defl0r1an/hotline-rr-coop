@@ -1,0 +1,1 @@
+global.Paranormal = 1;

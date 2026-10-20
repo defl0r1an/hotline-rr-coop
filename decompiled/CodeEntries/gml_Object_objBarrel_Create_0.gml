@@ -1,0 +1,3 @@
+image_speed = 0;
+image_index = round(random(4));
+image_angle = random(360);

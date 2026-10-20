@@ -1,0 +1,11 @@
+solid = 1;
+image_speed = 0.25;
+energie = 3;
+life = 30;
+wait = 0;
+stage = "full";
+light = 0;
+scale = 0;
+on = 0;
+shake = 0;
+angle = image_angle;

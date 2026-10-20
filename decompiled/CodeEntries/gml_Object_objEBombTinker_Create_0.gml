@@ -1,0 +1,10 @@
+image_speed = 0;
+friction = 0.1;
+image_angle = -90;
+timer = 600;
+state = 0;
+lastx = x;
+lasty = y;
+angle = direction;
+stop = 0;
+ammo = 0;

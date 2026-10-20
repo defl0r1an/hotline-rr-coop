@@ -1,0 +1,216 @@
+{
+ "claim_checks": [
+  {
+   "claim": "1. Aim comes from global.mousex/mousey (objPlayerMouse_Step_0:58), and objEffector computes them from objPlayer.x plus display_mouse_get_x/y (objEffector_Draw_0:75-76). So the remote body must be a non-objPlayer puppet.",
+   "verdict": "confirmed",
+   "evidence": "gml_Object_objPlayerMouse_Step_0.gml:58 `dir = point_direction(x, y, global.mousex, global.mousey)` (xbox branch at 52-55). gml_Object_objEffector_Draw_0.gml:75-76 read objPlayer.x/y + display_mouse_get_x/y; hard mode inverts the sign (lines 79-80). Lock-on overrides at ~88-92 (global.enemy.x)."
+  },
+  {
+   "claim": "2. Movement reads the physical keyboard: 20 keyboard_check_direct calls in scrPlayerMoveKeyboard (first at line 124), gated only by global.player_lock at line 5.",
+   "verdict": "confirmed",
+   "evidence": "Count is 20, first at line 124. Not 'only' player_lock, though: lines 1-3 also exit on global.igelcutscenes==1 or instance_exists(objJonesEnemyCrawl)."
+  },
+  {
+   "claim": "3. code5320 loads weaponsprite/ammoweapon (lines 1-2) and self-destroys if instance_number(objPlayer)>1 (4-7). The same path respawns a dead player on the next floor.",
+   "verdict": "confirmed",
+   "evidence": "code5320.gml:1-2, 4-7 as stated. Line 3 also restores global.shells = global.shellssave, and lines 8-18 shift x by global.overright. Respawn caveat: on any earlier visit of that floor on the same PC, the persistent body arrival makes code5320 destroy the placed instance, and the persisted room keeps no placed player. A dead player revisiting a floor therefore gets no body. Separately, rmHouse5Upstairs and rmGriffinUpstairs have objEffector but no placed player body (scratchpad room_instances.tsv)."
+  },
+  {
+   "claim": "4. Restart is gated by !instance_exists(objPlayer) (objEffector_KeyPress_82:5) and reached from objEffector_Step_0:126-129 and objPlayerDead_Step_0:1-4 via event_perform. Step_0 does room=nextroom at 420, room_restart at 547, save restore at 548-566. objEffector_Other_4:10 makes floors persistent.",
+   "verdict": "refuted",
+   "evidence": "Partly wrong. objPlayerDead_Step_0.gml:1-4 calls event_perform(ev_keypress, ord(\"R\")) in objPlayerDead's own scope. That runs gml_Object_objPlayerDead_KeyPress_82.gml (`endtransition = 1`, a camera speed-up), not objEffector's handler. objEffector_KeyPress_82 is reached by the native R KeyPress and by the restartkey poll at Step_0:126-129. The gate is `!instance_exists(objPlayer) || global.deadIgel == 1`. Lines 420, 547, 548-566 and Other_4:10 are confirmed. objEffectorHospital_KeyPress_82.gml is empty. objEffectorInstant_KeyPress_82 gates on instance_exists(objPlayerDead). The choke-point conclusion still holds for objEffector."
+  },
+  {
+   "claim": "5. objTransitioner_Collision_98:9 accepts only 6 concrete player objects. Lines 16-21 set persistent/addx/addy/next/fade/nextroom, 87-89 store loadout. Exit locks come from instance counts (Step_0:22-45), and STAGE CLEAR likewise (objPlayerMouse_Step_0:224-262, objCheckpoint at 250).",
+   "verdict": "confirmed",
+   "evidence": "All line ranges match. Also relevant: Collision_98:5 exits when solid==1, and lines 22-44 snapshot all *save globals (shells/knives/meleeenergie/bigballs/dogsave/BuffSkippy). objTransitioner_Step_0.gml:6 exits early when no objPlayer exists, which freezes the lock state while the host is dead."
+  },
+  {
+   "claim": "6. Kill outcomes are random rolls (objEnemy_Collision_208:55,141; objPlayerMouse_Collision_209:212; Create_0:87), and the only seeding is randomize() in rmEnableSteam_Create:2, so lockstep is infeasible.",
+   "verdict": "confirmed",
+   "evidence": "Exact matches at every cited line. gml_Room_rmEnableSteam_Create.gml line 1 is room_goto_next() and line 2 is randomize(). This is the only randomize/random_set_seed in CodeEntries."
+  },
+  {
+   "claim": "7. AI gets targets as arguments (scrERandomStep:19,46,50,54). scrSearch/scrLook/scrCharge have no objPlayer refs. Enemy-family events add 80 entries / 451 x/y reads.",
+   "verdict": "confirmed",
+   "evidence": "scrERandomStep lines confirmed. objPlayer counts: scrSearch/scrLook/scrCharge 0, scrAim 3, scrMeleeChaseSearch 1. All 22 listed AI scripts read only objPlayer.x/y (scrDPatrolStep also reads .active/.plant). The 80/451 count is unverified: my own family definition gives 67 entries / 375 refs. 31 of those entries also read other objPlayer fields, or use with/place_meeting on objPlayer (see design_flaws)."
+  },
+  {
+   "claim": "8. Enemy melee is place_meeting(...objPlayer) then scrPlayerDieMelee (objEnemyMelee_Step_0:103-110), which runs with(objPlayer) at line 4. 20 files call the three death scripts.",
+   "verdict": "confirmed",
+   "evidence": "Lines match, and the file count is 20 (including script492/script515). The death scripts also act on the killer: scrPlayerDieMelee.gml:402-451 and scrPlayerDieDogBite.gml:36-52 turn global.my_id into objKnockedOut/objFatKnockedOut and instance_destroy it when armor absorbs the hit. They also read global.my_id.ammo/.hits (lines 159, 409-411)."
+  },
+  {
+   "claim": "9. Player melee resolves in the attacker's scope (scrPlayerIsAttacking:1-9, with(objEnemy) place_meeting objPlayer ~310-330, 133 objPlayer.sprite_index refs). Parameterising the attacker lets the host run the stock kill code for the puppet.",
+   "verdict": "refuted",
+   "evidence": "The facts hold: with(objEnemy) is at line 310, place_meeting at 316, 133 sprite_index refs, and callers are only objPlayerMouse_Step_0:393-394 and objPlayerBiker_Step_0. The conclusion fails in two ways. (1) Execution branches destroy the local body and spawn objPlayer-child execution objects: with(objPlayerBiker) instance_destroy after objBikerKillFat (~505-521), with(objPlayerMouse) instance_destroy after objPKillChainsawFat (~523-563) and after objPKillDog (~650-668). Run in the puppet's scope on the host, they delete the HOST's body. (2) Several enemies detect melee hits themselves by reading objPlayer.sprite_index: objSwat_Step_0:114-118, objPanther_Step_0:124, objWaiter_Step_0:42-44, objKnockedOut_Step_0:9, objECrawl_Step_0:100. So the puppet's melee never registers on those. The callee scrCurrentWeaponExt also reads objPlayer.throwindex (lines 743-759)."
+  },
+  {
+   "claim": "10. global_init (script458:1-2) external_defines CleanMem.dll and is called from objLanguage_Create_0:2 in rmEnableSteam. LowPassFilter uses 4 args with 2 strings (objSplashScreen_Create_0:50, called in script494:47).",
+   "verdict": "confirmed",
+   "evidence": "Exact matches. general.txt:615 maps global_init -> gml_Script_script458, and objLanguage is placed in rmEnableSteam (rooms.txt:7). Other mod DLL defines are always gated by file_exists (objSteamQuestion_Create_0:8, scrTitleInit:32). AlienInMiami.dll imports _beginthreadex/_endthreadex, and all mod DLLs are i386 (0x14c)."
+  },
+  {
+   "claim": "11. FUNC contains external_define/call, variable_local_*, instance_change, instance_deactivate_object, event_perform, object_get_parent, instance_place, get_timer. It lacks instance_activate_object, event_perform_object, buffer_write/read/get_address and network_*.",
+   "verdict": "confirmed",
+   "evidence": "Checked against general.txt 'Functions referenced'. Also absent: ds_map_destroy, script_execute, variable_local_array_get, window_set_caption. buffer_create is present. The runner exe does contain the strings event_perform_object, instance_activate_object, buffer_write, buffer_get_address, window_set_caption and network_create_socket, so they exist natively and are missing only from FUNC. Prior notes (coop_notes/map_partial_run3.json) say the only recompile probe added 0 FUNC entries, so FUNC append is untested."
+  },
+  {
+   "claim": "12. objconsole_Step_0:52-59 sets room_speed=30 when unfocused. objEffector_KeyPress_27:14-16 makes pause a room change.",
+   "verdict": "confirmed",
+   "evidence": "The content is correct, but the entry name is wrong. Per scratchpad modmap/event_bindings.tsv, objConsole (index 1140) Step_0 is bound to gml_Object_objConsole_Step_0 (code index 5591, the 59-line body with room_speed at 54). gml_Object_objconsole_Step_0 (index 5500, 13 lines) is listed in modmap/orphans.tsv. The on-disk file is a case-insensitive merge that happens to hold 5591. Gamepad pause bypasses KeyPress_27 via scrXboxEffectorPause from objEffector_Step_0."
+  },
+  {
+   "claim": "13. Enemy, knocked-out and corpse Draw events read only builtins (objEnemy_Draw_0:9-20, objKnockedOut_Draw_0:5-6, objDeadBody_Draw_0:19), so a generic puppet can render them.",
+   "verdict": "refuted",
+   "evidence": "True for the three cited files, but about 70 enemy-family children override Draw_0. objEnemyFat_Draw_0 uses sprEFatLegs and hides legs on sprEFatDie. objPolice_Draw_0 uses sprPoliceLegs and an additive circle reading `light`. objWaiter uses sprWaiterLegs, objEHideM16 sprEM16CourchingLegs, objEnemyIdleDJ sprVinylRecord. objCoopEnt mode 1, with hard-coded sprELegs, draws these wrong. This is cosmetic: send a leg sprite in ENT."
+  },
+  {
+   "claim": "14. objPlayerDead Create has global side effects (Achievements.ini, NotDead=0, playeroncareffector; Create_0:9-31), and its Step drives the camera (288-313).",
+   "verdict": "confirmed",
+   "evidence": "Exact. The Step also polls the restart key (lines 1-4). 17 files test instance_exists(objPlayerDead), including scrDrawHUD and scrScreenFilterEffector."
+  },
+  {
+   "claim": "15. No object uses Begin Step, Other_68 or F6-F8. End Step is used only by objWallSoftV/H and objWallBoardsH. Only 4 objects have Destroy. So the client can destroy host-owned classes at Room Start without side effects.",
+   "verdict": "confirmed",
+   "evidence": "objects.tsv confirms Step_1, Other_68 and KeyPress_117-119 are unused, Step_2 is used only by indices 130/131/1281, and Destroy only by 95/334/1389/1440. There is no vk_f* use in code. Caveat: Create events and creation code have already run on the client before the strip. objChief_Create_0:23 destroys objEffector, objJonesBoss_Create sets global.player_lock/maskon, and objEnemyMelee_Create_0:29-33 instance_creates objEnemyPatrol. These are mostly boss cases. OPTN flags (0xcc7a25) include SaveKey/QuitKey/ScreenShotKey, and the runner contains game_save/game_load, so legacy F5/F6 save/load may collide with the F6 hotkey. This is probably not honoured, because Esc is used for pause despite QuitKey. Unverified."
+  },
+  {
+   "claim": "The 600 room-instance ids are reused across rooms.",
+   "verdict": "confirmed",
+   "evidence": "Scratchpad room_instances.tsv has 25079 placements with ids 100000-127766, of which 600 are duplicated."
+  },
+  {
+   "claim": "OPTN has VariableErrors set.",
+   "verdict": "confirmed",
+   "evidence": "Parsed Super R-R/data.win read-only with scratchpad gen8.py. The OPTN flags include DisplayErrors, VariableErrors and CreationEventOrder; AbortErrors is not set. GEN8 is bytecode 15, version 1.0.0.1763, steamAppID 0."
+  },
+  {
+   "claim": "objTransitioner/teleporter/elevator room changes all go through objEffector.next, so edge-detecting NEXT is generic.",
+   "verdict": "confirmed",
+   "evidence": "objTeleporter_Collision_98:14-16, objElevator_Step_0:188-190/338-340, objHospitalElevator_Step_0:147-149 and objPlayerCarEnter_Step_0:136-149 all set objEffector.next/fade/nextroom. objHospitalTransitioner writes objEffectorHospital.nextroom (unsupported in v1)."
+  }
+ ],
+ "design_flaws": [
+  {
+   "flaw": "The mechanical enemy-event transform crashes the host when the host body is gone. Replacing instance_exists(objPlayer) with instance_exists(coop_t) while leaving other objPlayer.<field> reads in place lets the code continue to unguarded host-body reads once coop_t is the puppet. Concrete case: gml_Object_objSwat_Step_0.gml:108-116 becomes `if (!instance_exists(coop_t)) {...exit} else if (scrIsAttacking(objPlayer.sprite_index))` followed by place_meeting(...objPlayer.dir...). The same pattern is in objPanther_Step_0.gml:5 then :124 and objECrawl_Step_0.gml:61 then :69,:86-113. Of the 67 enemy-family entries with objPlayer.x/y, 31 also read other objPlayer fields or use with/place_meeting. With DisplayErrors/VariableErrors on, 'Unable to find any instance for object index 98' triggers as soon as the host dies near such an enemy. objSwat_Step_0 and objPanther_Step_0 are named explicitly in the patch list.",
+   "severity": "blocker",
+   "fix": "Never rewrite a guard unless every objPlayer reference it protects is rewritten too. Make the transform AST- or line-aware: rewrite whole guarded blocks to coop_t, or keep the original guard and add a separate puppet branch. Alternatively make scrCoopTarget return objPlayer whenever any host objPlayer exists, and treat the puppet only through explicitly ported code. Re-decompile and diff, and fuzz the 'host dead, client alive' state in M2."
+  },
+  {
+   "flaw": "Running scrPlayerIsAttacking in the puppet's scope on the host can destroy the host's body. Execution branches do instance_create of objBikerKillFat / objPKillChainsawFat / objPKillDog (objPlayer children that later recreate objPlayerMouse) followed by with(objPlayerBiker) or with(objPlayerMouse) instance_destroy() (scrPlayerIsAttacking.gml ~505-521, ~523-563, ~650-668). The plan only rewrites objPlayer.<var> and place_meeting(...,objPlayer). The script also writes host-player globals (global.bigballs, global.EnergieSkippyGun, global.dogsave, global.pigkill, global.usedkill) when the puppet attacks.",
+   "severity": "major",
+   "fix": "In the parameterised copy, retarget every with(objPlayerMouse)/with(objPlayerBiker) to global.coop_att. When coop_att is the puppet, suppress execution-object creation and send an EXECUTE event so the client plays it on its own body. Swap or save-restore the per-player globals the script writes, not just maskindex/maskon/powerIgel/shake."
+  },
+  {
+   "flaw": "Enemy-side melee detection ignores the puppet. objSwat_Step_0:114-118, objPanther_Step_0:124-185, objWaiter_Step_0:42-44, objECrawl_Step_0:100-113 and objKnockedOut_Step_0:9 decide being hit by reading objPlayer.sprite_index plus place_meeting(objPlayer). The client's melee therefore never knocks down SWAT, panthers, waiters or crawlers on the host, even with the parameterised scrPlayerIsAttacking.",
+   "severity": "major",
+   "fix": "Add these sites to the attacker parameterisation: loop over {local body, puppet} or use global.coop_att set by the puppet's Step. Otherwise list them as unsupported for remote melee."
+  },
+  {
+   "flaw": "The melee armor path is executed on the wrong PC. When mask 21, biker armor or scrCheckMeleeEnergie absorbs a hit, scrPlayerDieMelee.gml:402-451 and scrPlayerDieDogBite.gml:36-52 convert the ATTACKER into objKnockedOut/objFatKnockedOut and instance_destroy it. Run on the client against an objCoopEnt, this creates a host-owned class (removed by the sanitizer), destroys the puppet (the next ENT resurrects it), and sets `type` to objCoopEnt's index. The host enemy stays standing and in contact. The host also unconditionally destroys the dog after the call (objDogPatrol_Step_0.gml:69). pending_death_life has no resolution path, so the client ends up either permanently melee-immune or killed on the next contact frame. The M3 'Walrus absorbs first hit' test cannot pass. The script's early exit for unarmed killers (scrPlayerDieMelee.gml:6-9) leaves the same pending state.",
+   "severity": "major",
+   "fix": "Use two phases. The host sends MELEE_HIT and the client evaluates armor and replies DIED or ABSORBED(+knockback dir). On ABSORBED the host runs the knockback branch on the real enemy, and on DIED it clears pending. Add a pending timeout of about RTT plus 250 ms. Give objCoopEnt the ammo/hits variables the death scripts read."
+  },
+  {
+   "flaw": "The host-dead case deadlocks floor and level completion. Every completion and unlock path on the host is gated on the host's own body: objTransitioner_Step_0.gml:6 exits when no objPlayer, freezing solid/visible; STAGE CLEAR runs inside the host body's Step (objPlayerMouse_Step_0.gml:224-262); scrCheckMissionComplete.gml:1 needs instance_exists(objPlayer); objTransitioner_Collision_98.gml:5 exits when solid==1. If the host dies and the client clears the floor, FLOOR_CLEAR is never sent, the client's mirrored exits stay locked, REQ_EXIT's 'unlocked' check fails, global.done never becomes 1, and the car is host-only. The stated rule 'the dead player respawns when the partner takes the stairs' works only when the CLIENT is the dead one. When the host is mid-execution, Collision_98:9 also rejects execution objects, so REQ_EXIT silently fails.",
+   "severity": "major",
+   "fix": "Compute floor-clear and mission-complete in objCoopNet on the host from instance counts, independent of the host body (port the objTransitioner_Step_0:22 and scrCheckMissionComplete conditions). Unlock exits from that, and let REQ_EXIT and the car trigger (forwarded from the client) work while the host is dead or busy."
+  },
+  {
+   "flaw": "The client world has no objEnemy, but 43 files gate behaviour on local enemy existence and the design patches about 5. Unpatched examples: objDoorDoneH_Step_0.gml:1-8 (enemy-locked doors are open on the client), objTrainTransition_Step_0.gml:18 (the train-arrival sequence starts at once on the client), objTrain_Step_0.gml:18, objTeleporter_Step_0.gml:18, objElevator_Step_0.gml:22/76, objPhone_Draw_0.gml:23, objPlayerMouse_Other_4.gml:1-8 (clear flag), STAGE CLEAR in objPlayerBiker/objPlayerGriffin/objPigButcher Steps, scrCheckpoint.gml:1, objCellDoor_Mouse_53. The restart branch also depends on this: objEffector_Step_0.gml:450 checks objTrain.visible (local train sim), and :519 checks global.done (10 Hz HUD mirror). Host and client can then take different restart branches (checkpoint vs full reset).",
+   "severity": "major",
+   "fix": "Audit all 43 sites. On the client, replace local counts with a replicated value (e.g. scrCoopEnemyExists() fed by HUD/ENT counts per class). Make RESTART carry the host's branch selector, and have the client force that branch."
+  },
+  {
+   "flaw": "Doors opened by enemies are never mirrored. objCoopEnt has no collision, so doors that host enemies push stay shut on the client. The client's line of sight differs, its bullets stop locally at a door that is open on the host (the enemy still dies there), and ghost objEBullets stop at a door the host bullet passed. Door drift is listed as a risk, but this is systematic, because enemies walk through doors constantly.",
+   "severity": "major",
+   "fix": "Replicate door state host to client (image_angle/swingspeed for changed doors, unreliable, about 10 Hz). Alternatively give objCoopEnt the same door-collision forwarder the puppet uses."
+  },
+  {
+   "flaw": "The kill switch breaks when the DLL is absent. The global_init patch sets only global.coop_dll=0, but patched entries read global.coop_role, global.coop_src, global.coop_victim and global.coop_att directly (e.g. `if (global.coop_role == 2 && scrCoopActive())`). With VariableErrors set, the first patched event crashes. The M0 'DLL deleted plays identically' test fails.",
+   "severity": "major",
+   "fix": "Initialise every coop global (coop_active=0, coop_role=0, coop_src=objPlayer, coop_victim=objPlayer, coop_att=noone, coop_lastid=0, …) unconditionally in global_init, before the file_exists check."
+  },
+  {
+   "flaw": "Teardown on Game End may kill the session on every host game_restart. objCoopNet's Game End sends BYE, coop_disconnect and coop_shutdown. game_restart runs on the host during normal progression: objEffector_Step_0.gml:387 (restart==1, set by scrCarNextRoom), :400 (sequence 39/41), objMaskUnlock_Draw_0.gml:175, objPause_Draw_0.gml:86, objOptions_KeyPress_13.gml:159, objBikeEnding/objDizzy/objEffectorHouse Draw. If this runner fires Game End on game_restart (unverified), the 'idempotent coop_init survives game_restart' plan is defeated, and the client drops at every chapter boundary.",
+   "severity": "major",
+   "fix": "Probe in M0 whether Other_3 fires on game_restart. Only call coop_shutdown when a global quitting flag is set, at the 3 game_end sites and on window close. Otherwise let the DLL session persist and re-attach in scrCoopInit. Guard against duplicate objCoopNet."
+  },
+  {
+   "flaw": "The patch target name for the focus throttle is wrong. gml_Object_objconsole_Step_0 (code index 5500) is an orphan. The bound objConsole Step is gml_Object_objConsole_Step_0 (index 5591; see scratchpad modmap/event_bindings.tsv and orphans.tsv). A name-based UTMT patch edits dead code, and room_speed=30 survives.",
+   "severity": "minor",
+   "fix": "Patch by object and event binding (objConsole idx 1140, Step_0), not by file name. Assert that the patched entry contains `room_speed = 30`."
+  },
+  {
+   "flaw": "NEXT does not replicate the per-player save snapshot. objTransitioner_Collision_98.gml:22-44 saves shells, knives, meleeenergie, bigballs, dogsave, BuffSkippy and the score *save globals, and also sets global.overright (11-14). scrCoopApplyNext copies only 5 values, so client restarts (objEffector_Step_0.gml:548-566) restore knives/armor/BuffSkippy from level start (PauseRestart reset at :331-342). code5320:3 restores global.shells from a stale shellssave, and overright-dependent spawns (code5320:8-18) are wrong.",
+   "severity": "minor",
+   "fix": "In scrCoopApplyNext, execute the full save block (lines 22-44 plus the mask 13 hard-mode clause) and the overright rule using the toucher position."
+  },
+  {
+   "flaw": "A dead player who leaves a floor via NEXT leaves objPlayerDead in that persistent room. On revisit, objPlayerDead_Step_0.gml:288-313 lerps view_xview/yview every frame against the live camera, and 17 files react to instance_exists(objPlayerDead): the scrDrawHUD restart prompt, scrScreenFilterEffector, objBackgroundColor_Draw_0. Respawn also depends on a placed objPlayerMouse that code5320 already destroyed on earlier visits.",
+   "severity": "minor",
+   "fix": "Destroy the local objPlayerDead in scrCoopApplyNext. After arriving through NEXT with no objPlayer present, instance_create objPlayerMouse at the floor's start (or the toucher position) with the saved loadout."
+  },
+  {
+   "flaw": "One enemy bullet can kill both players. On the host, objEBullet passes through the puppet and keeps flying, while on the client its ghost kills the client and is destroyed. The same bullet can then kill the host standing behind the partner.",
+   "severity": "minor",
+   "fix": "Tag replicated bullets with their host nid. The client sends BULLET_HIT(nid) on a victim-side death and the host destroys that bullet, accepting a small window."
+  },
+  {
+   "flaw": "ENet packet sizing. coop_flush targets 1200-byte packets with MTU 1200, but ENet adds protocol and command headers, so full-size unreliable packets fragment. In ENet 1.3.x, fragmented unreliable packets are sent reliably unless ENET_PACKET_FLAG_UNRELIABLE_FRAGMENT is set, which brings back head-of-line blocking for ENT/PSTATE.",
+   "severity": "minor",
+   "fix": "Cap coalesced payloads at about MTU-64 (about 1130 B) and set UNRELIABLE_FRAGMENT for channel 1 sends. Log fragment counts via coop_stat."
+  },
+  {
+   "flaw": "Identity and epoch gaps. It is unclear whether the client increments its own epoch at Room Start, but READY and the dead-nid sets must use the host's epoch. PICKUP_REQ, THROW_REQ and REQ_EXIT carry no epoch, and the rmTrainstationEntrance/rmSwatDownstairs restarts keep persistent ids, so stale requests can delete or move objects in the new attempt. 'Net objWeapon vanished locally = pickup' also misfires: objEffector_Other_4.gml:14-22 (mask 22 turns objWeapon into gas canisters) and scrCleanItems on restart both destroy net weapons locally, which then deletes them on the host.",
+   "severity": "minor",
+   "fix": "Make the epoch host-assigned only, and stamp every client-to-host request with (room, epoch). Detect pickups by hooking scrPlayerPickUp's destroy of a net weapon (set a flag before instance_destroy), not by polling for disappearance."
+  },
+  {
+   "flaw": "Remote melee timing depends on snapped, unreliable PSTATE sprites. Lost or jitter-coalesced packets skip attack frames (latest-wins per host frame), and the puppet's 0.5 smoothing puts the 12 px probe behind the true position. Swings that look solid on the client miss on the host.",
+   "severity": "minor",
+   "fix": "Send a reliable MELEE_START (sprite, dir, x, y, sender frame) and run the attack window on the host for the sprite's frame range, anchored at the reported position."
+  },
+  {
+   "flaw": "The client menu lock is incomplete. Only objTitleNew_KeyPress_13 and objLevelSelectNew_Mouse_53 are gated, but objTitleNew also has Mouse_53/KeyPress_32, objLevelSelectNew has KeyPress_13/32, and the legacy objTitle/objLevelSelect menus exist (chosen by ini level_select_new, objSplashScreen_Create_0.gml:45).",
+   "severity": "minor",
+   "fix": "Gate all start events of all four menu objects, or have objCoopNet park the client in a dedicated lobby room."
+  },
+  {
+   "flaw": "Barrier side effects. objEffector.amount ramps back up by +5 every frame when fade==0 (objEffector_Step_0.gml:350-355), so blackout must be re-applied each frame. global.player_lock is also used by scripts (objJonesBoss_Create), so a blind reset on release can unlock a scripted freeze.",
+   "severity": "minor",
+   "fix": "Hold amount every frame. Save and restore player_lock/notarget instead of forcing 0."
+  },
+  {
+   "flaw": "Cosmetic and per-player mismatches. objBullet/objEBullet Create set sprite_index=global.sprite_bullet (the receiver's) and global.noguns=0, and FIRE does not carry the sprite. objCoopEnt mode 1 hard-codes sprELegs. Dennis knives on the client are objCoopEnt, so objDennisThrowingKnife_Collision_98 (speed<=0 gives global.knives+=1) cannot return them to the thrower, and the host's body collects the client's knives. Client-side box, gift and trunk weapons (scrPlayerPickUp.gml:332,368) are host-owned classes with no forward message, so the sanitizer silently deletes them.",
+   "severity": "minor",
+   "fix": "Add sprite and leg-sprite fields. Make knife retrieval owner-aware (PICKUP_REQ for knives). Add a SPAWN_REQ for client-created ground weapons, or keep those interactables host-only explicitly."
+  },
+  {
+   "flaw": "Unverified UTMT bytecode-15 caveats. The only recompile probe added 0 FUNC entries. New scripts need SCPT, CODE and FUNC entries, and objects must exist before compiling code that names them. Recompiling decompiled entries with GMS1 backslash literals (e.g. objEffector_Step_0 `working_directory + \"\\restartmusic\"`, and the new `\"\\SuperRRCoop.dll\"`) needs a check that UTMT does no escape processing for GMS1. The runner has event_perform_object, instance_activate_object and buffer_* natively, so a successful FUNC-append probe would open simpler options.",
+   "severity": "minor",
+   "fix": "Add M0 round-trip probes: compile a script calling window_set_caption and event_perform_object, and recompile one entry containing backslash strings. Diff the re-decompiled bytecode for both."
+  }
+ ],
+ "missing": [
+  "Host dies but the client is alive: floor-clear, exit unlock, global.done, the car and LEVEL_END all need the host body (objTransitioner_Step_0:6, objPlayerMouse_Step_0:224-262, scrCheckMissionComplete:1)",
+  "Client-side replacement for the 43 local enemy-count gates: objDoorDoneH, objTrainTransition, objTrain, objTeleporter_Step, objElevator, objPhone, other bodies' STAGE CLEAR, scrCheckpoint, restart branch selection",
+  "Door state driven by host enemies; the client never sees enemy-opened doors",
+  "Execution branches inside scrPlayerIsAttacking (objBikerKillFat / objPKillChainsawFat / objPKillDog) and enemy-side hit detection reading objPlayer.sprite_index (objSwat, objPanther, objWaiter, objECrawl, objKnockedOut)",
+  "Two-phase melee resolution for the armor and mask-21 absorb path, where the attacker is knocked out, and a timeout for pending_death_life",
+  "Lethal objects outside objEBullet/objExplosion: objCleaver_Step_0:10 (scrPlayerDieMelee), objBodyguardKnife, objLaser_Step_0:18 (spawns objEBullet at the host's objPlayer.x/y only), enemy==1 objDennisThrowingKnife",
+  "Room-placed bomb-door objExplosion (rmHouse5Upstairs, rmTensionUpstairs; objExplosion_Step_0:15-46). It is never captured as FIRE because it is placed, not spawned, so the client never dies to it",
+  "Game End versus game_restart lifecycle of the DLL session and objCoopNet",
+  "Unconditional initialisation of all coop globals for the DLL-absent kill switch",
+  "The full transition save block (shells, knives, meleeenergie, BuffSkippy, bigballs, dogsave, overright) on the client's NEXT",
+  "Removing a stale objPlayerDead from persistent floors, and spawning a body when a revisited floor has no placed player",
+  "Host busy in an execution object when handling REQ_EXIT (objTransitioner_Collision_98:9 rejects it), and a client mid-execution teleported or persisted by NEXT",
+  "global.deadIgel and Igel cutscene state, which gate restart (objEffector_KeyPress_82:5) and exits (objTransitioner_Collision_98:1), and are not replicated",
+  "Gamepad pause and restart paths (scrXboxEffectorPause from objEffector_Step_0, scrXboxRestartDead): force global.xbox=0 in co-op",
+  "Score bonuses computed from local enemy state on the client, e.g. 'Dangerous Pickup' in scrPlayerPickUp (with(objEnemy) alert check), and client-side NPC kills (objDogPatrolFriend, objWalrusDeadTalked) whose score the HUD mirror overwrites",
+  "Client collectibles: tokens, letters and secret masks in scrPlayerPickUp.gml:1-310 write global.masks/newmask on the client. Whether these persist contradicts 'client is save-neutral' and is unverified",
+  "Mask-menu timing: the host may start playing while the client is still in objMaskMenu, and the barrier does not cover that phase",
+  "Possible legacy F5/F6 save/load (the OPTN SaveKey flag is set) colliding with the F6 host hotkey"
+ ]
+}

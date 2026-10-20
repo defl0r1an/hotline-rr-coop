@@ -1,0 +1,10 @@
+addspeed = 0.2 + random(0.1);
+image_blend = c_white;
+image_speed = 0;
+image_angle = random(360);
+image_xscale = 0.75 + random(0.5);
+image_yscale = image_xscale;
+image_blend = merge_color(c_red, c_maroon, 0.5 + random(0.1));
+blur = 0;
+train = 0;
+surface = 1;

@@ -1,0 +1,11 @@
+friction = 0.1;
+diradd = -1 + (round(random(1)) * 2);
+angle = direction;
+left = choose(1, -1);
+image_speed = 0;
+ammo = 0;
+hits = 0;
+bounce = 0;
+decadenced = 0;
+maxammo = 0;
+destroy = 0;

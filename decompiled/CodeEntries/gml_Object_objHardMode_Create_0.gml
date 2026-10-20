@@ -1,0 +1,1 @@
+global.hardmode = 0;

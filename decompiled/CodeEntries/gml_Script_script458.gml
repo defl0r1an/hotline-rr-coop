@@ -1,0 +1,11 @@
+global.clean_mem_func = external_define("CleanMem.dll", "halo_shg_clean", dll_cdecl, ty_real, 0);
+global.get_mem_func = external_define("CleanMem.dll", "halo_shg_get_mem", dll_cdecl, ty_real, 0);
+global.last_mem_freed_state = "";
+global.last_mem_freed_ago = -1;
+global.player_lock = 0;
+global.god = 0;
+global.snd = audio_create_stream(working_directory + "sndClick.wav");
+global.strah = 0;
+global.rickhitted = 0;
+global.notarget = 0;
+global.restart = 0;

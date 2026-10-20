@@ -1,0 +1,1525 @@
+Room order:
+  rmEnableSteam
+  rmSplashScreen
+  rmDevolver
+  rmDennatonSplash
+  rmMenu
+  rmLevelSelect
+  rmControls
+  rmPart
+  rmInterlude
+  rmPause
+  rmNewWeapon
+  rmUnlock
+  rmChapter
+  rmMCChapter
+  rmHospitalTitle
+  rmBandCredits
+  rmScore
+  rmScoreDetails
+  rmWeaponUnlock
+  rmDream1
+  rmDream2
+  rmDream3
+  rmTutorial
+  rmStore1
+  rmStore2
+  rmStore3
+  rmPizzaHut1
+  rmPizzaHut2
+  rmPizzaHut3
+  rmVideoStore1
+  rmVideoStore2
+  rmVideoStore3
+  rmBar1
+  rmBar2
+  rmBar3
+  rmCredits
+  rmRewind
+  rmMCBar
+  rmMCSequence2
+  rmMCSequence2Downstairs
+  rmMCSequence3
+  rmMCSequence3Downstairs
+  rmMCSequence4
+  rmMCSequence4Downstairs
+  rmSequence1
+  rmSequence1Downstairs
+  rmSequence2
+  rmSequence2Downstairs
+  rmSequence3
+  rmSequence3Downstairs
+  rmSequence4
+  rmSequence4Downstairs
+  rmSequence5
+  rmSequence5Downstairs
+  rmSequence6
+  rmSequence6Downstairs
+  rmSequence7
+  rmSequence7Downstairs
+  rmTestRoom
+  rmTestLevel2
+  rmTestLevel4
+  rmTestLevel6
+  rmTestLevel8
+  rmTestLevel9
+  rmTestLevel10
+  rmInstant2
+  rmInstant3
+  rmNew9
+  rmNew11
+  rmNew13
+  rmNew15
+  rmSequence8
+  rmSequence8Downstairs
+  rmSequence9
+  rmSequence9Downstairs
+  rmSequence10
+  rmSequence10Downstairs
+  rmSequence11
+  rmSequence11Downstairs
+  rmSequence12
+  rmSequence12Downstairs
+  rmSequence12b
+  rmSequence12bDownstairs
+  rmSequence12c
+  rmSequence13
+  rmSequence13Downstairs
+  rmSequence14
+  rmSequence14Downstairs
+  rmBikeEnding
+  rmTrainstationEntrance
+  rmTrainstationDownstairs
+  rmAlley
+  rmApartment1Entrance
+  rmApartment1Upstairs
+  rmApartment2Entrance
+  rmApartment2Upstairs
+  rmHouse1Downstairs
+  rmHouse1Upstairs
+  rmHouse5Downstairs
+  rmTensionUpstairs
+  rmHouse5Upstairs
+  rmHouse2Downstairs
+  rmHouse2Upstairs
+  rmSecretSewer
+  rmHotelEntrance
+  rmHotelSuite
+  rmBuildingFloor1
+  rmBuildingFloor2
+  rmBuildingFloor3
+  rmBuildingFloor4
+  rmPhoneHomEntrance
+  rmPhoneHomUpstairs
+  rmHouse3Downstairs
+  rmHouse3Basement
+  rmHouse3Upstairs
+  rmHouse4Middle
+  rmHouse4Left
+  rmHouse4Right
+  rmHouse4Upstairs
+  rmSwatDownstairs
+  rmSwatUpstairs
+  rmOfficeEntrance
+  rmOfficeFloor2
+  rmOfficeFloor3
+  rmHospitalCutscene
+  rmHospitalTopFloor
+  rmHospitalEntrance
+  rmHospitalTransition
+  rmPoliceHQFloor1
+  rmPoliceHQFloor2
+  rmPoliceHQFloor3
+  rmPoliceHQFloor3TigerHard
+  rmBossClubFloor1
+  rmBossClubFloor2
+  rmBossClubFloor3
+  rmMansionEntrance
+  rmMansionMainHall
+  rmMansionBalcony
+  rmNoodleShop
+  rmArcadeDownstairs
+  rmArcadeUpstairs
+  rmPhoneHomEntranceBiker
+  rmPhoneHomUpstairsBiker
+  rmJanitors
+  rmHideout
+  rmGriffin
+  rmGriffinUpstairs
+  rmTrailer
+  room152
+  rmHighballer
+  rmEurogamer
+  rmOldHotel
+  room147
+Global init scripts:
+Scripts:
+  scrDrawHUD -> gml_Script_scrDrawHUD
+  scrDrawHUDHLM2 -> gml_Script_scrDrawHUDHLM2
+  scrDrawRestartHLM2 -> gml_Script_scrDrawRestartHLM2
+  scrGetMessage -> gml_Script_scrGetMessage
+  scrGetMessageRussian -> gml_Script_scrGetMessageRussian
+  scrGetMessageSpanish -> gml_Script_scrGetMessageSpanish
+  scrRotate -> gml_Script_scrRotate
+  scrHearPlayer -> gml_Script_scrHearPlayer
+  scrInitPathFinding -> gml_Script_scrInitPathFinding
+  scrChasePlayer -> gml_Script_scrChasePlayer
+  sxeasy_init -> gml_Script_sxeasy_init
+  sxeasy_play -> gml_Script_sxeasy_play
+  sxeasy_stop -> gml_Script_sxeasy_stop
+  sxeasy_setVolume -> gml_Script_sxeasy_setVolume
+  sxeasy_close -> gml_Script_sxeasy_close
+  scrReturnToStart -> gml_Script_scrReturnToStart
+  scrGetWeapon -> gml_Script_scrGetWeapon
+  scrPigGetWeapon -> gml_Script_scrPigGetWeapon
+  scrCurrentWeapon -> gml_Script_scrCurrentWeapon
+  scrKnifeThrowHits -> gml_Script_scrKnifeThrowHits
+  scrEnemyShoot -> gml_Script_scrEnemyShoot
+  scrCollisionLine -> gml_Script_scrCollisionLine
+  scrPointsDraw -> gml_Script_scrPointsDraw
+  scrScoreDraw -> gml_Script_scrScoreDraw
+  scrCurrentWeaponExt -> gml_Script_scrCurrentWeaponExt
+  scrGetAttack -> gml_Script_scrGetAttack
+  scrPlayerDieMelee -> gml_Script_scrPlayerDieMelee
+  scrDogChasePlayer -> gml_Script_scrDogChasePlayer
+  scrPlayerDieDogBite -> gml_Script_scrPlayerDieDogBite
+  scrXboxPlayerMove -> gml_Script_scrXboxPlayerMove
+  dllinit -> gml_Script_dllinit
+  setrumble -> gml_Script_setrumble
+  gettrigger_l -> gml_Script_gettrigger_l
+  gettrigger_r -> gml_Script_gettrigger_r
+  dllfree -> gml_Script_dllfree
+  getstate -> gml_Script_getstate
+  leftthumb_x -> gml_Script_leftthumb_x
+  leftthumb_y -> gml_Script_leftthumb_y
+  rightthumb_x -> gml_Script_rightthumb_x
+  rightthumb_y -> gml_Script_rightthumb_y
+  getbuttonstates -> gml_Script_getbuttonstates
+  checkbutton -> gml_Script_checkbutton
+  getid -> gml_Script_getid
+  scrPickUp360 -> gml_Script_scrPickUp360
+  scrShoot360 -> gml_Script_scrShoot360
+  scrControllerMisc -> gml_Script_scrControllerMisc
+  scrGoGetWeapon -> gml_Script_scrGoGetWeapon
+  scrInstanceNearest -> gml_Script_scrInstanceNearest
+  scrSeePlayer -> gml_Script_scrSeePlayer
+  scrCollisionLineExt -> gml_Script_scrCollisionLineExt
+  scrSeePlayerStationary -> gml_Script_scrSeePlayerStationary
+  scrMoveSolidOn -> gml_Script_scrMoveSolidOn
+  scrMoveSolidOff -> gml_Script_scrMoveSolidOff
+  scrChaseWall -> gml_Script_scrChaseWall
+  scrCollisionLineDouble -> gml_Script_scrCollisionLineDouble
+  scrInitThrowPos -> gml_Script_scrInitThrowPos
+  scrEnemyDieMelee -> gml_Script_scrEnemyDieMelee
+  vcapture_init -> gml_Script_vcapture_init
+  vcapture_begin -> gml_Script_vcapture_begin
+  vcapture_frame -> gml_Script_vcapture_frame
+  vcapture_save -> gml_Script_vcapture_save
+  scrPlayerAnimationEnd -> gml_Script_scrPlayerAnimationEnd
+  addToSurface -> gml_Script_addToSurface
+  script414 -> gml_Script_script414
+  scrCheckMissionComplete -> gml_Script_scrCheckMissionComplete
+  scrResetStory -> gml_Script_scrResetStory
+  scrResetSurfaces -> gml_Script_scrResetSurfaces
+  scrSaveSurface -> gml_Script_scrSaveSurface
+  scrDrawPlayer -> gml_Script_scrDrawPlayer
+  scrFreeSurfaces -> gml_Script_scrFreeSurfaces
+  scrSurfaceTiles -> gml_Script_scrSurfaceTiles
+  scrUpdateMaskPos -> gml_Script_scrUpdateMaskPos
+  scrInitMaskPos -> gml_Script_scrInitMaskPos
+  scrDrawMask -> gml_Script_scrDrawMask
+  scrGetSequenceOld -> gml_Script_scrGetSequenceOld
+  scrDrawMaskMenu -> gml_Script_scrDrawMaskMenu
+  script415 -> gml_Script_script415
+  scrGetSong -> gml_Script_scrGetSong
+  scrInitScore -> gml_Script_scrInitScore
+  scrCountMobilityScore -> gml_Script_scrCountMobilityScore
+  scrResetScore -> gml_Script_scrResetScore
+  scrCarNextRoom -> gml_Script_scrCarNextRoom
+  scrPlayerShoot -> gml_Script_scrPlayerShoot
+  scrPigShoot -> gml_Script_scrPigShoot
+  scrPlayerPickUp2 -> gml_Script_scrPlayerPickUp2
+  scrPlayerShieldShoot -> gml_Script_scrPlayerShieldShoot
+  scrCheckHitBack -> gml_Script_scrCheckHitBack
+  scrPlayerDropShield -> gml_Script_scrPlayerDropShield
+  scrPlayerShieldAnimationEnd -> gml_Script_scrPlayerShieldAnimationEnd
+  scrPlayerShieldDieMelee -> gml_Script_scrPlayerShieldDieMelee
+  scrPlayerShieldDieDogBite -> gml_Script_scrPlayerShieldDieDogBite
+  scrIdleGetEnemy -> gml_Script_scrIdleGetEnemy
+  scrThroatEnemy -> gml_Script_scrThroatEnemy
+  scrHeadButtEnemy -> gml_Script_scrHeadButtEnemy
+  scrCheckpoint -> gml_Script_scrCheckpoint
+  scrExportRoom -> gml_Script_scrExportRoom
+  scrGetSequence -> gml_Script_scrGetSequence
+  scrShowDate -> gml_Script_scrShowDate
+  scrPlayerMoveKeyboard -> gml_Script_scrPlayerMoveKeyboard
+  scrSaveTiles -> gml_Script_scrSaveTiles
+  scrInitControls -> gml_Script_scrInitControls
+  scrControlsAnimationEnd -> 
+  scrGetKill -> gml_Script_scrGetKill
+  scrPigGetKill -> gml_Script_scrPigGetKill
+  scrLoadUnlocked -> gml_Script_scrLoadUnlocked
+  scrSaveUnlocked -> gml_Script_scrSaveUnlocked
+  scrPlayerPickUp -> gml_Script_scrPlayerPickUp
+  sprPigButcherPickUp -> gml_Script_sprPigButcherPickUp
+  scrKillShield -> gml_Script_scrKillShield
+  script424 -> gml_Script_script424
+  scrPigButcherKill -> gml_Script_scrPigButcherKill
+  script426 -> gml_Script_script426
+  script423 -> gml_Script_script423
+  scrEStaticInit -> gml_Script_scrEStaticInit
+  scrEStaticStep -> gml_Script_scrEStaticStep
+  scrEPatrolInit -> gml_Script_scrEPatrolInit
+  scrEPatrolStep -> gml_Script_scrEPatrolStep
+  scrEMobileInit -> gml_Script_scrEMobileInit
+  scrEMobileStep -> gml_Script_scrEMobileStep
+  scrEMeleeInit -> gml_Script_scrEMeleeInit
+  scrEMeleeStep -> gml_Script_scrEMeleeStep
+  scrEMeleeStationaryInit -> gml_Script_scrEMeleeStationaryInit
+  scrEMeleeStationaryStep -> gml_Script_scrEMeleeStationaryStep
+  scrDogInit -> gml_Script_scrDogInit
+  scrDogStep -> gml_Script_scrDogStep
+  scrSearch -> gml_Script_scrSearch
+  scrMeleeSearch -> gml_Script_scrMeleeSearch
+  scrCharge -> gml_Script_scrCharge
+  scrDogCharge -> gml_Script_scrDogCharge
+  scrChargeSearch -> gml_Script_scrChargeSearch
+  scrLook -> gml_Script_scrLook
+  scrAttack -> gml_Script_scrAttack
+  scrReturn -> gml_Script_scrReturn
+  scrAim -> gml_Script_scrAim
+  scrChase -> gml_Script_scrChase
+  scrDogChase -> gml_Script_scrDogChase
+  scrChaseSearch -> gml_Script_scrChaseSearch
+  scrMeleeChaseSearch -> gml_Script_scrMeleeChaseSearch
+  scrFindWeapon -> gml_Script_scrFindWeapon
+  scrPatrol -> gml_Script_scrPatrol
+  scrFollowWall -> gml_Script_scrFollowWall
+  scrERandomInit -> gml_Script_scrERandomInit
+  scrERandomStep -> gml_Script_scrERandomStep
+  scrBounce -> gml_Script_scrBounce
+  scrSeeThroughCollision -> gml_Script_scrSeeThroughCollision
+  scrCarNextInterlude -> gml_Script_scrCarNextInterlude
+  scrHoboStep -> gml_Script_scrHoboStep
+  scrHoboGetWeapon -> gml_Script_scrHoboGetWeapon
+  scrDogSearch -> gml_Script_scrDogSearch
+  scrDogLook -> gml_Script_scrDogLook
+  scrDogCollision -> gml_Script_scrDogCollision
+  scrInitDistortion -> gml_Script_scrInitDistortion
+  scrDrawDistortion -> gml_Script_scrDrawDistortion
+  scrPlayerHospitalMove -> gml_Script_scrPlayerHospitalMove
+  scrDPatrolInit -> gml_Script_scrDPatrolInit
+  scrDPatrolStep -> gml_Script_scrDPatrolStep
+  scrSearchSprite -> gml_Script_scrSearchSprite
+  scrIsSearching -> gml_Script_scrIsSearching
+  scrStopSearch -> gml_Script_scrStopSearch
+  scrPolicePatrolStep -> gml_Script_scrPolicePatrolStep
+  scrPolicePatrolInit -> gml_Script_scrPolicePatrolInit
+  scrIsPolice -> gml_Script_scrIsPolice
+  scrPoliceGetWeapon -> gml_Script_scrPoliceGetWeapon
+  scrPoliceRandomInit -> gml_Script_scrPoliceRandomInit
+  scrPoliceRandomStep -> gml_Script_scrPoliceRandomStep
+  scrPoliceStaticInit -> gml_Script_scrPoliceStaticInit
+  scrPoliceStaticStep -> gml_Script_scrPoliceStaticStep
+  scrPoliceMeleeInit -> gml_Script_scrPoliceMeleeInit
+  scrPoliceMeleeStep -> gml_Script_scrPoliceMeleeStep
+  scrPoliceMeleeStationaryInit -> gml_Script_scrPoliceMeleeStationaryInit
+  scrPoliceMeleeStationaryStep -> gml_Script_scrPoliceMeleeStationaryStep
+  scrEFatInit -> gml_Script_scrEFatInit
+  scrEFatStep -> gml_Script_scrEFatStep
+  scrPInspectorInit -> gml_Script_scrPInspectorInit
+  scrPInspectorStep -> gml_Script_scrPInspectorStep
+  scrCantGetHit -> gml_Script_scrCantGetHit
+  surface_alpha -> gml_Script_surface_alpha
+  scrCountSpritesSize -> gml_Script_scrCountSpritesSize
+  scrDrawMaskLedge -> gml_Script_scrDrawMaskLedge
+  cleanmem_init -> gml_Script_cleanmem_init
+  cleanmem -> gml_Script_cleanmem
+  cleanmem_get_mem -> gml_Script_cleanmem_get_mem
+  scrSaveBonusList -> gml_Script_scrSaveBonusList
+  scrLoadBonusList -> gml_Script_scrLoadBonusList
+  scrCompileBonusList -> gml_Script_scrCompileBonusList
+  scrCheckBack -> gml_Script_scrCheckBack
+  scrStoryDrawAmmo -> gml_Script_scrStoryDrawAmmo
+  scrCreateBonusList -> gml_Script_scrCreateBonusList
+  scrPlayerDiePantherBite -> gml_Script_scrPlayerDiePantherBite
+  scrLoadSounds -> gml_Script_scrLoadSounds
+  scrLoadMask -> gml_Script_scrLoadMask
+  scrIsWalking -> gml_Script_scrIsWalking
+  scrMCKill -> gml_Script_scrMCKill
+  scrGetRoom -> gml_Script_scrGetRoom
+  scrGetMaskPowers -> gml_Script_scrGetMaskPowers
+  scrIndexToWeapon -> gml_Script_scrIndexToWeapon
+  scrGetAmmo -> gml_Script_scrGetAmmo
+  scrGetMessageFrench -> gml_Script_scrGetMessageFrench
+  scrGetCurrentLevel -> gml_Script_scrGetCurrentLevel
+  scrSwatFollowWall -> gml_Script_scrSwatFollowWall
+  scrESwatStep -> gml_Script_scrESwatStep
+  scrESwatInit -> gml_Script_scrESwatInit
+  scrNth -> gml_Script_scrNth
+  oddio_init -> gml_Script_oddio_init
+  oddio_free -> gml_Script_oddio_free
+  oddio_loadbin -> gml_Script_oddio_loadbin
+  oddio_loopbin -> gml_Script_oddio_loopbin
+  oddio_freetrack -> gml_Script_oddio_freetrack
+  oddio_play -> gml_Script_oddio_play
+  oddio_stop -> gml_Script_oddio_stop
+  oddio_setvolume -> gml_Script_oddio_setvolume
+  scrMeetDoor -> gml_Script_scrMeetDoor
+  scrDialogueGetAnswers -> gml_Script_scrDialogueGetAnswers
+  scrEMeleeStep2 -> gml_Script_scrEMeleeStep2
+  steamdll_init -> gml_Script_steamdll_init
+  steamdll_free -> gml_Script_steamdll_free
+  SteamInit -> gml_Script_SteamInit
+  SteamShutdown -> gml_Script_SteamShutdown
+  SteamSetAchievement -> gml_Script_SteamSetAchievement
+  SteamFindLeaderboard -> gml_Script_SteamFindLeaderboard
+  SteamSetLeaderboardScore -> gml_Script_SteamSetLeaderboardScore
+  SteamRunCallbacks -> gml_Script_SteamRunCallbacks
+  SteamGetRankScore -> gml_Script_SteamGetRankScore
+  SteamGetRankName -> gml_Script_SteamGetRankName
+  SteamDownloadScores -> gml_Script_SteamDownloadScores
+  SteamGetGlobalRank -> gml_Script_SteamGetGlobalRank
+  SteamSetStat -> gml_Script_SteamSetStat
+  SteamSetFloatStat -> gml_Script_SteamSetFloatStat
+  SteamStoreStats -> gml_Script_SteamStoreStats
+  SteamResetStats -> gml_Script_SteamResetStats
+  SteamIncStat -> gml_Script_SteamIncStat
+  bgm_Init -> gml_Script_bgm_Init
+  bgm_Close -> gml_Script_bgm_Close
+  bgm_Load -> gml_Script_bgm_Load
+  bgm_LoadMod -> gml_Script_bgm_LoadMod
+  bgm_LoadSample -> gml_Script_bgm_LoadSample
+  bgm_LoadStream -> gml_Script_bgm_LoadStream
+  bgm_LoadNetStream -> gml_Script_bgm_LoadNetStream
+  bgm_Unload -> gml_Script_bgm_Unload
+  bgm_IsLoaded -> gml_Script_bgm_IsLoaded
+  bgm_Play -> gml_Script_bgm_Play
+  bgm_Stop -> gml_Script_bgm_Stop
+  bgm_Pause -> gml_Script_bgm_Pause
+  bgm_Unpause -> gml_Script_bgm_Unpause
+  bgm_IsPlaying -> gml_Script_bgm_IsPlaying
+  bgm_GetLen -> gml_Script_bgm_GetLen
+  bgm_GetPos -> gml_Script_bgm_GetPos
+  bgm_GetOrder -> gml_Script_bgm_GetOrder
+  bgm_GetRow -> gml_Script_bgm_GetRow
+  bgm_GetAttr -> gml_Script_bgm_GetAttr
+  bgm_SetAttr -> gml_Script_bgm_SetAttr
+  bgm_GetGlobalAttr -> gml_Script_bgm_GetGlobalAttr
+  bgm_SetGlobalAttr -> gml_Script_bgm_SetGlobalAttr
+  bgm_FadeVol -> gml_Script_bgm_FadeVol
+  bgm_VolIsFading -> gml_Script_bgm_VolIsFading
+  bgm_Error -> gml_Script_bgm_Error
+  bgm_SetShowErrors -> gml_Script_bgm_SetShowErrors
+  bgm_SetReportErrors -> gml_Script_bgm_SetReportErrors
+  bgm_vol -> gml_Script_bgm_vol
+  bgm_SetLibDir -> gml_Script_bgm_SetLibDir
+  scrGetMaxpoints -> gml_Script_scrGetMaxpoints
+  scrGradeToNumber -> gml_Script_scrGradeToNumber
+  scrGetCurrentLevel2 -> gml_Script_scrGetCurrentLevel2
+  scrNumberToGrade -> gml_Script_scrNumberToGrade
+  scrLevelGetMask -> gml_Script_scrLevelGetMask
+  scrEPatrolStep3 -> gml_Script_scrEPatrolStep3
+  scrPolicePatrolStep2 -> gml_Script_scrPolicePatrolStep2
+  scrDogChaseSearch -> gml_Script_scrDogChaseSearch
+  scrEnemyIsAttacking -> gml_Script_scrEnemyIsAttacking
+  scrRevertToMaxAmmo -> 
+  scrMaskGetName -> gml_Script_scrMaskGetName
+  scrLevelGetPuzzle -> gml_Script_scrLevelGetPuzzle
+  scrCreateLetters -> gml_Script_scrCreateLetters
+  scrGetLetterSprite -> gml_Script_scrGetLetterSprite
+  scrGetGlowSprite -> gml_Script_scrGetGlowSprite
+  scrInitLetters -> 
+  scrGetTokenLetter -> gml_Script_scrGetTokenLetter
+  scrCheckGrades -> gml_Script_scrCheckGrades
+  scrCheckMasks -> gml_Script_scrCheckMasks
+  scrCheckGuns -> gml_Script_scrCheckGuns
+  scrCheckLetters -> gml_Script_scrCheckLetters
+  scrSetPort -> gml_Script_scrSetPort
+  scrXboxMenuStart -> gml_Script_scrXboxMenuStart
+  scrXboxMenuUp -> gml_Script_scrXboxMenuUp
+  scrXboxMenuDown -> gml_Script_scrXboxMenuDown
+  scrXboxLevelSelectLeft -> gml_Script_scrXboxLevelSelectLeft
+  scrXboxLevelSelectRight -> gml_Script_scrXboxLevelSelectRight
+  scrXboxLevelSelectUp -> gml_Script_scrXboxLevelSelectUp
+  scrXboxLevelSelectDown -> gml_Script_scrXboxLevelSelectDown
+  scrXboxLevelSelectBack -> gml_Script_scrXboxLevelSelectBack
+  scrXboxLevelSelectStart -> gml_Script_scrXboxLevelSelectStart
+  scrInitXboxButtons -> gml_Script_scrInitXboxButtons
+  scrXboxMenuQuit -> gml_Script_scrXboxMenuQuit
+  scrXboxControlsLeft -> gml_Script_scrXboxControlsLeft
+  scrXboxControlsRight -> gml_Script_scrXboxControlsRight
+  scrXboxControlsBack -> gml_Script_scrXboxControlsBack
+  scrXboxConversationStart -> gml_Script_scrXboxConversationStart
+  scrXboxEffectorHouseStart -> 
+  scrXboxEffectorHousePause -> gml_Script_scrXboxEffectorHousePause
+  scrXboxPauseUp -> gml_Script_scrXboxPauseUp
+  scrXboxPauseDown -> gml_Script_scrXboxPauseDown
+  scrXboxPauseBack -> gml_Script_scrXboxPauseBack
+  scrXboxPauseStart -> gml_Script_scrXboxPauseStart
+  scrXboxMaskMenuStart -> gml_Script_scrXboxMaskMenuStart
+  scrXboxMaskMenuDown -> gml_Script_scrXboxMaskMenuDown
+  scrXboxMaskMenuUp -> gml_Script_scrXboxMaskMenuUp
+  scrXboxMaskUnlockStart -> gml_Script_scrXboxMaskUnlockStart
+  scrXboxWeaponUnlockStart -> gml_Script_scrXboxWeaponUnlockStart
+  scrXboxBandCreditsStart -> gml_Script_scrXboxBandCreditsStart
+  scrXboxCreditsStart -> gml_Script_scrXboxCreditsStart
+  scrXboxBikeEndingStart -> gml_Script_scrXboxBikeEndingStart
+  scrXboxScoreStatsStart -> gml_Script_scrXboxScoreStatsStart
+  scrXboxScoreDetailsStart -> gml_Script_scrXboxScoreDetailsStart
+  scrXboxEndingDialogue1Up -> gml_Script_scrXboxEndingDialogue1Up
+  scrXboxEndingDialogue1Down -> gml_Script_scrXboxEndingDialogue1Down
+  scrXboxEndingDialogue1Start -> gml_Script_scrXboxEndingDialogue1Start
+  scrXboxEndingDialogue2Start -> gml_Script_scrXboxEndingDialogue2Start
+  scrXboxEffectorStart -> gml_Script_scrXboxEffectorStart
+  scrXboxEffectorPause -> gml_Script_scrXboxEffectorPause
+  scrXboxPuzzlePress -> gml_Script_scrXboxPuzzlePress
+  scrXboxPuzzleRelease -> gml_Script_scrXboxPuzzleRelease
+  scrXboxPuzzleQuit -> gml_Script_scrXboxPuzzleQuit
+  scrXboxPuzzleMove -> 
+  scrXboxPlayerMouse -> gml_Script_scrXboxPlayerMouse
+  scrXboxPlayerShoot -> gml_Script_scrXboxPlayerShoot
+  scrXboxPlayerLook -> gml_Script_scrXboxPlayerLook
+  scrXboxPlayerHousePickup -> gml_Script_scrXboxPlayerHousePickup
+  scrXboxPlayerKillShield -> gml_Script_scrXboxPlayerKillShield
+  scrXboxPlayerLockOn -> gml_Script_scrXboxPlayerLockOn
+  scrXboxPlayerShieldMouse -> gml_Script_scrXboxPlayerShieldMouse
+  scrXboxPlayerShieldMove -> gml_Script_scrXboxPlayerShieldMove
+  scrXboxPlayerMouseHouse -> gml_Script_scrXboxPlayerMouseHouse
+  scrXboxBikerMouse -> gml_Script_scrXboxBikerMouse
+  scrXboxBikerAttack -> gml_Script_scrXboxBikerAttack
+  scrXboxBikerKnife -> gml_Script_scrXboxBikerKnife
+  scrXboxBikerKill -> gml_Script_scrXboxBikerKill
+  scrXboxBikerHouseMouse -> gml_Script_scrXboxBikerHouseMouse
+  scrXboxBikerHousePickup -> gml_Script_scrXboxBikerHousePickup
+  scrXboxBluntKill -> gml_Script_scrXboxBluntKill
+  scrXboxBashKill -> gml_Script_scrXboxBashKill
+  scrXboxChopKill -> gml_Script_scrXboxChopKill
+  scrXboxBodyguardKill -> gml_Script_scrXboxBodyguardKill
+  scrXboxBrickKill -> gml_Script_scrXboxBrickKill
+  scrXboxSnapKill -> gml_Script_scrXboxSnapKill
+  scrXboxHoboBash -> gml_Script_scrXboxHoboBash
+  scrXboxHoboBlunt -> gml_Script_scrXboxHoboBlunt
+  scrXboxBag -> gml_Script_scrXboxBag
+  scrXboxKeys -> gml_Script_scrXboxKeys
+  scrXboxKeycard -> gml_Script_scrXboxKeycard
+  scrXboxPoliceFile -> gml_Script_scrXboxPoliceFile
+  scrXboxBossgun -> gml_Script_scrXboxBossgun
+  scrXboxItemTake -> gml_Script_scrXboxItemTake
+  scrXboxNickeTalkStore -> gml_Script_scrXboxNickeTalkStore
+  scrXboxNickeTalkSpecial -> gml_Script_scrXboxNickeTalkSpecial
+  scrXboxClipRead1 -> gml_Script_scrXboxClipRead1
+  scrXboxClipRead2 -> gml_Script_scrXboxClipRead2
+  scrXboxGolfbag -> gml_Script_scrXboxGolfbag
+  scrXboxHackComputerEnd -> 
+  scrXboxHackComputerPhoneHom -> 
+  scrXboxHospitalDoor -> gml_Script_scrXboxHospitalDoor
+  scrXboxLaundry -> gml_Script_scrXboxLaundry
+  scrXboxClothes -> gml_Script_scrXboxClothes
+  scrXboxPrisonDoor -> gml_Script_scrXboxPrisonDoor
+  scrXboxDumpster -> gml_Script_scrXboxDumpster
+  scrXboxCeoTable -> gml_Script_scrXboxCeoTable
+  scrXboxJanitorComputer -> gml_Script_scrXboxJanitorComputer
+  scrXboxPlayerHospitalMove -> gml_Script_scrXboxPlayerHospitalMove
+  scrXboxPimpPhone -> gml_Script_scrXboxPimpPhone
+  scrXboxBossPhone -> gml_Script_scrXboxBossPhone
+  scrXboxNeighboursPhone -> gml_Script_scrXboxNeighboursPhone
+  scrXboxRestart -> gml_Script_scrXboxRestart
+  scrXboxAssassinRestart -> gml_Script_scrXboxAssassinRestart
+  scrXboxNickeTalkPizza -> gml_Script_scrXboxNickeTalkPizza
+  scrXboxNickeTalkVHS -> gml_Script_scrXboxNickeTalkVHS
+  scrXboxNickeTalkBar -> gml_Script_scrXboxNickeTalkBar
+  scrXboxPlayerHospitalPickup -> gml_Script_scrXboxPlayerHospitalPickup
+  scrXboxPlayerHospitalMouse -> gml_Script_scrXboxPlayerHospitalMouse
+  scrXboxPlayerMoveWindow -> gml_Script_scrXboxPlayerMoveWindow
+  scrXboxPlayerMouseWindow -> gml_Script_scrXboxPlayerMouseWindow
+  scrXboxTakeGirlfriend -> 
+  scrXboxEffectorHospitalStart -> gml_Script_scrXboxEffectorHospitalStart
+  scrXboxRestartDead -> gml_Script_scrXboxRestartDead
+  scrCheckUsedKills -> gml_Script_scrCheckUsedKills
+  scrXboxAssassinTalkBar -> gml_Script_scrXboxAssassinTalkBar
+  scrAlienWareInit -> gml_Script_scrAlienWareInit
+  scrAlienWareFree -> gml_Script_scrAlienWareFree
+  scrAlienWarePink -> gml_Script_scrAlienWarePink
+  scrAlienWareYellow -> gml_Script_scrAlienWareYellow
+  scrAlienWareRed -> gml_Script_scrAlienWareRed
+  scrGunIndexGetAmmo -> gml_Script_scrGunIndexGetAmmo
+  scrLoadAchievements -> gml_Script_scrLoadAchievements
+  scrSaveAchievements -> gml_Script_scrSaveAchievements
+  scrCheckUsedMasks -> gml_Script_scrCheckUsedMasks
+  scrCheckUsedGuns -> gml_Script_scrCheckUsedGuns
+  scrCheckUsedMelee -> gml_Script_scrCheckUsedMelee
+  scrCheckUsedThrows -> gml_Script_scrCheckUsedThrows
+  scrLoadKeys -> gml_Script_scrLoadKeys
+  scrSaveKeys -> gml_Script_scrSaveKeys
+  scrCountFlexibilityScore -> gml_Script_scrCountFlexibilityScore
+  scrInstanceNearestExt -> gml_Script_scrInstanceNearestExt
+  scrIsSwinging -> gml_Script_scrIsSwinging
+  scrLoadVol -> gml_Script_scrLoadVol
+  scrSaveVol -> gml_Script_scrSaveVol
+  scrXboxMenuLeft -> gml_Script_scrXboxMenuLeft
+  scrXboxMenuRight -> gml_Script_scrXboxMenuRight
+  scrGoreBash -> gml_Script_scrGoreBash
+  scrGoreCut -> gml_Script_scrGoreCut
+  scrGoreShotgun -> gml_Script_scrGoreShotgun
+  scrGoreShot -> gml_Script_scrGoreShot
+  scrExportSprites -> gml_Script_scrExportSprites
+  SteamCheckFinal -> gml_Script_SteamCheckFinal
+  scrDrawSpriteAsVertex -> gml_Script_scrDrawSpriteAsVertex
+  scrHardMode -> gml_Script_scrHardMode
+  sleep -> gml_Script_sleep
+  set_automatic_draw -> gml_Script_set_automatic_draw
+  screen_refresh -> gml_Script_screen_refresh
+  screen_redraw -> gml_Script_screen_redraw
+  scrStayAwayFromPlayer -> gml_Script_scrStayAwayFromPlayer
+  scrPlayerIsAttacking -> gml_Script_scrPlayerIsAttacking
+  scrPlayerIsPunching -> gml_Script_scrPlayerIsPunching
+  scrSoldierCamera -> gml_Script_scrSoldierCamera
+  scrMovingPlayerExists -> gml_Script_scrMovingPlayerExists
+  scrIsAttacking -> gml_Script_scrIsAttacking
+  scrHardModeText -> gml_Script_scrHardModeText
+  scrPosDirX -> gml_Script_scrPosDirX
+  scrPosDirY -> gml_Script_scrPosDirY
+  scrAmmoFix -> gml_Script_scrAmmoFix
+  scrBikerGetsKnocked -> gml_Script_scrBikerGetsKnocked
+  scrBikerIsDead -> gml_Script_scrBikerIsDead
+  scrExecutionDontDropWeapon -> gml_Script_scrExecutionDontDropWeapon
+  scrEnemyAnimationEnd -> gml_Script_scrEnemyAnimationEnd
+  sxeasy_setMusicVolume -> gml_Script_sxeasy_setMusicVolume
+  sxeasy_setMasterVolume -> gml_Script_script432
+  ThankYouDanny -> 1-900CULTConfirmed
+  levelgetsongforrestart -> code5261
+  getammoenemy -> code5313
+  scrGunIndexGetMaxAmmo -> gml_Script_scrGunIndexGetMaxAmmo
+  script432 -> gml_Script_script432
+  script434 -> gml_Script_script434
+  script435 -> gml_Script_script435
+  script437 -> gml_Script_script437
+  scrLevelRestart -> code5458
+  scrAngleDifference -> gml_Script_scrAngleDifference
+  scrFlipShotgun -> gml_Script_scrFlipShotgun
+  scrCanTurn -> gml_Script_scrCanTurn
+  scrIsTurning -> gml_Script_scrIsTurning
+  scrGetTurnEnd -> gml_Script_script446
+  scrGetTurn -> gml_Script_scrGetTurn
+  scrMuzzle -> gml_Script_scrMuzzle
+  consoleChangeCursorPos -> gml_Script_script449
+  consoleObjectValid -> gml_Script_script450
+  consoleCheckArg -> gml_Script_script451
+  consoleInitDocs -> gml_Script_script452
+  consoleGetSelection -> gml_Script_script453
+  consoleCleanString -> gml_Script_script454
+  consoleChangeCursorInternal -> gml_Script_script455
+  consoleSwitchCommand -> gml_Script_script456
+  consoleGaming -> gml_Script_script457
+  global_init -> gml_Script_script458
+  str_num -> gml_Script_script459
+  parse_num -> gml_Script_script460
+  cl_print -> gml_Script_script461
+  variable_instance_get_names -> gml_Script_script462
+  str_bool -> gml_Script_script463
+  parse_array -> gml_Script_script464
+  parse_bool -> gml_Script_script465
+  is_numeric -> gml_Script_script466
+  array_find_first -> gml_Script_script467
+  string_split -> gml_Script_script468
+  str_brack -> gml_Script_script469
+  consoleGetKey -> gml_Script_script470
+  consoleInitSpecKeys -> gml_Script_script471
+  c_print -> gml_Script_script472
+  scrScreenFilterEffector -> gml_Script_scrScreenFilterEffector
+  scrCheckMeleeEnergie -> gml_Script_scrCheckMeleeEnergie
+  scrGeorgeCam -> gml_Script_scrGeorgeCam
+  scrEHideStep -> gml_Script_scrEHideStep
+  scrEnemyAmbushShoot -> gml_Script_scrEnemyAmbushShoot
+  scrEnemyAmbushSprite -> gml_Script_scrEnemyAmbushSprite
+  scrEnemyAmbushSpriteHand -> gml_Script_scrEnemyAmbushSpriteHand
+  scrCheckKnifeCombo -> gml_Script_scrCheckKnifeCombo
+  listplayer -> gml_Script_script481
+  scrAchievementsInit -> gml_Script_scrAchievementsInit
+  scrGetAchievementProperty -> gml_Script_scrscrGetAchievementProperty
+  scrAchievementSet -> gml_Script_scrAchievementSet
+  scrJonesStep -> gml_Script_scrJonesStep
+  scrSkippy -> gml_Script_script486
+  scrIgelEmotionsDrawMask -> gml_Script_script487
+  scrIgelEmotions -> gml_Script_script488
+  scrHearPoint -> gml_Script_script489
+  scrZackDieWhileKilling -> gml_Script_script490
+  scrIsDodging -> gml_Script_script491
+  scrDodgerStep -> gml_Script_script492
+  scrBloodWall -> gml_Script_script493
+  scrSongINIT -> gml_Script_script494
+  scrOptionsUpdate -> gml_Script_script495
+  scrCountMobilityScoreStep -> gml_Script_script496
+  scrCountFlexibilityScoreStep -> gml_Script_script497
+  scrScoreStatsEffector -> gml_Script_script498
+  scrDrawFinish -> gml_Script_script499
+  scrDrawLevelCleared -> gml_Script_script500
+  scrDrawFloorCleared -> gml_Script_script501
+  scrSoundWhileShooting -> gml_Script_script502
+  GetDemoArr -> gml_Script_script503
+  scrTitleInit -> gml_Script_scrTitleInit
+  scrVHSError -> gml_Script_script505
+  scrComboLine -> gml_Script_scrComboLine
+  scrMasksSkinLoading -> gml_Script_scrMasksSkinLoading
+  scrGetMaskSkin -> gml_Script_scrGetMaskSkin
+  scrMasksSkinLoadingFromFolder -> gml_Script_scrMasksSkinLoadingFromFolder
+  scrLoadSkinsFromIni -> gml_Script_scrLoadSkinsFromIni
+  scrSetRasmusEvent -> gml_Script_scrSetRasmusEvent
+  scrDrawRasmusMask -> gml_Script_scrDrawRasmusMask
+  scrMasksINIT -> gml_Script_script513
+  scrLevelTitleColors -> gml_Script_script514
+  scrDodgerPatrolStep -> gml_Script_script515
+  scrDodgerGPatrolStep -> gml_Script_script516
+  scrNoweapon -> gml_Script_scrNoweapon
+  scrScreenFilterFD -> gml_Script_script518
+  scrCleanItems -> gml_Script_script519
+  scrDrawPlayerFire -> gml_Script_script520
+  scrDrawPlayerSkippy -> gml_Script_script521
+  scrDrawPlayerHot -> gml_Script_script522
+  scrExplosionDie -> gml_Script_script523
+  scrIndexToWeapon2 -> gml_Script_scrIndexToWeapon2
+  scrDrawWalrusMask -> gml_Script_script525
+  scrIndexNameWeapon -> gml_Script_scrIndexNameWeapon
+  scrUpdateHeadPos -> gml_Script_scrUpdateHeadPos
+  scrCollisionLineId -> gml_Script_scrCollisionLineId
+  scrDrawConversation -> gml_Script_scrDrawConversation
+  scrDrawTimer -> gml_Script_scrDrawTimer
+  scrEFatGunStep -> gml_Script_scrEFatGunStep
+  scrAimFatGun -> gml_Script_scrAimFatGun
+  scrChargeFatGun -> gml_Script_scrChargeFatGun
+  scrFontsInit -> gml_Script_scrFontsInit
+Functions referenced:
+  d3d_set_projection_ortho
+  instance_exists
+  instance_create
+  string
+  SteamSetAchievement
+  ds_list_add
+  instance_number
+  lengthdir_x
+  merge_color
+  draw_set_halign
+  draw_set_valign
+  draw_set_font
+  draw_set_color
+  string_width
+  draw_rectangle
+  lengthdir_y
+  draw_text_transformed
+  draw_text_color
+  draw_sprite_ext
+  scrGetMessageRussian
+  scrGetMessageFrench
+  string_replace
+  sqr
+  sqrt
+  sign
+  ds_list_create
+  object_get_parent
+  point_distance
+  random
+  collision_line
+  mp_grid_path
+  path_exists
+  path_get_length
+  ds_list_sort
+  ds_list_size
+  ds_list_delete
+  ds_list_find_value
+  path_end
+  path_start
+  mp_grid_create
+  mp_grid_add_instances
+  round
+  file_exists
+  audio_stop_sound
+  audio_create_stream
+  audio_play_sound
+  audio_sound_gain
+  audio_destroy_stream
+  is_string
+  point_direction
+  scrIdleGetEnemy
+  scrCurrentWeaponExt
+  instance_destroy
+  choose
+  place_meeting
+  move_contact_solid
+  move_contact_all
+  floor
+  leftthumb_x
+  leftthumb_y
+  scrMoveSolidOn
+  abs
+  scrIsWalking
+  place_free
+  scrMoveSolidOff
+  external_define
+  external_call
+  external_free
+  getid
+  gettrigger_l
+  scrCurrentWeapon
+  scrCollisionLineExt
+  scrGetWeapon
+  setrumble
+  gettrigger_r
+  scrHearPlayer
+  checkbutton
+  scrInstanceNearest
+  ds_list_destroy
+  scrChasePlayer
+  scrChaseWall
+  scrIsPolice
+  scrGunIndexGetAmmo
+  room_previous
+  set_automatic_draw
+  draw_clear
+  screen_refresh
+  surface_set_target
+  make_color_hsv
+  draw_clear_alpha
+  surface_alpha
+  surface_reset_target
+  draw_surface
+  surface_get_height
+  surface_get_width
+  sprite_create_from_surface
+  draw_set_blend_mode
+  draw_circle_color
+  scrUpdateMaskPos
+  scrDrawMask
+  surface_free
+  surface_create
+  sprite_exists
+  sprite_delete
+  draw_rectangle_color
+  draw_sprite
+  draw_text
+  string_upper
+  scrCheckUsedGuns
+  scrCheckUsedMelee
+  scrCheckUsedThrows
+  mouse_clear
+  scrIndexToWeapon
+  game_save
+  room_get_name
+  surface_save
+  scrGetCurrentLevel
+  scrSaveUnlocked
+  scrSaveAchievements
+  sleep
+  scrXboxPlayerMove
+  ord
+  keyboard_check_direct
+  file_text_open_read
+  file_text_read_string
+  string_length
+  string_copy
+  real
+  file_text_readln
+  file_text_close
+  file_text_open_write
+  file_text_write_string
+  file_text_writeln
+  file_delete
+  scrGetTokenLetter
+  scrMaskGetName
+  scrPigGetWeapon
+  scrThroatEnemy
+  scrGetKill
+  scrCheckUsedKills
+  scrHeadButtEnemy
+  scrPigGetKill
+  scrExecutionDontDropWeapon
+  path_add
+  path_set_closed
+  scrGoGetWeapon
+  scrSearch
+  scrIsSearching
+  scrReturn
+  scrCharge
+  scrAim
+  scrChaseSearch
+  scrPatrol
+  scrFollowWall
+  frac
+  scrMeleeSearch
+  scrEnemyIsAttacking
+  scrAttack
+  scrStopSearch
+  scrGetAttack
+  scrChase
+  scrMeleeChaseSearch
+  scrDogSearch
+  scrDogCharge
+  scrDogChase
+  scrDogChaseSearch
+  scrLook
+  motion_add
+  scrRotate
+  scrEnemyShoot
+  scrChargeSearch
+  scrSeeThroughCollision
+  scrSearchSprite
+  scrHoboGetWeapon
+  scrDogLook
+  scrDogCollision
+  surface_get_texture
+  draw_primitive_begin_texture
+  sin
+  draw_vertex_texture
+  draw_primitive_end
+  scrXboxPlayerHospitalMove
+  scrCheckBack
+  scrGetMessage
+  scrPoliceGetWeapon
+  sprite_get_width
+  sprite_get_height
+  sprite_get_number
+  show_message
+  ds_list_clear
+  file_text_eof
+  ceil
+  ds_list_shuffle
+  file_text_read_real
+  scrInitMaskPos
+  instance_nearest
+  scrSwatFollowWall
+  SteamStoreStats
+  bgm_Init
+  show_error
+  bgm_IsLoaded
+  is_real
+  bgm_Play
+  bgm_Stop
+  bgm_Pause
+  bgm_Unpause
+  bgm_IsPlaying
+  bgm_SetAttr
+  display_get_width
+  room_exists
+  room_set_view
+  scrInitScore
+  dllfree
+  scrSaveVol
+  dllinit
+  event_perform
+  screen_save
+  sprite_add
+  scrCheckMasks
+  scrCheckGuns
+  scrDialogueGetAnswers
+  scrXboxPlayerShoot
+  scrPlayerPickUp
+  scrKillShield
+  scrXboxPlayerLockOn
+  scrPlayerShoot
+  rightthumb_y
+  rightthumb_x
+  scrInstanceNearestExt
+  scrPlayerShieldShoot
+  scrPlayerDropShield
+  scrXboxPlayerHousePickup
+  scrXboxBikerAttack
+  scrXboxBikerKnife
+  scrMCKill
+  scrXboxBikerHousePickup
+  move_outside_solid
+  sxeasy_play
+  scrXboxPlayerHospitalPickup
+  sxeasy_setVolume
+  sprite_get_name
+  sprite_save
+  sprite_get_texture
+  texture_set_repeat
+  get_timer
+  SteamIncStat
+  scrGoreBash
+  scrGoreCut
+  scrCantGetHit
+  clamp
+  draw_set_colour
+  merge_colour
+  scrInitXboxButtons
+  scrInitThrowPos
+  scrAmmoFix
+  scrXboxPlayerMouse
+  mouse_check_button
+  display_mouse_get_x
+  display_mouse_get_y
+  display_get_height
+  scrHardMode
+  scrPlayerMoveKeyboard
+  scrPlayerIsAttacking
+  scrPlayerIsPunching
+  action_if_variable
+  scrPlayerPickUp2
+  scrPlayerAnimationEnd
+  scrXboxPlayerLook
+  scrXboxPlayerMouseHouse
+  keyboard_check
+  scrXboxPlayerShieldMove
+  scrXboxPlayerShieldMouse
+  scrCheckHitBack
+  scrPlayerShieldAnimationEnd
+  instance_deactivate_object
+  scrCarNextRoom
+  scrGetSong
+  scrCarNextInterlude
+  scrXboxMaskMenuStart
+  scrXboxMaskMenuUp
+  scrXboxMaskMenuDown
+  keyboard_check_pressed
+  scrXboxBashKill
+  scrGetAmmo
+  scrXboxBluntKill
+  scrXboxBodyguardKill
+  scrXboxBrickKill
+  scrXboxHoboBash
+  scrXboxHoboBlunt
+  scrPosDirY
+  scrPosDirX
+  audio_is_playing
+  scrPlayerHospitalMove
+  scrXboxPlayerHospitalMouse
+  draw_sprite_tiled_ext
+  draw_triangle_color
+  sxeasy_stop
+  game_restart
+  game_load
+  draw_set_alpha
+  draw_sprite_tiled
+  scrXboxPlayerMouseWindow
+  scrXboxPlayerMoveWindow
+  scrDrawMaskLedge
+  audio_pause_sound
+  scrXboxBikerMouse
+  scrXboxBikerHouseMouse
+  scrKnifeThrowHits
+  move_bounce_all
+  move_bounce_solid
+  scrGetRoom
+  room_next
+  scrXboxBikeEndingStart
+  string_height
+  room_goto
+  bgm_Close
+  scrXboxChopKill
+  sprPigButcherPickUp
+  scrPigShoot
+  scrPigButcherKill
+  sound_play
+  scrXboxEffectorStart
+  scrXboxEffectorPause
+  SteamRunCallbacks
+  scrLoadMask
+  scrGetMaskPowers
+  scrLoadAchievements
+  scrCheckpoint
+  scrLoadBonusList
+  scrSurfaceTiles
+  scrCheckMissionComplete
+  bgm_Unload
+  scrResetSurfaces
+  scrSaveBonusList
+  room_set_persistent
+  scrInitPathFinding
+  mp_grid_draw
+  scrDrawHUDHLM2
+  scrDrawRestartHLM2
+  scrDrawHUD
+  scrDrawMaskMenu
+  scrDrawPlayer
+  scrShowDate
+  scrSaveTiles
+  scrXboxEffectorHousePause
+  draw_text_colour
+  scrStoryDrawAmmo
+  scrScoreDraw
+  room_restart
+  surface_exists
+  tile_layer_show
+  addToSurface
+  scrSaveSurface
+  draw_surface_ext
+  scrExportRoom
+  surface_copy
+  texture_set_interpolation
+  scrAlienWareYellow
+  scrSoldierCamera
+  scrDrawSpriteAsVertex
+  d3d_set_fog
+  scrEnemyDieMelee
+  scrXboxClipRead1
+  scrXboxClipRead2
+  scrXboxBag
+  scrXboxItemTake
+  scrXboxKeys
+  scrXboxPoliceFile
+  scrXboxClothes
+  scrXboxBossgun
+  scrMovingPlayerExists
+  random_range
+  scrGoreShot
+  scrGoreShotgun
+  path_set_kind
+  path_set_precision
+  scrPlayerShieldDieDogBite
+  scrPlayerDieDogBite
+  scrDogChasePlayer
+  scrSeePlayer
+  scrReturnToStart
+  scrPlayerDieMelee
+  scrSeePlayerStationary
+  scrEMobileInit
+  scrEMobileStep
+  scrStayAwayFromPlayer
+  scrERandomInit
+  scrERandomStep
+  scrEnemyAnimationEnd
+  scrEPatrolInit
+  scrEPatrolStep
+  scrEStaticInit
+  scrEStaticStep
+  scrEMeleeInit
+  scrEMeleeStep
+  scrEMeleeStationaryInit
+  scrEMeleeStationaryStep
+  scrEFatInit
+  scrEFatStep
+  scrDogInit
+  scrDogStep
+  scrPolicePatrolInit
+  scrPolicePatrolStep
+  scrPoliceRandomInit
+  scrPoliceRandomStep
+  scrPoliceStaticInit
+  scrPoliceStaticStep
+  scrPoliceMeleeInit
+  scrPoliceMeleeStep
+  scrPoliceMeleeStationaryInit
+  scrPoliceMeleeStationaryStep
+  scrPInspectorInit
+  scrPInspectorStep
+  scrESwatInit
+  scrESwatStep
+  scrDPatrolInit
+  scrDPatrolStep
+  scrMeetDoor
+  scrGetLetterSprite
+  scrGetGlowSprite
+  scrCreateLetters
+  instance_find
+  scrXboxPuzzleQuit
+  scrXboxPuzzlePress
+  scrXboxPuzzleRelease
+  scrLoadVol
+  scrAlienWareInit
+  scrAlienWarePink
+  scrLoadKeys
+  scrLoadUnlocked
+  scrCheckLetters
+  scrXboxMenuStart
+  scrXboxMenuQuit
+  scrXboxMenuRight
+  scrXboxMenuLeft
+  scrXboxMenuUp
+  scrXboxMenuDown
+  sxeasy_init
+  steamdll_init
+  draw_sprite_general
+  game_end
+  scrXboxConversationStart
+  scrFreeSurfaces
+  scrResetStory
+  vcapture_init
+  window_handle
+  vcapture_begin
+  vcapture_frame
+  vcapture_save
+  scrCountFlexibilityScore
+  scrCountMobilityScore
+  scrCheckUsedMasks
+  SteamCheckFinal
+  scrGetMaxpoints
+  scrXboxScoreStatsStart
+  string_digits
+  scrXboxMaskUnlockStart
+  draw_line_width_color
+  scrResetScore
+  sxeasy_close
+  scrGetSequence
+  scrXboxPauseStart
+  scrXboxPauseBack
+  scrXboxPauseUp
+  scrXboxPauseDown
+  scrXboxLevelSelectStart
+  scrXboxLevelSelectBack
+  scrXboxLevelSelectRight
+  scrXboxLevelSelectLeft
+  scrXboxLevelSelectUp
+  scrXboxLevelSelectDown
+  scrNumberToGrade
+  draw_rectangle_colour
+  scrHardModeText
+  scrLevelGetMask
+  scrLevelGetPuzzle
+  scrInitControls
+  scrXboxControlsBack
+  scrXboxControlsRight
+  scrXboxControlsLeft
+  chr
+  scrSaveKeys
+  room_goto_next
+  draw_circle_colour
+  scrSetPort
+  scrXboxBandCreditsStart
+  draw_circle
+  SteamShutdown
+  steamdll_free
+  scrAlienWareFree
+  scrGradeToNumber
+  string_lower
+  string_count
+  scrXboxScoreDetailsStart
+  draw_line_color
+  scrCheckGrades
+  scrCreateBonusList
+  scrXboxCreditsStart
+  scrNth
+  draw_surface_part_ext
+  scrXboxEndingDialogue1Start
+  scrXboxEndingDialogue1Up
+  scrXboxEndingDialogue1Down
+  scrXboxWeaponUnlockStart
+  scrXboxEndingDialogue2Start
+  scrAlienWareRed
+  SteamInit
+  scrXboxLaundry
+  scrXboxPimpPhone
+  scrIsAttacking
+  scrXboxNeighboursPhone
+  scrXboxDumpster
+  scrXboxCeoTable
+  event_inherited
+  scrXboxGolfbag
+  scrXboxKeycard
+  scrXboxHospitalDoor
+  scrXboxPrisonDoor
+  scrXboxBossPhone
+  scrXboxJanitorComputer
+  scrXboxRestart
+  scrHoboStep
+  scrIsSwinging
+  scrCollisionLineDouble
+  tile_layer_find
+  tile_exists
+  tile_delete
+  scrPlayerDiePantherBite
+  scrXboxRestartDead
+  scrBikerGetsKnocked
+  scrBikerIsDead
+  scrXboxNickeTalkStore
+  scrXboxNickeTalkPizza
+  scrXboxNickeTalkVHS
+  scrXboxNickeTalkBar
+  scrXboxNickeTalkSpecial
+  mouse_check_button_pressed
+  scrXboxAssassinTalkBar
+  scrXboxAssassinRestart
+  window_set_fullscreen
+  window_get_fullscreen
+  window_get_height
+  window_mouse_get_y
+  window_get_width
+  window_mouse_get_x
+  window_mouse_set
+  randomize
+  sound_isplaying
+  audio_group_set_gain
+  sxeasy_setMusicVolume
+  audio_master_gain
+  sxeasy_setMasterVolume
+  draw_texture_flush
+  ds_exists
+  buffer_create
+  buffer_exists
+  buffer_delete
+  ThankYouDanny
+  draw_self
+  levelgetsongforrestart
+  draw_text_ext
+  cleanmem_init
+  cleanmem
+  getammoenemy
+  make_color_rgb
+  irandom_range
+  tile_get_ids_at_depth
+  array_length_1d
+  tile_set_background
+  shader_set
+  shader_reset
+  tile_get_ids
+  tile_get_background
+  scrGunIndexGetMaxAmmo
+  room_goto_previous
+  scrLevelRestart
+  ds_list_copy
+  date_current_datetime
+  date_get_month
+  date_get_day
+  scrCanTurn
+  scrIsTurning
+  scrGetTurnEnd
+  scrAngleDifference
+  scrGetTurn
+  scrFlipShotgun
+  draw_text_transformed_colour
+  make_colour_rgb
+  scrMuzzle
+  draw_ellipse_color
+  ds_map_create
+  consoleInitDocs
+  consoleInitSpecKeys
+  ds_map_add
+  string_char_at
+  consoleChangeCursorInternal
+  consoleGetSelection
+  consoleCleanString
+  string_split
+  cl_print
+  array_find_first
+  str_brack
+  array_length_2d
+  consoleCheckArg
+  parse_num
+  game_set_speed
+  instance_id_get
+  object_get_name
+  is_numeric
+  asset_get_index
+  object_exists
+  parse_bool
+  parse_array
+  consoleObjectValid
+  variable_local_set
+  variable_local_exists
+  variable_local_get
+  is_array
+  variable_local_array_set
+  c_print
+  object_get_sprite
+  object_get_mask
+  str_bool
+  object_get_visible
+  object_get_solid
+  object_get_persistent
+  variable_instance_get_names
+  variable_global_set
+  variable_global_exists
+  variable_global_get
+  variable_global_array_set
+  font_get_name
+  font_get_fontname
+  font_exists
+  file_text_write_real
+  irandom
+  message_text_font
+  message_alpha
+  message_mouse_color
+  message_size
+  message_background
+  message_button
+  message_caption
+  date_datetime_string
+  directory_exists
+  directory_create
+  string_replace_all
+  str_num
+  set_application_title
+  consoleSwitchCommand
+  consoleGaming
+  event_user
+  ds_map_find_first
+  ds_map_find_last
+  ds_map_find_next
+  ds_map_empty
+  ds_map_find_value
+  consoleGetKey
+  ds_map_replace
+  ds_map_exists
+  ds_map_delete
+  ds_map_write
+  ds_map_read
+  ds_map_clear
+  draw_line
+  draw_text_ext_transformed
+  string_height_ext
+  consoleChangeCursorPos
+  clipboard_set_text
+  clipboard_has_text
+  clipboard_get_text
+  string_insert
+  string_ord_at
+  instance_place
+  string_delete
+  log2
+  power
+  date_current_time
+  date_time_string
+  string_pos
+  global_init
+  move_towards_point
+  collision_rectangle
+  cos
+  draw_sprite_stretched_ext
+  is_undefined
+  draw_enable_alphablend
+  scrScreenFilterEffector
+  draw_set_blend_mode_ext
+  scrCheckMeleeEnergie
+  scrGeorgeCam
+  lerp
+  surface_resize
+  scrEHideStep
+  scrEnemyAmbushShoot
+  scrEnemyAmbushSprite
+  scrEnemyAmbushSpriteHand
+  scrCheckKnifeCombo
+  string_format
+  listplayer
+  instance_create_layer
+  scrGetAchievementProperty
+  scrAchievementsInit
+  ini_open
+  ini_read_real
+  ini_close
+  alarm_get
+  ini_write_real
+  scrAchievementSet
+  ini_key_exists
+  file_text_open_append
+  scrJonesStep
+  show_debug_message
+  cleanmem_get_mem
+  draw_text_transformed_color
+  ini_read_string
+  ini_write_string
+  draw_roundrect_colour_ext
+  audio_sound_pitch
+  audio_create_play_queue
+  distance_to_object
+  application_surface_draw_enable
+  angle_difference
+  draw_text_ext_colour
+  draw_roundrect_ext
+  draw_set_color_write_enable
+  draw_roundrect_color_ext
+  distance_to_point
+  draw_roundrect_colour
+  sprite_get_yoffset
+  sprite_get_xoffset
+  instance_change
+  mouse_check_button_released
+  max
+  shader_get_uniform
+  shader_set_uniform_f
+  scrSkippy
+  instance_create_depth
+  draw_line_width_colour
+  dcos
+  dsin
+  sprite_get_bbox_left
+  sprite_get_bbox_right
+  draw_primitive_begin
+  draw_vertex_colour
+  draw_triangle_colour
+  draw_vertex_texture_colour
+  draw_surface_stretched
+  screen_save_part
+  string_letters
+  draw_set_circle_precision
+  scrIgelEmotionsDrawMask
+  scrIgelEmotions
+  keyboard_check_released
+  ds_list_empty
+  ds_list_find_index
+  collision_ellipse
+  ini_key_delete
+  tile_layer_delete_at
+  draw_point_colour
+  scrHearPoint
+  collision_point
+  scrZackDieWhileKilling
+  scrIsDodging
+  scrDodgerStep
+  scrBloodWall
+  int64
+  scrSoundWhileShooting
+  mouse_wheel_down
+  mouse_wheel_up
+  window_has_focus
+  audio_stop_all
+  GetDemoArr
+  scrSongINIT
+  scrOptionsUpdate
+  url_open
+  scrTitleInit
+  draw_line_width
+  sprite_name
+  sprite_set_offset
+  file_writeln
+  scrDrawFloorCleared
+  scrDrawLevelCleared
+  scrVHSError
+  scrScoreStatsEffector
+  draw_sprite_part_ext
+  scrCountFlexibilityScoreStep
+  scrCountMobilityScoreStep
+  scrComboLine
+  filename_name
+  string_repeat
+  file_find_first
+  file_find_next
+  file_find_close
+  scrGetMaskSkin
+  scrMasksSkinLoadingFromFolder
+  scrLoadSkinsFromIni
+  scrSetRasmusEvent
+  scrDrawRasmusMask
+  scrMasksINIT
+  draw_ellipse_colour
+  position_meeting
+  instance_position
+  draw_point
+  collision_circle
+  scrLevelTitleColors
+  draw_surface_general
+  scrDodgerPatrolStep
+  scrDodgerGPatrolStep
+  make_colour_hsv
+  scrNoweapon
+  point_in_triangle
+  scrScreenFilterFD
+  scrCollisionLine
+  scrCleanItems
+  scrDrawPlayerFire
+  scrDrawPlayerSkippy
+  scrDrawPlayerHot
+  scrExplosionDie
+  scrIndexToWeapon2
+  scrDrawWalrusMask
+  environment_get_variable
+  scrIndexNameWeapon
+  scrUpdateHeadPos
+  ds_list_read
+  dtan
+  scrCollisionLineId
+  degtorad
+  scrDrawConversation
+  scrDrawTimer
+  scrEFatGunStep
+  scrAimFatGun
+  scrChargeFatGun

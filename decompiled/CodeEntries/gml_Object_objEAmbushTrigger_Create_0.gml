@@ -1,0 +1,11 @@
+touch = 0;
+verhor = 0;
+lefrig = 0;
+updown = 0;
+deltax = 1;
+inversex = 1;
+inversey = 1;
+doorVH = 0;
+doored = 0;
+image_speed = 0;
+mask_index = sprMask;

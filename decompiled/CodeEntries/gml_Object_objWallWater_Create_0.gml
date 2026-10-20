@@ -1,0 +1,10 @@
+alarm[0] = 40;
+image_speed = 0;
+image_index = floor(random(4));
+latched = -4;
+advancespeed = 0.2 + random(0.05);
+done = 0;
+blur = 0;
+train = 1;
+decadenced = 1;
+deadlined = 1;

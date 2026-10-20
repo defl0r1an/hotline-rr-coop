@@ -1,0 +1,15 @@
+sprite_index = sprGirlfriend;
+image_speed = 0;
+d_maskx = 0;
+d_masky = 0;
+originx = 0;
+originy = 0;
+rotationspeed = 0;
+mode = "Mask Coord";
+d_maskangle = 0;
+maskindex = 0;
+maskx[0] = 0;
+masky[0] = 0;
+maskyangle[0] = 0;
+image_speed_save = 0;
+instance_destroy();

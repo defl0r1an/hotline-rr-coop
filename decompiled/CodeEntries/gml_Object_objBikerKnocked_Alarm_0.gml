@@ -1,0 +1,1 @@
+scrGetMessage(4);

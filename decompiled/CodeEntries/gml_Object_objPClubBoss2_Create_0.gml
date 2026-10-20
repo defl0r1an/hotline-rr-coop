@@ -1,0 +1,14 @@
+image_speed = 0;
+bled = 0;
+hurtindex = 0;
+targetindex = 0;
+scrInitMaskPos();
+scrUpdateMaskPos(sprite_index);
+ammo = 0;
+global.maskon = 1;
+maskon = 1;
+maskindex = global.maskindex;
+with (objCleaverDrop)
+{
+    pickable = 0;
+}

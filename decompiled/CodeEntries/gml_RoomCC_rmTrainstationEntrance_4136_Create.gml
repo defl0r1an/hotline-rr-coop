@@ -1,0 +1,8 @@
+if (global.hardmode == 0)
+{
+    on = -1;
+}
+else
+{
+    on = 1;
+}

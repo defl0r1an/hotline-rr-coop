@@ -1,0 +1,10 @@
+yy = 0;
+image_speed = 0;
+image_index = 1;
+speedy = 0.075;
+stage = 0;
+shakespawn = 0;
+wait = 93;
+shadow = 0;
+shadow1 = 0;
+combotime = 0;

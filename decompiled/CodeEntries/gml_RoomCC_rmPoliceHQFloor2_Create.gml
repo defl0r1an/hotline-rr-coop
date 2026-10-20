@@ -1,0 +1,4 @@
+with (objRain)
+{
+    visible = true;
+}

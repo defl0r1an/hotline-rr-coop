@@ -1,0 +1,1 @@
+global.myy = 0;

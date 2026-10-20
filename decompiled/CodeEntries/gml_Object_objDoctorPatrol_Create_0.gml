@@ -1,0 +1,18 @@
+scrDPatrolInit();
+image_speed = 0;
+image_index = random(1000);
+speed = 1;
+image_speed = 0.1;
+energie = round(random(1));
+checkreload = floor(random(30));
+ammo = 20;
+alert = 0;
+reload = 30;
+light = 0;
+start_x = x;
+start_y = y;
+caught = 0;
+weaponfind = 0;
+pathdir = 0;
+global.talked = 0;
+global.doctor = -1234;

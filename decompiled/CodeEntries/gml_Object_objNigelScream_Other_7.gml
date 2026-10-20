@@ -1,0 +1,4 @@
+if (sprite_index == sprNigelScream)
+{
+    sprite_index = sprNigelTalk;
+}

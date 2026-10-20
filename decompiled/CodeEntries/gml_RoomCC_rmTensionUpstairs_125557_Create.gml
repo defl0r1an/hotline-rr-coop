@@ -1,0 +1,11 @@
+if (global.hardmode == 1)
+{
+    if (global.maskindex != 2)
+    {
+        instance_destroy();
+    }
+}
+if (global.hardmode == 0)
+{
+    instance_destroy();
+}

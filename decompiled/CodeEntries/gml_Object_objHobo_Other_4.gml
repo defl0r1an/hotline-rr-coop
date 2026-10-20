@@ -1,0 +1,1 @@
+global.lastroom = 89;

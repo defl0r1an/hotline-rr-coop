@@ -1,0 +1,10 @@
+friction = 0.2;
+image_speed = 0;
+image_index = 0;
+bloodsled = 2;
+dead = 0;
+imagespeed = 0.15;
+gutssled = 2;
+audio_play_sound(sndChainsawAttack, 0, false);
+audio_play_sound(choose(sndCut1, sndCut2), 0, false);
+audio_play_sound(sndHit, 0, false);

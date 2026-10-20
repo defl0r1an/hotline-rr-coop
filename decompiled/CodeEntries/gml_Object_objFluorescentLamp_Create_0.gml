@@ -1,0 +1,5 @@
+broken = -1;
+image_speed = 0;
+image_index = choose(1, 2, 3);
+light = 0;
+CrocodileMan = 0;

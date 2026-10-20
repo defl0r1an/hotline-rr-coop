@@ -1,0 +1,12 @@
+shaketv = random_range(shake, -shake);
+draw_sprite_ext(sprite_index, image_index, x + 1, y + 1, image_xscale, image_yscale, angle, c_black, 0.5);
+draw_set_blend_mode(bm_add);
+draw_circle_color(x, y, 15 + random(2 + shaketv) + (light * 5), merge_color(c_black, c_white, clamp(light, 0, 1)), c_black, 0);
+draw_set_blend_mode(bm_normal);
+draw_sprite_ext(sprite_index, image_index, x + shaketv, y + shaketv, scale + (shaketv / 4), scale + (shaketv / 4), angle + (shaketv * 360), image_blend, image_alpha);
+draw_sprite_ext(sprite_index, image_index, x + shaketv, y + shaketv, scale + (shaketv / 4), scale + (shaketv / 4), angle + (shaketv * 360), c_black, abs(light + shaketv));
+draw_set_blend_mode(bm_add);
+d3d_set_fog(true, c_white, 0, 0);
+draw_sprite_ext(sprite_index, image_index, x + shaketv, y + shaketv, scale + (shaketv / 4), scale + (shaketv / 4), angle + (shaketv * 360), image_blend, light + shaketv);
+d3d_set_fog(false, c_black, 0, 0);
+draw_set_blend_mode(bm_normal);

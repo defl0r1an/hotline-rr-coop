@@ -1,0 +1,13 @@
+global.roomlist = ds_list_create();
+ds_list_add(global.roomlist, 44);
+ds_list_add(global.roomlist, 45);
+ds_list_add(global.roomlist, 89);
+ds_list_add(global.roomlist, 90);
+ds_list_add(global.roomlist, 92);
+ds_list_add(global.roomlist, 93);
+ds_list_add(global.roomlist, 94);
+ds_list_add(global.roomlist, 95);
+set_automatic_draw(0);
+draw_clear(c_black);
+screen_refresh();
+room = ds_list_find_value(global.roomlist, 0);

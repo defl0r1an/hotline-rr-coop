@@ -1,0 +1,33 @@
+speed = 0;
+image_speed = 0;
+image_index = 0;
+path = 0;
+reload = 0;
+init = 0;
+pathx[0] = 0;
+pathy[0] = 0;
+alt = choose(1, 2);
+reload = 15;
+caught = 0;
+for (i = 0; i < 6; i++)
+{
+    pathx[i] = 0;
+    pathy[i] = 0;
+    pathaltx[i] = 0;
+    pathalty[i] = 0;
+    pathcurrentx[i] = 0;
+    pathcurrenty[i] = 0;
+}
+progress = 0;
+paused = 0;
+pathended = 0;
+legindex = 0;
+state = "Init";
+searchloop = 0;
+table = undefined;
+chair = undefined;
+closetstart = undefined;
+closetend = undefined;
+documents = 0;
+headdir = 0;
+global.headdoctor = 0;

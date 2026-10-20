@@ -1,0 +1,1562 @@
+if (sprite_index == sprPJacketAttackSkateboard || sprite_index == sprPJacketAttackCleaver2 || sprite_index == sprPJacketAttackCleaver || sprite_index == sprBoss2AttackCleaver || sprite_index == sprBikerAttackCleaver2 || sprite_index == sprPAttackButterfly || sprite_index == sprPAttackKnife || sprite_index == sprGriffinAttackKnife || sprite_index == sprPAttackBat || sprite_index == sprPAttackCrowbar || sprite_index == sprPAttackPan || sprite_index == sprPAttackPot || sprite_index == sprPAttackMachete || sprite_index == sprPAttackChainsaw || sprite_index == sprPAttackSledgeHammer || sprite_index == sprPigButcherAttack || sprite_index == sprPAttackNightStick || sprite_index == sprPAttackPipe || sprite_index == sprPAttackClub || sprite_index == sprPAttackSword || sprite_index == sprPAttackAxe || sprite_index == sprPAttackPool || sprite_index == sprPAttackPoolBroke || sprite_index == sprPJacketAttackKnuckles || ((global.maskindex == 2 || global.maskindex == 27) && sprite_index == sprPAttackBag) || sprite_index == sprPSprintChainsaw || (global.maskindex == 11 && sprite_index == sprPAttackPunch && global.hardmode == 1) || (global.maskindex == 27 && sprite_index == sprPAttackPunch && global.powerIgel == 1) || sprite_index == sprPAttackTaser || (sprite_index == sprPSkippyPunch && image_index <= 7))
+{
+    lastx = x;
+    lasty = y;
+    global.spacex = lengthdir_x(12, dir);
+    global.spacey = lengthdir_y(12, dir);
+    x += global.spacex;
+    y += global.spacey;
+    global.my_id = id;
+    with (objGlassPanelH)
+    {
+        if (place_meeting(x, y, global.my_id))
+        {
+            ini_open("Achievements.ini");
+            count = ini_read_real("AchData", "Windows broken", 0);
+            if (!(count == 50))
+            {
+                count++;
+                ini_write_real("AchData", "Windows broken", count);
+            }
+            else
+            {
+                scrAchievementSet("Vandal");
+            }
+            ini_close();
+            if (global.my_id.lasty < (y + 2))
+            {
+                add = -1;
+            }
+            else
+            {
+                add = 1;
+            }
+            i = 0;
+            repeat (24)
+            {
+                my_id = instance_create(x + (i * 1.5), y, objShard);
+                my_id.speed = random(5);
+                my_id.direction = ((add * 90) - 8) + random(16);
+                i += 1;
+            }
+            instance_create(x, y, objGlassPanelHBroken);
+            instance_destroy();
+            audio_play_sound(choose(sndGlass1, sndGlass2), 0, false);
+            global.shake = 5;
+        }
+    }
+    with (objGlassPanelV)
+    {
+        if (place_meeting(x, y, global.my_id))
+        {
+            ini_open("Achievements.ini");
+            count = ini_read_real("AchData", "Windows broken", 0);
+            if (!(count == 50))
+            {
+                count++;
+                ini_write_real("AchData", "Windows broken", count);
+            }
+            else
+            {
+                scrAchievementSet("Vandal");
+            }
+            ini_close();
+            if (global.my_id.lastx < (x + 2))
+            {
+                add = -1;
+            }
+            else
+            {
+                add = 1;
+            }
+            i = 0;
+            repeat (24)
+            {
+                my_id = instance_create(x, y + (i * 1.5), objShard);
+                my_id.speed = random(5);
+                my_id.direction = ((90 + (add * 90)) - 8) + random(16);
+                i += 1;
+            }
+            instance_create(x, y, objGlassPanelVBroken);
+            instance_destroy();
+            audio_play_sound(choose(sndGlass1, sndGlass2), 0, false);
+            global.shake = 5;
+        }
+    }
+    with (objWallBoardsH)
+    {
+        if (objPlayer.sprite_index == sprPAttackMachete || objPlayer.sprite_index == sprPAttackSword || objPlayer.sprite_index == sprPAttackAxe || objPlayer.sprite_index == sprPAttackSledgeHammer || objPlayer.sprite_index == sprPAttackCrowbar || objPlayer.sprite_index == sprPJacketAttackCleaver || objPlayer.sprite_index == sprPJacketAttackCleaver2)
+        {
+            if (sprite_index != sprWallBrokenBoardsH && place_meeting(x, y, global.my_id))
+            {
+                if (global.my_id.lasty < (y + 2))
+                {
+                    add = -1;
+                }
+                else
+                {
+                    add = 1;
+                }
+                i = 0;
+                repeat (24)
+                {
+                    if (round(random(8)) == 1)
+                    {
+                        my_id = instance_create(x + (i * 1.5), y, objShard);
+                        my_id.speed = random(5);
+                        my_id.direction = ((add * 90) - 8) + random(16);
+                        my_id.sprite_index = sprBoardsWallDebris;
+                        my_id.image_index = random(7);
+                    }
+                    i += 1;
+                }
+                energie = -1;
+                global.shake = 5;
+            }
+        }
+    }
+    x += lengthdir_x(12, dir);
+    y += lengthdir_y(12, dir);
+    with (objWalrusDeadTalked)
+    {
+        if (place_meeting(x, y, objPlayer) || place_meeting(x + global.spacex, y + global.spacey, objPlayer))
+        {
+            if (objPlayer.sprite_index == sprPAttackMachete || objPlayer.sprite_index == sprPAttackSword || objPlayer.sprite_index == sprPAttackAxe)
+            {
+                edir = point_direction(objPlayer.lastx, objPlayer.lasty, x, y);
+                repeat (8)
+                {
+                    my_id = instance_create((x - 3) + random(6) + lengthdir_x(8, 270), (y - 3) + random(6) + lengthdir_y(8, edir), objBloodDrop);
+                    my_id.image_xscale = 1 - random(0.2);
+                    my_id.image_yscale = my_id.image_xscale;
+                    my_id.image_angle = point_direction(x + lengthdir_x(8, 270), y + lengthdir_y(8, 270), my_id.x, my_id.y);
+                    my_id.sprite_index = sprBloodSplatSmall;
+                    my_id.direction = my_id.image_angle;
+                    my_id.speed = 2 + random(4);
+                }
+                repeat (5 + random(5))
+                {
+                    my_id = instance_create(x, y, objBloodSplatTracer);
+                    my_id.image_angle = point_direction(x + lengthdir_x(8, 270), y + lengthdir_y(8, 270), my_id.x, my_id.y) + random_range(-10, 10);
+                    my_id.direction = my_id.image_angle;
+                }
+                repeat (4)
+                {
+                    my_id = instance_create((x - 3) + random(6) + lengthdir_x(16, 270), (y - 3) + random(6) + lengthdir_y(16, edir), objBloodSmoke);
+                    my_id.image_xscale = 1.2 - random(0.2);
+                    my_id.image_yscale = my_id.image_xscale;
+                    my_id.image_angle = 250 + random(40);
+                    my_id.direction = my_id.image_angle;
+                    my_id.speed = 2 + random(1);
+                    my_id.friction = 0.15;
+                }
+                audio_play_sound(choose(sndCut1, sndCut2), 0, false);
+                audio_play_sound(sndHit, 0, false);
+                instance_create(x, y, objWalrusDieHard);
+                instance_destroy();
+            }
+        }
+    }
+    with (objDogPatrolFriend)
+    {
+        if (place_meeting(x, y, objPlayer) || place_meeting(x + global.spacex, y + global.spacey, objPlayer))
+        {
+            ini_open("Achievements.ini");
+            count = ini_read_real("AchData", "Dogs Killed", 0);
+            if (!(count == 99))
+            {
+                count++;
+                ini_write_real("AchData", "Dogs Killed", count);
+            }
+            else
+            {
+                scrAchievementSet("Dog Lover");
+            }
+            ini_close();
+            my_id = instance_create(x, y - 12, objScore);
+            my_id.text = "+" + string(200 + (200 * global.factor)) + "pts.";
+            global.myscore += (200 + (200 * global.factor));
+            global.killscore += 200;
+            global.boldscore += (200 * global.factor);
+            global.combo += 1;
+            global.combotime = 240;
+            global.killx[global.kills] = x;
+            global.killy[global.kills] = y;
+            global.kills += 1;
+            global.blink = 1;
+            if (global.bonustime < (12 + (global.factor * 4)))
+            {
+                global.bonustime = 12 + (global.factor * 4);
+            }
+            if (global.factor == 2)
+            {
+                ds_list_add(global.bonuslist, "Exposure");
+            }
+            if (global.factor == 3)
+            {
+                ds_list_add(global.bonuslist, "Double Exposure");
+            }
+            if (global.factor == 4)
+            {
+                ds_list_add(global.bonuslist, "Triple Exposure");
+            }
+            if (global.factor > 4)
+            {
+                ds_list_add(global.bonuslist, "Severe Exposure");
+            }
+            global.dogsave -= 1;
+            edir = point_direction(objPlayer.lastx, objPlayer.lasty, x, y);
+            repeat (8)
+            {
+                my_id = instance_create((x - 3) + random(6) + lengthdir_x(8, edir), (y - 3) + random(6) + lengthdir_y(8, edir), objBloodDrop);
+                my_id.image_xscale = 1 - random(0.2);
+                my_id.image_yscale = my_id.image_xscale;
+                my_id.image_angle = point_direction(x + lengthdir_x(8, edir), y + lengthdir_y(8, edir), my_id.x, my_id.y);
+                my_id.sprite_index = sprBloodSplatSmall;
+                my_id.direction = my_id.image_angle;
+                my_id.speed = 2 + random(4);
+            }
+            repeat (2 + random(3))
+            {
+                my_id = instance_create((x - 3) + random(6) + lengthdir_x(8, edir), (y - 3) + random(6) + lengthdir_y(8, edir), objBloodDrop);
+                my_id.image_xscale = 1 - random(0.2);
+                my_id.image_yscale = my_id.image_xscale;
+                my_id.image_angle = point_direction(x + lengthdir_x(8, edir), y + lengthdir_y(8, edir), my_id.x, my_id.y);
+                my_id.direction = my_id.image_angle;
+                my_id.speed = 1 + random(5);
+            }
+            repeat (4)
+            {
+                my_id = instance_create((x - 3) + random(6) + lengthdir_x(16, edir), (y - 3) + random(6) + lengthdir_y(16, edir), objBloodSmoke);
+                my_id.image_xscale = 1.2 - random(0.2);
+                my_id.image_yscale = my_id.image_xscale;
+                my_id.image_angle = (edir - 20) + random(40);
+                my_id.direction = my_id.image_angle;
+                my_id.speed = 2 + random(1);
+                my_id.friction = 0.15;
+            }
+            my_id = instance_create(x, y, objDeadBody);
+            my_id.image_yscale = choose(-1, 1);
+            my_id.direction = edir;
+            my_id.speed = 1.5 + random(1);
+            my_id.image_angle = my_id.direction;
+            if (objPlayer.sprite_index == sprPAttackClub || objPlayer.sprite_index == sprPAttackBat || objPlayer.sprite_index == sprPAttackCrowbar || objPlayer.sprite_index == sprPAttackPan || objPlayer.sprite_index == sprPAttackPot || objPlayer.sprite_index == sprPAttackSledgeHammer || objPlayer.sprite_index == sprPigButcherAttack || objPlayer.sprite_index == sprPAttackPipe || objPlayer.sprite_index == sprPAttackPool || objPlayer.sprite_index == sprPAttackPunch || objPlayer.sprite_index == sprPAttackBag || objPlayer.sprite_index == sprPJacketAttackKnuckles || objPlayer.sprite_index == sprPSkippyPunch || objPlayer.sprite_index == sprPJacketAttackSkateboard)
+            {
+                audio_play_sound(sndHit, 0, false);
+                global.shake = 5;
+                audio_play_sound(sndPunch, 0, false);
+                my_id.sprite_index = sprDogDeadBlunt;
+                my_id.image_index = 3 + floor(random(3));
+                my_id.image_angle = (edir - 20) + random(40);
+                my_id.direction = my_id.image_angle;
+                my_id.speed = 2 + random(1);
+                my_id.friction = 0.15;
+                if (objPlayer.sprite_index == sprPAttackPool)
+                {
+                    my_id1 = instance_create(objPlayer.x + lengthdir_x(5, objPlayer.dir), objPlayer.y + lengthdir_y(5, objPlayer.dir), objBrokenWeapon);
+                    my_id1.direction = objPlayer.dir - (90 * objPlayer.left);
+                    my_id1.speed = 2 + random(2);
+                    my_id1.sprite_index = sprPoolBroken;
+                    objPlayer.sprite_index = sprPAttackPoolBreak;
+                }
+            }
+            if (objPlayer.sprite_index == sprPAttackKnife || objPlayer.sprite_index == sprPAttackButterfly)
+            {
+                my_id.sprite_index = sprDogDeadCut;
+                audio_play_sound(choose(sndCut1, sndCut2), 0, false);
+                my_id.image_index = 4 + floor(random(3));
+                my_id.image_angle = (edir - 20) + random(40);
+                my_id.direction = my_id.image_angle;
+                my_id.speed = 2 + random(1);
+                my_id.friction = 0.15;
+            }
+            if (objPlayer.sprite_index == sprPAttackPoolBroke)
+            {
+                my_id.sprite_index = sprEDogDeadPool;
+                audio_play_sound(choose(sndCut1, sndCut2), 0, false);
+                my_id.image_index = floor(random(3));
+                objPlayer.image_speed = 0;
+                objPlayer.sprite_index = sprPWalkUnarmed;
+            }
+            if (objPlayer.sprite_index == sprBoss2AttackCleaver || objPlayer.sprite_index == sprBikerAttackCleaver2 || objPlayer.sprite_index == sprPAttackSword || objPlayer.sprite_index == sprPAttackAxe || objPlayer.sprite_index == sprPAttackMachete || objPlayer.sprite_index == sprPAttackChainsaw || objPlayer.sprite_index == sprPSprintChainsaw || objPlayer.sprite_index == sprBoss2AttackCleaver || objPlayer.sprite_index == sprBikerAttackCleaver2 || objPlayer.sprite_index == sprPJacketAttackCleaver || objPlayer.sprite_index == sprPJacketAttackCleaver2)
+            {
+                my_id.sprite_index = sprDogDeadPieces;
+                my_id.image_index = choose(1, 3);
+                if ((objPlayer.sprite_index == sprPSprintChainsaw || objPlayer.sprite_index == sprPAttackChainsaw) && objPlayer.HotWeaponAlpha > 0.65)
+                {
+                    audio_play_sound(sndOverheatingAttack, 0, false);
+                }
+                audio_play_sound(choose(sndCut1, sndCut2), 0, false);
+                audio_play_sound(sndHit, 0, false);
+                global.shake = 5;
+                scrGoreCut(x, y, edir - 180, 1, 0);
+                part = instance_create(my_id.x + lengthdir_x(22, edir), my_id.y + lengthdir_y(18, edir), objBodyPartDog);
+                part.sprite_index = sprDogDeadPieces;
+                part.image_index = choose(0, 2);
+                part.image_angle = (edir - 10) + random(20);
+                part.direction = part.image_angle;
+                part.speed = 3 + random(0.5);
+                repeat (3 + random(3))
+                {
+                    part = instance_create(my_id.x + lengthdir_x(22, edir), my_id.y + lengthdir_y(18, edir), objGuts2);
+                    part.image_angle = ((edir - 25) + random(50) + 90) - (round(random(1)) * 180);
+                    part.direction = part.image_angle;
+                    part.speed = 1.5 + random(1.5);
+                }
+            }
+            instance_destroy();
+        }
+    }
+    with (objEnemy)
+    {
+        if (global.maskindex == 2 && global.hardmode == 1)
+        {
+            if (object_index == objEnemyFat || object_index == objInspector || object_index == objEFatGunner)
+            {
+                if (place_meeting(x, y, objPlayer) || place_meeting(x + global.spacex, y + global.spacey, objPlayer))
+                {
+                    mask_index = sprWeaponMask;
+                    if (scrCollisionLineExt(x, y, objPlayer.lastx, objPlayer.lasty, 4, 309, 99, 131))
+                    {
+                        scrMoveSolidOff();
+                        mask_index = sprMask;
+                        objPlayer.x = objPlayer.lastx;
+                        objPlayer.y = objPlayer.lasty;
+                        exit;
+                    }
+                    mask_index = sprMask;
+                    edir = point_direction(objPlayer.lastx, objPlayer.lasty, x, y);
+                    audio_play_sound(sndDoorHit, 1, false);
+                    global.shake = 5;
+                    my_id = instance_create(x, y, objFatKnockedOut);
+                    my_id.type = object_index;
+                    if (global.maskindex == 27)
+                    {
+                        my_id.speed = 2;
+                        my_id.reload = 30 + round(random(60));
+                    }
+                    if (scrIsPolice(object_index))
+                    {
+                        if (object_index == objInspector)
+                        {
+                            my_id.sprite_index = sprEInspectorGetUp;
+                        }
+                        else
+                        {
+                            my_id.sprite_index = sprPoliceGetUp;
+                        }
+                    }
+                    else if (object_index == objEFatGunner)
+                    {
+                        my_id.sprite_index = sprEFatGunGetUp;
+                        my_id.ammo = ammo;
+                    }
+                    my_id.direction = (edir - 10) + random(20);
+                    my_id.angle = my_id.direction;
+                    with (my_id)
+                    {
+                        move_outside_solid(angle - 180, 16);
+                    }
+                    my_id.speed = 3;
+                    scrIdleGetEnemy();
+                    if (sprite_index == sprEFatWalk || sprite_index == sprEFatAttack || sprite_index == sprPInspectorWalk || sprite_index == sprPInspectorAttack || sprite_index == sprEFatGunWalk || sprite_index == sprEFatGunAttack)
+                    {
+                        noweapon = 1;
+                    }
+                    else
+                    {
+                        noweapon = 0;
+                    }
+                    if (noweapon == 0)
+                    {
+                        global.test = 0;
+                        with (objEnemy)
+                        {
+                            if (alert == 1)
+                            {
+                                global.test += 1;
+                            }
+                        }
+                        my_id = instance_create(x, y - 12, objScore);
+                        my_id.text = "+" + string(200 + (400 * global.factor)) + "pts";
+                        global.myscore += (200 + (400 * global.factor));
+                        global.boldscore += (200 + (400 * global.factor));
+                        global.combotime += 100;
+                        global.killx[global.kills] = x;
+                        global.killy[global.kills] = y;
+                        global.kills += 1;
+                        global.blink = 1;
+                        my_id = instance_create(x, y, objWeaponThrow);
+                        my_id.direction = (direction - 70) + random(40);
+                        my_id.speed = 2 + random(2);
+                        if (object_index == objEDodgerG || object_index == objEDodgerGPatrol)
+                        {
+                            my_id2 = instance_create(x, y, objWeaponThrow);
+                            my_id2.image_index = 29;
+                            my_id2.direction = (other.direction - 70) + random(40);
+                            my_id2.speed = 2 + random(2);
+                            my_id.image_index = 29;
+                            my_id.ammo = ammo / 2;
+                            my_id2.ammo = ammo / 2;
+                        }
+                        else
+                        {
+                            my_id.image_index = scrCurrentWeaponExt(sprite_index);
+                            my_id.ammo = ammo;
+                        }
+                    }
+                    instance_destroy();
+                }
+            }
+        }
+        if (place_meeting(x, y, objPlayer) || place_meeting(x + global.spacex, y + global.spacey, objPlayer))
+        {
+            if ((((object_index == objEnemyFat || object_index == objInspector || object_index == objEFatGunner) && (objPlayer.sprite_index == sprPAttackMachete || objPlayer.sprite_index == sprPAttackSledgeHammer || objPlayer.sprite_index == sprPAttackSword || objPlayer.sprite_index == sprPAttackAxe) && global.maskindex == 17) || ((object_index == objEnemyFat || object_index == objInspector || object_index == objEFatGunner) && objPlayer.sprite_index == sprPSprintChainsaw)) && sprite_index != sprEFatDie && sprite_index != sprPInspectorDie && sprite_index != sprEFatGunDie)
+            {
+                mask_index = sprWeaponMask;
+                edir = point_direction(objPlayer.lastx, objPlayer.lasty, x, y);
+                if (scrCollisionLineExt(x, y, objPlayer.lastx, objPlayer.lasty, 4, 309, 99, 131))
+                {
+                    scrMoveSolidOff();
+                    mask_index = sprMask;
+                    objPlayer.x = objPlayer.lastx;
+                    objPlayer.y = objPlayer.lasty;
+                    exit;
+                }
+                mask_index = sprMask;
+                if (objPlayer.sprite_index != sprPAttackSledgeHammer)
+                {
+                    repeat (2 + random(2))
+                    {
+                        my_id = instance_create(x, y, objBloodSplatTracer);
+                        my_id.image_angle = point_direction(x + lengthdir_x(8, 270), y + lengthdir_y(8, 270), my_id.x, my_id.y) + random_range(-10, 10);
+                        my_id.direction = my_id.image_angle;
+                    }
+                    repeat (2)
+                    {
+                        my_id = instance_create((x - 3) + random(6) + lengthdir_x(8, edir), (y - 3) + random(6) + lengthdir_y(8, edir), objBloodDrop);
+                        my_id.image_xscale = 1 - random(0.2);
+                        my_id.image_yscale = my_id.image_xscale;
+                        my_id.image_angle = point_direction(x + lengthdir_x(8, edir), y + lengthdir_y(8, edir), my_id.x, my_id.y);
+                        my_id.sprite_index = sprBloodSplatSmall;
+                        my_id.direction = my_id.image_angle;
+                        my_id.speed = 2 + random(4);
+                    }
+                    repeat (2 + random(1))
+                    {
+                        my_id = instance_create((x - 3) + random(6) + lengthdir_x(8, edir), (y - 3) + random(6) + lengthdir_y(8, edir), objBloodDrop);
+                        my_id.image_xscale = 1 - random(0.2);
+                        my_id.image_yscale = my_id.image_xscale;
+                        my_id.image_angle = point_direction(x + lengthdir_x(8, edir), y + lengthdir_y(8, edir), my_id.x, my_id.y);
+                        my_id.direction = my_id.image_angle;
+                        my_id.speed = 1 + random(5);
+                    }
+                    repeat (4)
+                    {
+                        my_id = instance_create((x - 3) + random(6) + lengthdir_x(16, edir), (y - 3) + random(6) + lengthdir_y(16, edir), objBloodSmoke);
+                        my_id.image_xscale = 1.2 - random(0.2);
+                        my_id.image_yscale = my_id.image_xscale;
+                        my_id.image_angle = (edir - 20) + random(40);
+                        my_id.direction = my_id.image_angle;
+                        my_id.speed = 2 + random(1);
+                        my_id.friction = 0.15;
+                    }
+                }
+                audio_play_sound(sndDoorHit, 1, false);
+                if (objPlayer.sprite_index != sprPAttackSledgeHammer)
+                {
+                    audio_play_sound(choose(sndCut2, sndCut1), 1, false);
+                }
+                global.shake = 6;
+                my_id = instance_create(x, y, objFatKnockedOut);
+                if (objPlayer.sprite_index != sprPAttackSledgeHammer)
+                {
+                    my_id.hits = hits + 2;
+                }
+                my_id.type = object_index;
+                if (scrIsPolice(object_index))
+                {
+                    if (object_index == objInspector)
+                    {
+                        my_id.sprite_index = sprEInspectorGetUp;
+                    }
+                    else
+                    {
+                        my_id.sprite_index = sprPoliceGetUp;
+                    }
+                }
+                else if (object_index == objEFatGunner)
+                {
+                    my_id.sprite_index = sprEFatGunGetUp;
+                    my_id.ammo = ammo;
+                }
+                my_id.direction = (edir - 10) + random(20);
+                my_id.angle = my_id.direction;
+                with (my_id)
+                {
+                    move_outside_solid(angle - 180, 16);
+                }
+                my_id.speed = 3;
+                scrIdleGetEnemy();
+                instance_destroy();
+            }
+            else if ((object_index == objEnemyFat || object_index == objInspector || object_index == objEFatGunner) && (objPlayer.sprite_index == sprPAttackChainsaw || objPlayer.sprite_index == sprBikerAttackCleaver2 || objPlayer.sprite_index == sprBoss2AttackCleaver) && !collision_circle(objPlayer.x, objPlayer.y, 12.1, objSolid, 1, 0))
+            {
+                if (objPlayer.sprite_index == sprBikerAttackCleaver2 || objPlayer.sprite_index == sprBoss2AttackCleaver)
+                {
+                    global.ammo = objPlayer.ammo;
+                    my_id = instance_create(objPlayer.lastx, objPlayer.lasty, objBikerKillFat);
+                    my_id.image_index = objPlayer.image_index;
+                    my_id.image_angle = objPlayer.dir;
+                    if (object_index == objEFatGunner)
+                    {
+                        my_id.sprite_index = sprBikerKillFatGun;
+                    }
+                    my_id.ammo = global.ammo;
+                    instance_destroy();
+                    with (objPlayerBiker)
+                    {
+                        instance_destroy();
+                    }
+                    exit;
+                }
+                if (objPlayer.sprite_index == sprPAttackChainsaw)
+                {
+                    if ((objPlayer.ammo - 5) >= 0)
+                    {
+                        dir = point_direction(objPlayer.lastx, objPlayer.lasty, x, y);
+                        my_id = instance_create(x, y, objPKillChainsawFat);
+                        my_id.ammo = objPlayer.ammo;
+                        if (object_index == objInspector)
+                        {
+                            my_id.sprite_index = sprPKillChainsawInspector;
+                            my_id1 = instance_create(x + lengthdir_x(6, direction - 180), y + lengthdir_y(6, direction - 180), objPoliceHat);
+                            my_id1.direction = direction - 180;
+                            my_id1.speed = 1;
+                            my_id1.sprite_index = sprInspectorHat;
+                            my_id2 = instance_create(x + lengthdir_x(-5, image_angle + 90), y + lengthdir_y(-5, image_angle + 90), objWeaponThrow);
+                            my_id2.image_index = 46;
+                            my_id2.direction = direction - 90;
+                            my_id2.speed = 2 + random(1);
+                        }
+                        else if (object_index == objEFatGunner)
+                        {
+                            my_id.sprite_index = sprPKillFatGunChainsaw;
+                            my_id1 = instance_create(x + lengthdir_x(-5, image_angle + 90), y + lengthdir_y(-5, image_angle + 90), objWeaponThrow);
+                            my_id1.image_index = 45;
+                            my_id1.ammo = ammo;
+                            my_id1.direction = direction - 90;
+                            my_id1.speed = 2 + random(1);
+                        }
+                        else
+                        {
+                            my_id.sprite_index = sprPKillChainsawFat;
+                        }
+                        my_id.direction = (dir - 10) + random(20);
+                        my_id.image_angle = my_id.direction;
+                        global.executionx = x;
+                        global.executiony = y;
+                        instance_destroy();
+                        with (objPlayerMouse)
+                        {
+                            instance_destroy();
+                        }
+                        exit;
+                    }
+                    else
+                    {
+                        mask_index = sprWeaponMask;
+                        edir = point_direction(objPlayer.lastx, objPlayer.lasty, x, y);
+                        if (scrCollisionLineExt(x, y, objPlayer.lastx, objPlayer.lasty, 4, 309, 99, 131))
+                        {
+                            scrMoveSolidOff();
+                            mask_index = sprMask;
+                            objPlayer.x = objPlayer.lastx;
+                            objPlayer.y = objPlayer.lasty;
+                            exit;
+                        }
+                        mask_index = sprMask;
+                        repeat (2)
+                        {
+                            my_id = instance_create((x - 3) + random(6) + lengthdir_x(8, edir), (y - 3) + random(6) + lengthdir_y(8, edir), objBloodDrop);
+                            my_id.image_xscale = 1 - random(0.2);
+                            my_id.image_yscale = my_id.image_xscale;
+                            my_id.image_angle = point_direction(x + lengthdir_x(8, edir), y + lengthdir_y(8, edir), my_id.x, my_id.y);
+                            my_id.sprite_index = sprBloodSplatSmall;
+                            my_id.direction = my_id.image_angle;
+                            my_id.speed = 2 + random(4);
+                        }
+                        repeat (2 + random(1))
+                        {
+                            my_id = instance_create((x - 3) + random(6) + lengthdir_x(8, edir), (y - 3) + random(6) + lengthdir_y(8, edir), objBloodDrop);
+                            my_id.image_xscale = 1 - random(0.2);
+                            my_id.image_yscale = my_id.image_xscale;
+                            my_id.image_angle = point_direction(x + lengthdir_x(8, edir), y + lengthdir_y(8, edir), my_id.x, my_id.y);
+                            my_id.direction = my_id.image_angle;
+                            my_id.speed = 1 + random(5);
+                        }
+                        repeat (4)
+                        {
+                            my_id = instance_create((x - 3) + random(6) + lengthdir_x(16, edir), (y - 3) + random(6) + lengthdir_y(16, edir), objBloodSmoke);
+                            my_id.image_xscale = 1.2 - random(0.2);
+                            my_id.image_yscale = my_id.image_xscale;
+                            my_id.image_angle = (edir - 20) + random(40);
+                            my_id.direction = my_id.image_angle;
+                            my_id.speed = 2 + random(1);
+                            my_id.friction = 0.15;
+                        }
+                        audio_play_sound(sndDoorHit, 1, false);
+                        audio_play_sound(choose(sndCut2, sndCut1), 1, false);
+                        global.shake = 6;
+                        my_id = instance_create(x, y, objFatKnockedOut);
+                        my_id.hits = hits + 2;
+                        my_id.type = object_index;
+                        if (scrIsPolice(object_index))
+                        {
+                            if (object_index == objInspector)
+                            {
+                                my_id.sprite_index = sprEInspectorGetUp;
+                            }
+                            else
+                            {
+                                my_id.sprite_index = sprPoliceGetUp;
+                            }
+                        }
+                        else if (object_index == objEFatGunner)
+                        {
+                            my_id.sprite_index = sprEFatGunGetUp;
+                            my_id.ammo = ammo;
+                        }
+                        my_id.direction = (edir - 10) + random(20);
+                        my_id.angle = my_id.direction;
+                        with (my_id)
+                        {
+                            move_outside_solid(angle - 180, 16);
+                        }
+                        my_id.speed = 3;
+                        scrIdleGetEnemy();
+                        instance_destroy();
+                    }
+                }
+            }
+            else
+            {
+                mask_index = sprWeaponMask;
+                if (scrCollisionLineExt(x, y, objPlayer.lastx, objPlayer.lasty, 4, 309, 99, 131) || object_index == objEnemyFat || object_index == objInspector || object_index == objEFatGunner || object_index == objEFatGiveUp || ((object_index == objDogPatrol || object_index == objEDodger || object_index == objEDodgerG || object_index == objEDodgerPatrol || object_index == objEDodgerGPatrol) && global.maskindex == 11 && objPlayer.sprite_index == sprPAttackPunch))
+                {
+                    nothing = 1;
+                }
+                else
+                {
+                    global.bigballs = 0;
+                    mask_index = sprMask;
+                    if (object_index == objDogPatrol && speed > 1 && global.maskindex == 2 && objPlayer.sprite_index == sprPJacketAttackKnuckles)
+                    {
+                        dir = point_direction(objPlayer.lastx, objPlayer.lasty, x, y);
+                        my_id = instance_create(x, y, objPKillDog);
+                        my_id.direction = dir;
+                        my_id.image_angle = my_id.direction;
+                        global.usedkill[49] = 1;
+                        scrCheckUsedKills();
+                        global.executionx = x;
+                        global.executiony = y;
+                        instance_destroy();
+                        with (objPlayerMouse)
+                        {
+                            instance_destroy();
+                        }
+                        exit;
+                    }
+                    global.shake = 10;
+                    my_id = instance_create(x, y - 12, objScore);
+                    if (sprite_index == sprEWalkUnarmed || sprite_index == sprPoliceWalkUnarmed)
+                    {
+                        my_id.text = "+" + string(100 + (100 * global.factor)) + "pts";
+                        global.myscore += (100 + (100 * global.factor));
+                        global.boldscore = 100 * global.factor;
+                        global.killscore += 100;
+                        global.combo += 1;
+                        global.combotime = 240;
+                        global.killx[global.kills] = x;
+                        global.killy[global.kills] = y;
+                        global.kills += 1;
+                        global.blink = 1;
+                    }
+                    else
+                    {
+                        my_id.text = "+" + string(200 + (200 * global.factor)) + "pts";
+                        global.myscore += (200 + (200 * global.factor));
+                        global.killscore += 200;
+                        global.boldscore += (200 * global.factor);
+                        global.combo += 1;
+                        global.combotime = 240;
+                        global.killx[global.kills] = x;
+                        global.killy[global.kills] = y;
+                        global.kills += 1;
+                        global.blink = 1;
+                        if (global.bonustime < (12 + (global.factor * 4)))
+                        {
+                            global.bonustime = 12 + (global.factor * 4);
+                        }
+                        if (global.factor == 2)
+                        {
+                            ds_list_add(global.bonuslist, "Exposure");
+                        }
+                        if (global.factor == 3)
+                        {
+                            ds_list_add(global.bonuslist, "Double Exposure");
+                        }
+                        if (global.factor == 4)
+                        {
+                            ds_list_add(global.bonuslist, "Triple Exposure");
+                        }
+                        if (global.factor > 4)
+                        {
+                            ds_list_add(global.bonuslist, "Severe Exposure");
+                        }
+                    }
+                    edir = point_direction(objPlayer.lastx, objPlayer.lasty, x, y);
+                    if (objPlayer.sprite_index != sprPAttackTaser)
+                    {
+                        repeat (5 + random(5))
+                        {
+                            my_id = instance_create(x, y, objBloodSplatTracer);
+                            my_id.image_angle = point_direction(x + lengthdir_x(8, 270), y + lengthdir_y(8, 270), my_id.x, my_id.y) + random_range(-10, 10);
+                            my_id.direction = my_id.image_angle;
+                        }
+                        repeat (8)
+                        {
+                            my_id = instance_create((x - 3) + random(6) + lengthdir_x(8, edir), (y - 3) + random(6) + lengthdir_y(8, edir), objBloodDrop);
+                            my_id.image_xscale = 1 - random(0.2);
+                            my_id.image_yscale = my_id.image_xscale;
+                            my_id.image_angle = point_direction(x + lengthdir_x(8, edir), y + lengthdir_y(8, edir), my_id.x, my_id.y);
+                            my_id.sprite_index = sprBloodSplatSmall;
+                            my_id.direction = my_id.image_angle;
+                            my_id.speed = 2 + random(4);
+                        }
+                        repeat (2 + random(3))
+                        {
+                            my_id = instance_create((x - 3) + random(6) + lengthdir_x(8, edir), (y - 3) + random(6) + lengthdir_y(8, edir), objBloodDrop);
+                            my_id.image_xscale = 1 - random(0.2);
+                            my_id.image_yscale = my_id.image_xscale;
+                            my_id.image_angle = point_direction(x + lengthdir_x(8, edir), y + lengthdir_y(8, edir), my_id.x, my_id.y);
+                            my_id.direction = my_id.image_angle;
+                            my_id.speed = 1 + random(5);
+                        }
+                        repeat (4)
+                        {
+                            my_id = instance_create((x - 3) + random(6) + lengthdir_x(16, edir), (y - 3) + random(6) + lengthdir_y(16, edir), objBloodSmoke);
+                            my_id.image_xscale = 1.2 - random(0.2);
+                            my_id.image_yscale = my_id.image_xscale;
+                            my_id.image_angle = (edir - 20) + random(40);
+                            my_id.direction = my_id.image_angle;
+                            my_id.speed = 2 + random(1);
+                            my_id.friction = 0.15;
+                        }
+                    }
+                    my_id = instance_create(x, y, objDeadBody);
+                    my_id.image_yscale = choose(-1, 1);
+                    if (object_index == objDogPatrol)
+                    {
+                        ini_open("Achievements.ini");
+                        count = ini_read_real("AchData", "Dogs Killed", 0);
+                        if (!(count == 99))
+                        {
+                            count++;
+                            ini_write_real("AchData", "Dogs Killed", count);
+                        }
+                        else
+                        {
+                            scrAchievementSet("Dog Lover");
+                        }
+                        ini_close();
+                        if (objPlayer.sprite_index == sprPAttackClub || objPlayer.sprite_index == sprPAttackBat || objPlayer.sprite_index == sprPAttackCrowbar || objPlayer.sprite_index == sprPAttackPan || objPlayer.sprite_index == sprPAttackPot || objPlayer.sprite_index == sprPAttackSledgeHammer || objPlayer.sprite_index == sprPigButcherAttack || objPlayer.sprite_index == sprPAttackPipe || objPlayer.sprite_index == sprPAttackPool || objPlayer.sprite_index == sprPAttackPunch || objPlayer.sprite_index == sprPJacketAttackKnuckles || objPlayer.sprite_index == sprPSkippyPunch || objPlayer.sprite_index == sprPJacketAttackSkateboard)
+                        {
+                            if (objPlayer.sprite_index == sprPSkippyPunch)
+                            {
+                                switch (global.EnergieSkippyGun)
+                                {
+                                    case 3:
+                                        audio_play_sound(sndPunchSkippy0, 0, false);
+                                        break;
+                                    case 2:
+                                        audio_play_sound(sndPunchSkippy1, 0, false);
+                                        break;
+                                    case 1:
+                                        audio_play_sound(sndPunchSkippy2, 0, false);
+                                        break;
+                                }
+                                global.EnergieSkippyGun -= 1;
+                            }
+                            audio_play_sound(sndHit, 0, false);
+                            global.shake = 5;
+                            audio_play_sound(sndPunch, 0, false);
+                            my_id.sprite_index = sprDogDeadBlunt;
+                            my_id.image_index = 3 + floor(random(3));
+                            my_id.image_angle = (edir - 20) + random(40);
+                            my_id.direction = my_id.image_angle;
+                            my_id.speed = 2 + random(1);
+                            my_id.friction = 0.15;
+                            if (objPlayer.sprite_index == sprPAttackPool)
+                            {
+                                my_id1 = instance_create(objPlayer.x + lengthdir_x(5, objPlayer.dir), objPlayer.y + lengthdir_y(5, objPlayer.dir), objBrokenWeapon);
+                                my_id1.direction = objPlayer.dir - (90 * objPlayer.left);
+                                my_id1.speed = 2 + random(2);
+                                my_id1.sprite_index = sprPoolBroken;
+                                objPlayer.sprite_index = sprPAttackPoolBreak;
+                            }
+                        }
+                        if (objPlayer.sprite_index == sprPAttackKnife || objPlayer.sprite_index == sprPAttackButterfly)
+                        {
+                            my_id.sprite_index = sprDogDeadCut;
+                            audio_play_sound(choose(sndCut1, sndCut2), 0, false);
+                            my_id.image_index = 4 + floor(random(3));
+                            my_id.image_angle = (edir - 20) + random(40);
+                            my_id.direction = my_id.image_angle;
+                            my_id.speed = 2 + random(1);
+                            my_id.friction = 0.15;
+                        }
+                        if (objPlayer.sprite_index == sprPAttackPoolBroke)
+                        {
+                            my_id.sprite_index = sprEDogDeadPool;
+                            audio_play_sound(choose(sndCut1, sndCut2), 0, false);
+                            my_id.image_index = floor(random(3));
+                            objPlayer.image_speed = 0;
+                            objPlayer.sprite_index = sprPWalkUnarmed;
+                        }
+                        if (objPlayer.sprite_index == sprPAttackTaser)
+                        {
+                            my_id.sprite_index = sprEDogDeadTaser;
+                            my_id.image_speed = 0.25;
+                            my_x = x + lengthdir_x(18, direction);
+                            my_y = y + lengthdir_y(18, direction);
+                            my_id.life = 240 + random(60);
+                            i = 0;
+                            sparks = 10 + floor(random(20));
+                            repeat (sparks)
+                            {
+                                my_id1 = instance_create(my_x, my_y, objSpark1);
+                                my_id1.direction = (i * 360) / sparks;
+                                my_id1.speed = 1.6 + lengthdir_x(0.2, my_id1.direction * sparks * 0.25);
+                                my_id1.image_angle = my_id1.direction;
+                                i += 1;
+                            }
+                            repeat (8 + random(8))
+                            {
+                                my_id1 = instance_create(my_x, my_y, objSpark2);
+                                my_id1.direction = random(360);
+                                my_id1.speed = random(0.6);
+                            }
+                            instance_create(my_x, my_y, objElectricLight);
+                            audio_play_sound(sndElectric, 0, false);
+                        }
+                        if (objPlayer.sprite_index == sprBoss2AttackCleaver || objPlayer.sprite_index == sprBikerAttackCleaver2 || objPlayer.sprite_index == sprPAttackSword || objPlayer.sprite_index == sprPAttackAxe || objPlayer.sprite_index == sprPAttackMachete || objPlayer.sprite_index == sprPAttackChainsaw || objPlayer.sprite_index == sprPSprintChainsaw || objPlayer.sprite_index == sprBikerAttackCleaver2 || objPlayer.sprite_index == sprPJacketAttackCleaver || objPlayer.sprite_index == sprPJacketAttackCleaver2)
+                        {
+                            my_id.sprite_index = sprDogDeadPieces;
+                            my_id.image_index = choose(1, 3);
+                            if ((objPlayer.sprite_index == sprPSprintChainsaw || objPlayer.sprite_index == sprPAttackChainsaw) && objPlayer.HotWeaponAlpha > 0.65)
+                            {
+                                audio_play_sound(sndOverheatingAttack, 0, false);
+                            }
+                            audio_play_sound(choose(sndCut1, sndCut2), 0, false);
+                            audio_play_sound(sndHit, 0, false);
+                            global.shake = 5;
+                            scrGoreCut(x, y, edir - 180, 1, 0);
+                            part = instance_create(my_id.x + lengthdir_x(22, edir), my_id.y + lengthdir_y(18, edir), objBodyPartDog);
+                            part.sprite_index = sprDogDeadPieces;
+                            part.image_index = choose(0, 2);
+                            part.image_angle = (edir - 10) + random(20);
+                            part.direction = part.image_angle;
+                            part.speed = 3 + random(0.5);
+                            repeat (3 + random(3))
+                            {
+                                part = instance_create(my_id.x + lengthdir_x(22, edir), my_id.y + lengthdir_y(18, edir), objGuts2);
+                                part.image_angle = ((edir - 25) + random(50) + 90) - (round(random(1)) * 180);
+                                part.direction = part.image_angle;
+                                part.speed = 1.5 + random(1.5);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (objPlayer.sprite_index == sprPAttackTaser)
+                        {
+                            my_id.sprite_index = choose(sprEMafiaDeadTaser1, sprEMafiaDeadTaser2, sprEMafiaDeadTaser3);
+                            if (scrIsPolice(object_index))
+                            {
+                                my_id1 = instance_create(x, y, objPoliceHat);
+                                my_id1.direction = (edir - 10) + random(20);
+                                my_id1.speed = 1 + random(2);
+                                my_id.sprite_index = choose(sprEPoliceDeadTaser1, sprEPoliceDeadTaser2, sprEPoliceDeadTaser3);
+                            }
+                            if (object_index == objEDodger || object_index == objEDodgerPatrol)
+                            {
+                                my_id1 = instance_create(x, y, objPoliceHat);
+                                my_id1.sprite_index = sprDodgerGlasses;
+                                my_id1.speed = 2 + random(1.5);
+                                my_id1.direction = (edir - 10) + random(20);
+                                my_id.sprite_index = sprEMafiaDodgerDeadTaser;
+                            }
+                            if (object_index == objEDodgerG || object_index == objEDodgerGPatrol)
+                            {
+                                my_id.sprite_index = sprEMafiaGunDodgerDeadTaser;
+                            }
+                            my_id.image_speed = 0.25;
+                            angle = direction;
+                            my_x = x + lengthdir_x(16, angle - (35 * objPlayer.image_yscale));
+                            my_y = y + lengthdir_y(16, angle - (35 * objPlayer.image_yscale));
+                            my_id.life = 240 + random(60);
+                            i = 0;
+                            sparks = 10 + floor(random(20));
+                            repeat (sparks)
+                            {
+                                my_id1 = instance_create(my_x, my_y, objSpark1);
+                                my_id1.direction = (i * 360) / sparks;
+                                my_id1.speed = 1.6 + lengthdir_x(0.2, my_id1.direction * sparks * 0.25);
+                                my_id1.image_angle = my_id1.direction;
+                                i += 1;
+                            }
+                            repeat (8 + random(8))
+                            {
+                                my_id1 = instance_create(my_x, my_y, objSpark2);
+                                my_id1.direction = random(360);
+                                my_id1.speed = random(0.6);
+                            }
+                            instance_create(my_x, my_y, objElectricLight);
+                            audio_play_sound(sndElectric, 0, false);
+                        }
+                        if (objPlayer.sprite_index == sprPAttackClub || objPlayer.sprite_index == sprPAttackBat || objPlayer.sprite_index == sprPAttackCrowbar || objPlayer.sprite_index == sprPigButcherAttack || objPlayer.sprite_index == sprPAttackPan || objPlayer.sprite_index == sprPAttackPot || objPlayer.sprite_index == sprPAttackSledgeHammer || objPlayer.sprite_index == sprPAttackPipe || objPlayer.sprite_index == sprPAttackPool || objPlayer.sprite_index == sprPAttackPunch || objPlayer.sprite_index == sprPAttackNightStick || objPlayer.sprite_index == sprPAttackBag || objPlayer.sprite_index == sprPJacketAttackKnuckles || objPlayer.sprite_index == sprPSkippyPunch || objPlayer.sprite_index == sprPJacketAttackSkateboard)
+                        {
+                            if (objPlayer.sprite_index == sprPSkippyPunch)
+                            {
+                                switch (global.EnergieSkippyGun)
+                                {
+                                    case 3:
+                                        audio_play_sound(sndPunchSkippy0, 0, false);
+                                        break;
+                                    case 2:
+                                        audio_play_sound(sndPunchSkippy1, 0, false);
+                                        break;
+                                    case 1:
+                                        audio_play_sound(sndPunchSkippy2, 0, false);
+                                        break;
+                                }
+                                global.EnergieSkippyGun -= 1;
+                            }
+                            audio_play_sound(sndHit, 0, false);
+                            global.shake = 5;
+                            audio_play_sound(sndPunch, 0, false);
+                            my_id.sprite_index = choose(sprEBackBlunt, sprEBackBlunt, sprEFrontBlunt);
+                            if (object_index == objEDodger || object_index == objEDodgerPatrol)
+                            {
+                                my_id.sprite_index = sprEDodgerDeadBlunt;
+                            }
+                            if (object_index == objEDodgerG || object_index == objEDodgerGPatrol)
+                            {
+                                my_id.sprite_index = sprEDodgerGunDeadBlunt;
+                            }
+                            my_id.image_index = 4 + floor(random(11));
+                            if (objPlayer.sprite_index == sprPAttackPool)
+                            {
+                                my_id1 = instance_create(objPlayer.x + lengthdir_x(5, objPlayer.dir), objPlayer.y + lengthdir_y(5, objPlayer.dir), objBrokenWeapon);
+                                my_id1.direction = objPlayer.dir - (90 * objPlayer.left);
+                                my_id1.speed = 2 + random(2);
+                                my_id1.sprite_index = sprPoolBroken;
+                                objPlayer.sprite_index = sprPAttackPoolBreak;
+                            }
+                        }
+                        if (scrIsPolice(object_index) && objPlayer.sprite_index != sprPAttackTaser)
+                        {
+                            my_id1 = instance_create(x, y, objPoliceHat);
+                            my_id1.direction = (edir - 10) + random(20);
+                            my_id1.speed = 1 + random(2);
+                            audio_play_sound(sndHit, 0, false);
+                            global.shake = 5;
+                            my_id.sprite_index = choose(sprPoliceBackBlunt, sprPoliceBackBlunt, sprPoliceFrontBlunt);
+                            my_id.image_index = floor(random(13));
+                            if (my_id.sprite_index == sprPoliceBackBlunt)
+                            {
+                                if (my_id.image_index == 2 || my_id.image_index == 6)
+                                {
+                                    scrGoreBash(x, y, edir - 180, 1, 1);
+                                }
+                                else
+                                {
+                                    scrGoreBash(x, y, edir - 180, 0, 0);
+                                }
+                            }
+                            if (my_id.sprite_index == sprPoliceFrontBlunt)
+                            {
+                                if (my_id.image_index == 2 || my_id.image_index == 3 || my_id.image_index == 4)
+                                {
+                                    scrGoreBash(x, y, edir - 180, 1, 1);
+                                }
+                                else
+                                {
+                                    scrGoreBash(x, y, edir - 180, 0, 0);
+                                }
+                            }
+                        }
+                        if (objPlayer.sprite_index == sprPAttackButterfly || objPlayer.sprite_index == sprPAttackKnife || objPlayer.sprite_index == sprGriffinAttackKnife)
+                        {
+                            my_id.sprite_index = sprEBackCut;
+                            if (object_index == objEDodger || object_index == objEDodgerPatrol)
+                            {
+                                my_id.sprite_index = sprEDodgerDeadCut;
+                            }
+                            if (object_index == objEDodgerG || object_index == objEDodgerGPatrol)
+                            {
+                                my_id.sprite_index = sprEDodgerGunDeadCut;
+                            }
+                            audio_play_sound(choose(sndCut1, sndCut2), 0, false);
+                            my_id.image_index = 2 + floor(random(3));
+                            if (my_id.image_index == 3 || my_id.image_index == 4)
+                            {
+                                scrGoreCut(x, y, edir - 180, 1, 0);
+                            }
+                            else
+                            {
+                                scrGoreCut(x, y, edir - 180, 0, 0);
+                            }
+                            if (scrIsPolice(object_index))
+                            {
+                                my_id1 = instance_create(x, y, objPoliceHat);
+                                my_id1.direction = (edir - 10) + random(20);
+                                my_id1.speed = 1 + random(2);
+                                audio_play_sound(sndHit, 0, false);
+                                global.shake = 5;
+                                my_id.sprite_index = sprPoliceFrontCut;
+                                my_id.image_index = floor(random(13));
+                                if (my_id.sprite_index == sprPoliceFrontBlunt)
+                                {
+                                    if (my_id.image_index == 2 || my_id.image_index == 3 || my_id.image_index == 4)
+                                    {
+                                        scrGoreCut(x, y, edir - 180, 1, 1);
+                                    }
+                                    else
+                                    {
+                                        scrGoreCut(x, y, edir - 180, 0, 0);
+                                    }
+                                }
+                            }
+                        }
+                        if (objPlayer.sprite_index == sprPAttackPoolBroke)
+                        {
+                            my_id.sprite_index = choose(sprEDeadPoolBack, sprEDeadPoolFront, sprEMafiaDieBrokenPoolNeck);
+                            if (object_index == objEDodger || object_index == objEDodgerPatrol)
+                            {
+                                my_id.sprite_index = sprEDodgerDeadPoolBack;
+                            }
+                            if (object_index == objEDodgerG || object_index == objEDodgerGPatrol)
+                            {
+                                my_id.sprite_index = sprEDodgerGDeadPoolBack;
+                            }
+                            if (scrIsPolice(object_index))
+                            {
+                                my_id.sprite_index = choose(sprEPoliceDeadPoolBack, sprEPoliceDeadPoolFront);
+                            }
+                            if (my_id.sprite_index == sprEMafiaDieBrokenPoolNeck)
+                            {
+                                my_id.image_speed = 0.15;
+                            }
+                            audio_play_sound(choose(sndCut1, sndCut2), 0, false);
+                            my_id.image_index = random(2);
+                            objPlayer.sprite_index = sprPWalkUnarmed;
+                            objPlayer.image_speed = 0;
+                        }
+                        if (objPlayer.sprite_index == sprBoss2AttackCleaver || objPlayer.sprite_index == sprBikerAttackCleaver2 || objPlayer.sprite_index == sprPAttackSword || objPlayer.sprite_index == sprPAttackAxe || objPlayer.sprite_index == sprPAttackMachete || objPlayer.sprite_index == sprPAttackChainsaw || objPlayer.sprite_index == sprPSprintChainsaw || objPlayer.sprite_index == sprPJacketAttackCleaver || objPlayer.sprite_index == sprPJacketAttackCleaver2)
+                        {
+                            if (scrIsPolice(object_index))
+                            {
+                                my_id1.direction = (edir - 10) + random(20);
+                                my_id1.speed = 1 + random(2);
+                                audio_play_sound(choose(sndCut1, sndCut2), 0, false);
+                                audio_play_sound(sndHit, 0, false);
+                                global.shake = 5;
+                                if (round(random(1)))
+                                {
+                                    my_id.sprite_index = sprEPoliceDeadSlashed;
+                                }
+                                else
+                                {
+                                    my_id.sprite_index = sprEPoliceSlashedPieces;
+                                }
+                                my_id.image_index = floor(random(4));
+                                if (round(random(22)) == 2 && my_id.sprite_index == sprEPoliceDeadSlashed && objPlayer.sprite_index == sprPAttackChainsaw)
+                                {
+                                    with (my_id)
+                                    {
+                                        instance_destroy();
+                                    }
+                                    my_id = instance_create(x, y, objECrawl);
+                                    my_id.sprite_index = sprEPoliceCrawl;
+                                    my_id.direction = direction;
+                                    my_id.image_angle = direction;
+                                }
+                                if (round(random(18)) == 1 && my_id.sprite_index == sprEPoliceDeadSlashed)
+                                {
+                                    my_id.sprite_index = sprEPoliceDieGutsOut;
+                                    my_id.image_index = 0;
+                                    my_id.image_speed = 0.15;
+                                }
+                                if (my_id.sprite_index == sprEPoliceDeadSlashed && round(random(22)) == 2 && place_free(lengthdir_x(-8, direction) + x, lengthdir_y(-8, direction) + y) && !collision_circle(lengthdir_x(-44, direction) + x, lengthdir_y(-44, direction) + y, 38, objSolid, 1, 0))
+                                {
+                                    my_id.sprite_index = sprEDieToreHalfPolice;
+                                    my_id.image_index = 0;
+                                    my_id.image_speed = 0.2;
+                                }
+                                if (my_id.image_index == 1)
+                                {
+                                    scrGoreCut(x, y, edir - 180, 1, 0);
+                                }
+                                else
+                                {
+                                    scrGoreCut(x, y, edir - 180, 0, 0);
+                                }
+                                if (my_id.sprite_index == sprEPoliceSlashedPieces)
+                                {
+                                    if (my_id.image_index == 0)
+                                    {
+                                        if (place_free(my_id.x + lengthdir_x(22, edir), my_id.y + lengthdir_y(18, edir)))
+                                        {
+                                            part = instance_create(my_id.x + lengthdir_x(22, edir), my_id.y + lengthdir_y(18, edir), objSeveredHead);
+                                        }
+                                        else
+                                        {
+                                            part = instance_create(my_id.x, my_id.y, objSeveredHead);
+                                        }
+                                        part.image_angle = (edir - 10) + random(20);
+                                        part.direction = part.image_angle;
+                                        part.speed = 3 + random(1);
+                                    }
+                                    if (my_id.image_index == 1)
+                                    {
+                                        if (my_id.sprite_index == sprEPoliceSlashedPieces && round(random(16)) == 2)
+                                        {
+                                            part = instance_create(my_id.x + lengthdir_x(6, edir), my_id.y + lengthdir_y(4, edir), objECrawlPiece);
+                                            part.image_angle = (edir - 10) + random(20);
+                                            part.direction = part.image_angle;
+                                            part.image_yscale = my_id.image_yscale;
+                                            part.bottom = "Police";
+                                        }
+                                        else
+                                        {
+                                            part = instance_create(my_id.x + lengthdir_x(12, edir), my_id.y + lengthdir_y(8, edir), objBodyPart);
+                                            part.image_angle = (edir - 10) + random(20);
+                                            part.sprite_index = sprEPoliceDeadPieces;
+                                            part.direction = part.image_angle;
+                                            part.speed = 3 + random(1);
+                                            part.image_index = 0;
+                                            part.image_yscale = my_id.image_yscale;
+                                        }
+                                        if (round(random(8)) == 2 && my_id.sprite_index == sprEPoliceSlashedPieces && speed != 0)
+                                        {
+                                            with (my_id)
+                                            {
+                                                instance_destroy();
+                                            }
+                                            my_id = instance_create(x, y, objLegs);
+                                            my_id.direction = direction;
+                                            my_id.image_angle = direction;
+                                            my_id.bottom = "Police";
+                                        }
+                                    }
+                                    if (my_id.image_index == 2)
+                                    {
+                                        part = instance_create(my_id.x + lengthdir_x(16, edir), my_id.y + lengthdir_y(12, edir), objBodyPart);
+                                        part.image_angle = (edir - 10) + random(20);
+                                        part.sprite_index = sprEPoliceDeadPieces;
+                                        part.direction = part.image_angle;
+                                        part.speed = 3 + random(1);
+                                        part.image_index = 1;
+                                        part.image_yscale = my_id.image_yscale;
+                                    }
+                                    if (my_id.image_index == 3)
+                                    {
+                                        if (my_id.sprite_index == sprEPoliceSlashedPieces && round(random(16)) == 2)
+                                        {
+                                            part = instance_create(my_id.x + lengthdir_x(6, edir), my_id.y + lengthdir_y(4, edir), objECrawlPiece);
+                                            part.sprite_index = sprECrawlPieceFront;
+                                            part.image_angle = (edir - 10) + random(20);
+                                            part.direction = part.image_angle;
+                                            part.image_yscale = my_id.image_yscale;
+                                            part.bottom = "Police";
+                                        }
+                                        else
+                                        {
+                                            part = instance_create(my_id.x + lengthdir_x(16, edir), my_id.y + lengthdir_y(12, edir), objBodyPart);
+                                            part.image_angle = (edir - 10) + random(20);
+                                            part.sprite_index = sprEPoliceDeadPieces;
+                                            part.direction = part.image_angle;
+                                            part.speed = 3 + random(1);
+                                            part.image_index = 2;
+                                            part.image_yscale = my_id.image_yscale;
+                                        }
+                                        if (round(random(8)) == 2 && my_id.sprite_index == sprEPoliceSlashedPieces && speed != 0)
+                                        {
+                                            with (my_id)
+                                            {
+                                                instance_destroy();
+                                            }
+                                            my_id = instance_create(x, y, objLegs);
+                                            my_id.direction = direction;
+                                            my_id.image_angle = direction;
+                                            my_id.bottom = "Police";
+                                        }
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                my_id.sprite_index = sprEBackSlashed;
+                                my_id.image_index = floor(random(3));
+                                if (object_index == objEDodger || object_index == objEDodgerGPatrol)
+                                {
+                                    my_id.image_speed = 0;
+                                    if (round(random(1)))
+                                    {
+                                        my_id.sprite_index = sprEDodgerDeadSlash;
+                                    }
+                                    else
+                                    {
+                                        my_id.sprite_index = sprEDodgerSlashedPieces;
+                                    }
+                                }
+                                if (object_index == objEDodgerG || object_index == objEDodgerGPatrol)
+                                {
+                                    my_id.image_speed = 0;
+                                    if (round(random(1)))
+                                    {
+                                        my_id.sprite_index = sprEDodgerGunDeadSlash;
+                                    }
+                                    else
+                                    {
+                                        my_id.sprite_index = sprEDodgerGunSlashedPieces;
+                                    }
+                                }
+                                if (round(random(18)) == 2 && my_id.sprite_index == sprEBackSlashed)
+                                {
+                                    my_id.sprite_index = sprEMafiaDieGutsOut;
+                                    my_id.image_index = 0;
+                                    my_id.image_speed = 0.15;
+                                }
+                                if (round(random(18)) == 2 && my_id.sprite_index == sprEBackSlashed && objPlayer.sprite_index == sprPAttackChainsaw)
+                                {
+                                    with (my_id)
+                                    {
+                                        instance_destroy();
+                                    }
+                                    my_id = instance_create(x, y, objECrawl);
+                                    my_id.direction = direction;
+                                    my_id.image_angle = direction;
+                                }
+                                if (my_id.sprite_index == sprEBackSlashed && round(random(22)) == 2 && place_free(lengthdir_x(-8, direction) + x, lengthdir_y(-8, direction) + y) && !collision_circle(lengthdir_x(-44, direction) + x, lengthdir_y(-44, direction) + y, 38, objSolid, 1, 0))
+                                {
+                                    my_id.sprite_index = sprEDieToreHalf;
+                                    my_id.image_index = 0;
+                                    my_id.image_speed = 0.2;
+                                }
+                                audio_play_sound(choose(sndCut1, sndCut2), 0, false);
+                                audio_play_sound(sndHit, 0, false);
+                                global.shake = 5;
+                                if (my_id.image_index == 1)
+                                {
+                                    scrGoreCut(x, y, edir - 180, 1, 0);
+                                }
+                                else
+                                {
+                                    scrGoreCut(x, y, edir - 180, 0, 0);
+                                }
+                                if (my_id.sprite_index == sprEBackSlashed || my_id.sprite_index == sprEDodgerSlashedPieces || my_id.sprite_index == sprEDodgerGunSlashedPieces)
+                                {
+                                    if (my_id.image_index == 0)
+                                    {
+                                        if (place_free(my_id.x + lengthdir_x(22, edir), my_id.y + lengthdir_y(18, edir)))
+                                        {
+                                            part = instance_create(my_id.x + lengthdir_x(22, edir), my_id.y + lengthdir_y(18, edir), objSeveredHead);
+                                        }
+                                        else
+                                        {
+                                            part = instance_create(my_id.x, my_id.y, objSeveredHead);
+                                        }
+                                        part.image_angle = (edir - 10) + random(20);
+                                        part.direction = part.image_angle;
+                                        part.speed = 3 + random(1);
+                                    }
+                                    if (my_id.image_index == 1)
+                                    {
+                                        if (my_id.sprite_index == sprEBackSlashed && round(random(16)) == 2)
+                                        {
+                                            part = instance_create(my_id.x + lengthdir_x(6, edir), my_id.y + lengthdir_y(4, edir), objECrawlPiece);
+                                            part.sprite_index = choose(sprECrawlPiece, sprECrawlPieceFront);
+                                            part.image_angle = (edir - 10) + random(20);
+                                            part.direction = part.image_angle;
+                                            part.image_yscale = my_id.image_yscale;
+                                        }
+                                        else
+                                        {
+                                            part = instance_create(my_id.x + lengthdir_x(12, edir), my_id.y + lengthdir_y(8, edir), objBodyPart);
+                                            part.image_angle = (edir - 10) + random(20);
+                                            if (object_index == objEDodger || object_index == objEDodgerPatrol)
+                                            {
+                                                part.sprite_index = sprEDodgerDeadPieces;
+                                            }
+                                            if (object_index == objEDodgerG || object_index == objEDodgerGPatrol)
+                                            {
+                                                part.sprite_index = sprEDodgerGunDeadPieces;
+                                            }
+                                            part.direction = part.image_angle;
+                                            part.speed = 3 + random(1);
+                                            part.image_index = 1;
+                                            part.image_yscale = my_id.image_yscale;
+                                        }
+                                        if (round(random(8)) == 2 && my_id.sprite_index == sprEBackSlashed && speed != 0)
+                                        {
+                                            with (my_id)
+                                            {
+                                                instance_destroy();
+                                            }
+                                            my_id = instance_create(x, y, objLegs);
+                                            my_id.direction = direction;
+                                            my_id.image_angle = direction;
+                                        }
+                                    }
+                                    if (my_id.image_index == 2)
+                                    {
+                                        part = instance_create(my_id.x + lengthdir_x(16, edir), my_id.y + lengthdir_y(12, edir), objBodyPart);
+                                        part.image_angle = (edir - 10) + random(20);
+                                        if (object_index == objEDodger || object_index == objEDodgerPatrol)
+                                        {
+                                            part.sprite_index = sprEDodgerDeadPieces;
+                                        }
+                                        if (object_index == objEDodgerG || object_index == objEDodgerGPatrol)
+                                        {
+                                            part.sprite_index = sprEDodgerGunDeadPieces;
+                                        }
+                                        part.direction = part.image_angle;
+                                        part.speed = 3 + random(1);
+                                        part.image_index = 2;
+                                        if (my_id.sprite_index == sprEBackSlashed)
+                                        {
+                                            part.image_index = choose(2, 4);
+                                        }
+                                        part.image_yscale = my_id.image_yscale;
+                                    }
+                                    if (my_id.image_index == 3)
+                                    {
+                                        if (my_id.sprite_index == sprEBackSlashed && round(random(16)) == 2)
+                                        {
+                                            part = instance_create(my_id.x + lengthdir_x(6, edir), my_id.y + lengthdir_y(4, edir), objECrawlPiece);
+                                            part.sprite_index = choose(sprECrawlPiece, sprECrawlPieceFront);
+                                            part.image_angle = (edir - 10) + random(20);
+                                            part.direction = part.image_angle;
+                                            part.image_yscale = my_id.image_yscale;
+                                        }
+                                        else
+                                        {
+                                            part = instance_create(my_id.x + lengthdir_x(16, edir), my_id.y + lengthdir_y(12, edir), objBodyPart);
+                                            part.image_angle = (edir - 10) + random(20);
+                                            if (object_index == objEDodger || object_index == objEDodgerPatrol)
+                                            {
+                                                part.sprite_index = sprEDodgerDeadPieces;
+                                            }
+                                            if (object_index == objEDodgerG || object_index == objEDodgerGPatrol)
+                                            {
+                                                part.sprite_index = sprEDodgerGunDeadPieces;
+                                            }
+                                            part.direction = part.image_angle;
+                                            part.speed = 3 + random(1);
+                                            part.image_index = 3;
+                                            part.image_yscale = my_id.image_yscale;
+                                        }
+                                        if (round(random(8)) == 2 && my_id.sprite_index == sprEBackSlashed && speed != 0)
+                                        {
+                                            with (my_id)
+                                            {
+                                                instance_destroy();
+                                            }
+                                            my_id = instance_create(x, y, objLegs);
+                                            my_id.direction = direction;
+                                            my_id.image_angle = direction;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    my_id.direction = edir;
+                    my_id.speed = 1.5 + random(1);
+                    my_id.image_angle = my_id.direction;
+                    if (my_id.sprite_index == sprEMafiaDieGutsOut || my_id.sprite_index == sprEPoliceDieGutsOut)
+                    {
+                        my_id.image_angle = my_id.direction - 180;
+                    }
+                    if (my_id.object_index == objLegs)
+                    {
+                        my_id.image_angle = my_id.direction - 180;
+                        my_id.direction -= 180;
+                        my_id.speed = clamp(speed / 2, 0.5, 3);
+                        my_id.image_speed = clamp(image_speed / 2, 0.05, 1);
+                        if (my_id.speed == 0 || choose(0, 1) == 1)
+                        {
+                            my_id.dead = 1;
+                        }
+                    }
+                    if (global.pigkill == 1)
+                    {
+                        my_id.sprite_index = sprOscarDead;
+                    }
+                    global.pigkill = 0;
+                    if (my_id.sprite_index == sprEBackBlunt && round(random(11)) == 2)
+                    {
+                        with (my_id)
+                        {
+                            my_id = instance_create(x, y, objECrawl);
+                            my_id.direction = direction;
+                            my_id.image_angle = direction;
+                            global.test = 0;
+                            with (my_id)
+                            {
+                                if (!place_free(x, y))
+                                {
+                                    global.test = 1;
+                                    instance_destroy();
+                                }
+                            }
+                            if (global.test == 0)
+                            {
+                                instance_destroy();
+                            }
+                        }
+                    }
+                    if (instance_exists(my_id))
+                    {
+                        if (my_id.sprite_index == sprPoliceBackBlunt && round(random(11)) == 2)
+                        {
+                            with (my_id)
+                            {
+                                my_id = instance_create(x, y, objECrawl);
+                                my_id.sprite_index = sprEPoliceCrawl;
+                                my_id.direction = direction;
+                                my_id.image_angle = direction;
+                                global.test = 0;
+                                with (my_id)
+                                {
+                                    if (!place_free(x, y))
+                                    {
+                                        global.test = 1;
+                                        instance_destroy();
+                                    }
+                                }
+                                if (global.test == 0)
+                                {
+                                    instance_destroy();
+                                }
+                            }
+                        }
+                    }
+                    if (instance_exists(my_id))
+                    {
+                        if (my_id.sprite_index == sprECrawl)
+                        {
+                            with (my_id)
+                            {
+                                my_id = instance_create(x, y, objECrawl);
+                                my_id.direction = direction;
+                                my_id.image_angle = direction;
+                                global.test = 0;
+                                with (my_id)
+                                {
+                                    if (!place_free(x, y))
+                                    {
+                                        global.test = 1;
+                                        instance_destroy();
+                                    }
+                                }
+                                if (global.test == 0)
+                                {
+                                    instance_destroy();
+                                }
+                            }
+                        }
+                        else if (my_id.sprite_index == sprEPoliceCrawl)
+                        {
+                            with (my_id)
+                            {
+                                my_id = instance_create(x, y, objECrawl);
+                                my_id.sprite_index = sprEPoliceCrawl;
+                                my_id.direction = direction;
+                                my_id.image_angle = direction;
+                                global.test = 0;
+                                with (my_id)
+                                {
+                                    if (!place_free(x, y))
+                                    {
+                                        global.test = 1;
+                                        instance_destroy();
+                                    }
+                                }
+                                if (global.test == 0)
+                                {
+                                    instance_destroy();
+                                }
+                            }
+                        }
+                    }
+                    if (instance_exists(my_id))
+                    {
+                        if (my_id.sprite_index == sprEBackBlunt && round(random(24)) == 2)
+                        {
+                            my_id.sprite_index = sprEBackCracked;
+                            my_id.image_index = 0;
+                        }
+                    }
+                    if (sprite_index == sprEWalkUnarmed || sprite_index == sprPoliceWalkUnarmed || sprite_index == sprEGiveUp || object_index == objDogPatrol)
+                    {
+                        noweapon = 1;
+                    }
+                    else
+                    {
+                        noweapon = 0;
+                    }
+                    scrIdleGetEnemy();
+                    if (noweapon == 0 && (global.maskindex != 11 || (global.maskindex == 11 && objPlayer.sprite_index != sprPAttackPunch)))
+                    {
+                        my_id = instance_create(x, y, objWeaponThrow);
+                        if (instance_exists(objVan))
+                        {
+                            my_id.decadenced = 1;
+                        }
+                        my_id.direction = (other.direction - 70) + random(40);
+                        my_id.speed = 2 + random(2);
+                        if (object_index == objEDodgerG || object_index == objEDodgerGPatrol)
+                        {
+                            my_id2 = instance_create(x, y, objWeaponThrow);
+                            my_id2.image_index = 28;
+                            my_id2.direction = (other.direction - 70) + random(40);
+                            my_id2.speed = 2 + random(2);
+                            my_id.image_index = 28;
+                            my_id.ammo = round(ammo / 2);
+                            my_id2.ammo = round(ammo / 2);
+                        }
+                        else
+                        {
+                            my_id.image_index = scrCurrentWeaponExt(sprite_index);
+                            my_id.ammo = ammo;
+                        }
+                    }
+                    if (noweapon == 0 && global.maskindex == 11 && objPlayer.sprite_index == sprPAttackPunch)
+                    {
+                        objPlayer.sprite_index = scrIndexToWeapon(scrCurrentWeaponExt(sprite_index));
+                        objPlayer.ammo = floor(ammo / 2);
+                        objPlayer.image_speed = 0;
+                        objPlayer.prevsprite = objPlayer.sprite_index;
+                    }
+                    instance_destroy();
+                }
+            }
+        }
+    }
+    x = lastx;
+    y = lasty;
+}

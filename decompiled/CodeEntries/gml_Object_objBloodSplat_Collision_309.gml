@@ -1,0 +1,2 @@
+scrBloodWall();
+instance_destroy();

@@ -1,0 +1,10 @@
+image_speed = 0;
+friction = 0.1;
+image_index = 1;
+reload = 30 + random(60);
+type = 281;
+startx = x;
+starty = y;
+bleed = 0;
+hits = 0;
+ammo = 0;

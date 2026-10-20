@@ -1,0 +1,9 @@
+xdestroy = 176;
+ydestroy = 576;
+xdestroy2 = 272;
+ydestroy2 = 632;
+xtile = 6;
+ytile = 4;
+tile = 2;
+depthtile[0] = 1000;
+depthtile[1] = 999;

@@ -1,0 +1,26 @@
+# Game files (read-only, never modify)
+Super R-R/
+_backup_original/
+
+# Build outputs
+_work/
+coop/dll/build/
+
+# Tools (large binaries, download separately)
+_tools/utmt_cli/
+_tools/utmt_cli.zip
+_tools/deps/
+
+# Logs
+*.log
+coop_log.txt
+
+# IDE / OS
+.vs/
+*.suo
+*.user
+*.sln
+*.vcxproj*
+Thumbs.db
+Desktop.ini
+.DS_Store

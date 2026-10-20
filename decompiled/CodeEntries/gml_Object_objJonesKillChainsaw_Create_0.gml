@@ -1,0 +1,10 @@
+image_speed = 0;
+dead = 0;
+cobra = 0;
+left = 1;
+ammo = 0;
+sprite_index = sprPExecuteChainsaw;
+scrInitMaskPos();
+scrUpdateMaskPos(sprite_index);
+audio_play_sound(choose(sndChainsawExecution1, sndChainsawExecution2), 0, false);
+sprite = 2088;

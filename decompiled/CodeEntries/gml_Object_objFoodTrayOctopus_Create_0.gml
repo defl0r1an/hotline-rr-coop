@@ -1,0 +1,10 @@
+image_speed = 0;
+open = 0;
+taken = 0;
+state = 0;
+image_speed = 0;
+alarm[0] = 15;
+diradd = -1 + (round(random(1)) * 2);
+on = 0;
+image_xscale = -1;
+event = 0;

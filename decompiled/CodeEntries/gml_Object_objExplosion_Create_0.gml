@@ -1,0 +1,9 @@
+image_speed = 0;
+index = 2;
+dir = random(1000);
+amount = 0;
+on = 0;
+wait = 300;
+tony = 0;
+RPGJOKE = 0;
+vol = 0;

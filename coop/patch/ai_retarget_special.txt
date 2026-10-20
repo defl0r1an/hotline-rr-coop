@@ -1,0 +1,24 @@
+# Special enemies: their Step events read more of the player than its position. For these:
+#   objPlayer.<field> READS -> global.coop_tinst.<field> (the instance scrCoopTarget chose: host body or puppet,
+#   which defines those fields), objPlayer.x/.y reads -> global.coop_tx/ty; WRITES to objPlayer stay on the
+#   host's body; place_meeting / with (objPlayer) stay host-only.
+# Mode "full" also turns instance_exists(objPlayer) into scrCoopHasTarget() (hunt the client while the host is
+# dead) - only for events that never write to objPlayer. "keepguards" (scripted bosses that write
+# objPlayer.persistent / position / speed): the guards stay, so they react to the client only while the host lives.
+# Waiters (objWaiter, objWaiterStationary) are left out: they take the player's weapon (writes ammo / sprite).
+@objSwat.Step.0 full
+@objDogPatrol.Step.0 full
+@objPanther.Step.0 full
+@objCEO.Step.0 full
+@objEFatGunner.Step.0 full
+@objInspector.Step.0 full
+@objBoss1Down.Step.0 full
+@objEDodger.Step.0 full
+@objEDodgerG.Step.0 full
+@objEHideM16.Step.0 full
+@objBoss1.Step.0 keepguards
+@objBoss2.Step.0 keepguards
+@objBoss4.Step.0 keepguards
+@objBodyguard.Step.0 keepguards
+@objJonesBoss.Step.0 keepguards
+@objHobo.Step.0 keepguards

@@ -1,0 +1,10 @@
+xdestroy = 256;
+ydestroy = 32;
+xdestroy2 = 288;
+ydestroy2 = 96;
+xtile = 2;
+ytile = 5;
+tile = 2;
+depthtile[0] = 1000;
+depthtile[1] = 100;
+xcrutches = -7;

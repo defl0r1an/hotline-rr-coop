@@ -1,0 +1,11 @@
+direction = random(360);
+image_speed = 0;
+speed = 0.05;
+alarm[0] = 100 + round(random(20));
+mysprite = -1;
+dead = 0;
+shadow = 0.5;
+bled = 0;
+sound = 0;
+speedend = 0;
+bottom = "";

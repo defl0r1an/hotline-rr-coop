@@ -1,0 +1,17 @@
+image_speed = 0;
+friction = 0.1;
+image_yscale = -1 + (round(random(1)) * 2);
+bled = 0;
+wait = random(100);
+rotspeed = -1 + (round(random(1)) * 2);
+glow = 1;
+wait = 45;
+GlowSkippy = global.GlowSkippy;
+color0 = 65280;
+color1 = 255;
+otkat = 2;
+decadenced = 0;
+deadlined = 0;
+train = 1;
+dir = 0;
+yy = 0;

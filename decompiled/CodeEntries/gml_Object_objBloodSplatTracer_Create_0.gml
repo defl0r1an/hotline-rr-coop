@@ -1,0 +1,10 @@
+sprite_index = choose(sprBloodSquirt1, sprBloodSquirt2);
+direction = random(360);
+image_angle = direction;
+image_index = 0;
+speed = 2;
+image_yscale = 0.6 + random(0.5);
+image_speed = 0.3 + random(0.1);
+image_xscale = 0.6 + random(0.5);
+image_blend = merge_color(c_red, c_maroon, 0.5 + random(0.1));
+image_alpha = random_range(0.8, 0.9);

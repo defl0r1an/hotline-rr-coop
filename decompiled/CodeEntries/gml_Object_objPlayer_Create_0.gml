@@ -1,0 +1,9 @@
+energie = 0;
+ammo = 0;
+decadenced = 0;
+HotWeaponAlpha = 0;
+HotWeaponSwitch = 0;
+HotWeaponSpeed = 0;
+HotWeapon = "";
+global.maddx = x;
+global.maddy = y;
