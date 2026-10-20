@@ -7,6 +7,13 @@ if (instance_exists(objTitleNew))
         exit;
     }
 }
+if (instance_exists(objPhoneConversation))
+{
+    if (!instance_exists(objEffectorHouse) && !instance_exists(objDizzy))
+    {
+        scrDrawConversation();
+    }
+}
 if (global.coop_state == 0 && global.coop_notice_time <= 0)
 {
     exit;
@@ -33,7 +40,7 @@ if (global.coop_notice_time > 0 && global.coop_notice != "")
 {
     draw_set_color(c_black);
     draw_text(10, yy + 2, global.coop_notice);
-    draw_set_color(c_red);
+    draw_set_color(c_yellow);
     draw_text(8, yy, global.coop_notice);
 }
 draw_set_color(c_white);

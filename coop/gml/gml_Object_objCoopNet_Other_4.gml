@@ -5,6 +5,7 @@ if (cfg_windowed)
     window_set_fullscreen(false);
 }
 sent_done = 0;
+coop_dlg_current = -1;
 ds_map_clear(global.coop_net_ids);
 ds_map_clear(global.coop_gone);
 global.coop_spec_t = 0;

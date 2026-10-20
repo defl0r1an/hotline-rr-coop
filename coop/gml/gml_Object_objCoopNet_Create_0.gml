@@ -43,6 +43,7 @@ if (global.coop_state == 0)
 external_call(global.coop_f_log, "objCoopNet created in " + room_get_name(room) + ", role " + string(global.coop_role) + ", state " + string(global.coop_state));
 sent_room = -2;
 sent_done = 0;
+coop_dlg_current = -1;
 coop_leaving = 0;
 // test_level=<first floor room> in coop.ini: the host enters that level by itself once a partner is connected
 // (unattended testing only).

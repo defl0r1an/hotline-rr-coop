@@ -508,3 +508,9 @@ sends the client back to menu.
     - Level 96 (Tension): exit gating (REQ_EXIT rejected while enemies alive, accepted when cleared), transition to floor 97.
     - Level 135 (Showdown, Boss 4): transition from entrance (135) to main hall (136), bodyguard throwing knives, panthers. Zero crashes.
   * Build: 71 co-op code files, 58 hooks. All tests passed cleanly.
+- 2026-10-20 **Dialogue synchronization, shared text view, and partner proximity check (one PC):**
+  * Partner proximity check (scrCoopPartnerNear): interactions with phones (objPhone, objBossPhone), answering machines (objAnsweringMachine in objPlayerMouseHouse), and dialogue NPCs (objAssassinPizza, objAssassinBar, objAssassinVHS, objPimpPhone) check if the partner is nearby (within 140 px). If the partner is alive and far away, interaction is prevented and a notice 'WAIT FOR YOUR PARTNER' is displayed.
+  * Synchronized dialogue (message 50 DIALOGUE): objPhoneConversation state (active, current line index, messages, portrait sprite, line1, line2) is sent reliably from host to client whenever lines change or dialogue starts/finishes. Client creates/updates its objPhoneConversation and draws the exact same portrait and animated text.
+  * Host-authoritative dialogue progression: client mouse clicks (Mouse 53 advance, Mouse 51/57 skip) in objPhoneConversation are disabled via hooks. Only the host controls the conversation; when host advances or skips, the client updates or closes simultaneously.
+  * Remote phone answering (message 51 REQ_PHONE): if client interacts with a ringing phone while both players are near, client sends REQ_PHONE to host, triggering phone answering on host.
+  * Build: 74 co-op code files, 68 hooks.

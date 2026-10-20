@@ -83,6 +83,14 @@ while (t >= 0)
     {
         scrCoopReadPState();
     }
+    else if (t == 50)
+    {
+        scrCoopReadDialogue();
+    }
+    else if (t == 51)
+    {
+        scrCoopReadReqPhone();
+    }
     else if (t == 64)
     {
         scrCoopReadEnt();
@@ -182,6 +190,34 @@ if (st == 3)
             external_call(global.coop_f_begin, 116);
             external_call(global.coop_f_wi, room);
             external_call(global.coop_f_end, 1);
+        }
+        if (global.coop_active)
+        {
+            if (instance_exists(objPhoneConversation))
+            {
+                with (objPhoneConversation)
+                {
+                    if (current != other.coop_dlg_current)
+                    {
+                        other.coop_dlg_current = current;
+                        external_call(global.coop_f_begin, 50);
+                        external_call(global.coop_f_wi, 1);
+                        external_call(global.coop_f_wi, current);
+                        external_call(global.coop_f_wi, messages);
+                        external_call(global.coop_f_wi, sprite);
+                        external_call(global.coop_f_ws, line1[current]);
+                        external_call(global.coop_f_ws, line2[current]);
+                        external_call(global.coop_f_end, 1);
+                    }
+                }
+            }
+            else if (coop_dlg_current != -1)
+            {
+                coop_dlg_current = -1;
+                external_call(global.coop_f_begin, 50);
+                external_call(global.coop_f_wi, 0);
+                external_call(global.coop_f_end, 1);
+            }
         }
     }
     else if (global.coop_role == 2)
