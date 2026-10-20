@@ -490,3 +490,11 @@ sends the client back to menu.
     Client, windowed=1 (no auto/test keys). Build in _work/game is current (68 code files, 55 hooks).
   * NEXT: the user tests on two PCs (SWAT level, a dog level, the mansion boss floor); then human shield /
     explosions / car-level end for the client.
+
+- 2026-10-20 **Car exits, melee death poses, explosions, human shield, persistent corpse cleanup (one PC):**
+  * Vehicles / car exit: objPlayerCarEnter and objMCBike Step prepend hooks allow client to request vehicle exit (REQ_EXIT 112). scrCoopReadReqExit accepts vehicle objects (objPlayerCarEnter, objMCBike, objGriffinCar, object1052) when scrCoopFloorClear() || global.done == 1. scrCoopExitVia sets objEffector.nextroom (scrCarNextRoom(room) or scrGetRoom()), plays engine sound, and works even while the host's body is dead (no more softlock on cleared floor!).
+  * Dead body persistent cleanup: objCoopNet Other_5 (Room End) and Other_4 (Room Start) destroy objPlayerDead so dead player bodies do not linger in persistent rooms when returning or moving floors.
+  * Melee death poses: scrCoopMeleePuppet and scrCoopRedirectDeath pass dtype (0 blunt, 1 cut, 2 dog, 3 panther) via DEATH_MELEE 96. scrCoopReadMeleeDeath sets global.coop_death_sprite (sprPBackCut, sprPBackEaten, sprPBackBlunt/sprPFrontBlunt) and plays authentic sound; objPlayerDead.Step.0.append applies the sprite.
+  * Explosions: scrCoopSendShots replicates objExplosion, objExplosionSkippy (client -> host 80) and objExplosion, objExplosionSkippy, objBottleExplosion, objMolotov (host -> client 82).
+  * Human shield: scrCoopSendPState now supports objPlayerShieldMouse with proper direction, legs, and mask.
+  * Build: 69 co-op code files, 57 hooks. Tested on one PC across 20-30s runs: 60 fps, zero crashes, spectator camera working.

@@ -33,7 +33,27 @@ if (instance_exists(objPlayerMouse))
     global.ammoweapon = objPlayerMouse.ammo;
     global.throwindex = objPlayerMouse.throwindex;
 }
-objEffector.nextroom = tr.nextroom;
+if (tr.object_index == objPlayerCarEnter || tr.object_index == object1052 || tr.object_index == objGriffinCar)
+{
+    objEffector.nextroom = scrCarNextRoom(room);
+    if (!audio_is_playing(sndCarEngine))
+    {
+        audio_play_sound(sndCarEngine, 1, false);
+    }
+}
+else if (tr.object_index == objMCBike)
+{
+    objEffector.nextroom = scrGetRoom();
+    audio_play_sound(sndBikeStart, 0, false);
+}
+else
+{
+    objEffector.nextroom = tr.nextroom;
+}
+with (objPlayerDead)
+{
+    instance_destroy();
+}
 objEffector.next = 1;
 objEffector.fade = 1;
 external_call(global.coop_f_log, "host: leaving " + room_get_name(room) + " for room " + string(tr.nextroom) + " (partner's exit or host dead)");

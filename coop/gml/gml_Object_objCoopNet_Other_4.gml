@@ -7,6 +7,14 @@ if (cfg_windowed)
 ds_map_clear(global.coop_net_ids);
 ds_map_clear(global.coop_gone);
 global.coop_spec_t = 0;
+// Co-op: clean up stale dead player corpse if local player is alive
+if (instance_exists(objPlayer))
+{
+    with (objPlayerDead)
+    {
+        instance_destroy();
+    }
+}
 if (global.coop_state == 3 && global.coop_role == 2)
 {
     scrCoopClientRoomStart();

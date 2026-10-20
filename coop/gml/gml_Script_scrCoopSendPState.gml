@@ -58,7 +58,7 @@ if (s_kind != 0)
     s_ys = coop_p.image_yscale;
     s_al = coop_p.image_alpha;
 }
-if (s_kind == 1 && s_obj == objPlayerMouse)
+if (s_kind == 1 && (s_obj == objPlayerMouse || s_obj == objPlayerShieldMouse))
 {
     s_ang = coop_p.dir;
     s_left = coop_p.left;
@@ -68,13 +68,16 @@ if (s_kind == 1 && s_obj == objPlayerMouse)
     s_thr = coop_p.throwindex;
     s_light = coop_p.light;
     s_legspr = 42;
-    if (coop_p.myspeed == 2.25)
+    if (s_obj == objPlayerMouse)
     {
-        s_legspr = 43;
-    }
-    if (s_spr == sprGriffinWalk || s_spr == sprGriffinAttackKnife || s_spr == sprGriffinAttack9mm)
-    {
-        s_legspr = 548;
+        if (coop_p.myspeed == 2.25)
+        {
+            s_legspr = 43;
+        }
+        if (s_spr == sprGriffinWalk || s_spr == sprGriffinAttackKnife || s_spr == sprGriffinAttack9mm)
+        {
+            s_legspr = 548;
+        }
     }
 }
 external_call(global.coop_f_begin, 32);

@@ -19,6 +19,20 @@ if (global.coop_role == 2)
             scrCoopFireSend(80);
         }
     }
+    with (objExplosion)
+    {
+        if (id > other.coop_mark && !ds_map_exists(global.coop_net_ids, id))
+        {
+            scrCoopFireSend(80);
+        }
+    }
+    with (objExplosionSkippy)
+    {
+        if (id > other.coop_mark && !ds_map_exists(global.coop_net_ids, id))
+        {
+            scrCoopFireSend(80);
+        }
+    }
     // Throws / drops: the host throws the real weapon; the local one is removed so it does not land twice.
     with (objWeaponThrow)
     {
@@ -74,6 +88,34 @@ else if (global.coop_role == 1)
         }
     }
     with (objFlame)
+    {
+        if (id > other.coop_mark && !ds_map_exists(global.coop_net_ids, id))
+        {
+            scrCoopFireSend(82);
+        }
+    }
+    with (objExplosion)
+    {
+        if (id > other.coop_mark && !ds_map_exists(global.coop_net_ids, id))
+        {
+            scrCoopFireSend(82);
+        }
+    }
+    with (objExplosionSkippy)
+    {
+        if (id > other.coop_mark && !ds_map_exists(global.coop_net_ids, id))
+        {
+            scrCoopFireSend(82);
+        }
+    }
+    with (objBottleExplosion)
+    {
+        if (id > other.coop_mark && !ds_map_exists(global.coop_net_ids, id))
+        {
+            scrCoopFireSend(82);
+        }
+    }
+    with (objMolotov)
     {
         if (id > other.coop_mark && !ds_map_exists(global.coop_net_ids, id))
         {

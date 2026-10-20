@@ -7,7 +7,7 @@ if (global.coop_role != 1 || !global.coop_active || r != room || !instance_exist
 {
     exit;
 }
-if (tr.object_index != objTransitioner && tr.object_index != objTeleporter && tr.object_index != objElevator)
+if (tr.object_index != objTransitioner && tr.object_index != objTeleporter && tr.object_index != objElevator && tr.object_index != objPlayerCarEnter && tr.object_index != objMCBike && tr.object_index != object1052 && tr.object_index != objGriffinCar)
 {
     external_call(global.coop_f_log, "host: REQ_EXIT ignored, not an exit: " + object_get_name(tr.object_index));
     exit;
@@ -16,7 +16,7 @@ if (objEffector.fade != 0 || objEffector.next != 0)
 {
     exit;  // already leaving or restarting
 }
-ok = scrCoopFloorClear();
+ok = scrCoopFloorClear() || (global.done == 1);
 if (tr.object_index == objElevator && instance_exists(objEventTriggerElevator))
 {
     ok = 0;  // the elevator's own extra lock (objElevator_Step_0)

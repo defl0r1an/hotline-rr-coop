@@ -37,7 +37,20 @@ if (coop_q.coop_hit_cd <= 0)
     coop_q.coop_hit_cd = 60;
     external_call(global.coop_f_begin, 96);
     external_call(global.coop_f_wi, room);
-    external_call(global.coop_f_w4, x, y, 0, 0);
+    dtype = 0;
+if (sprite_index == sprPantherAttack || sprite_index == sprPantherHitback)
+{
+    dtype = 3;
+}
+else if (object_index == objDogPatrol || sprite_index == sprDogBite)
+{
+    dtype = 2;
+}
+else if (sprite_index == sprEAttackKnife)
+{
+    dtype = 1;
+}
+external_call(global.coop_f_w4, x, y, dtype, 0);
     external_call(global.coop_f_end, 1);
     external_call(global.coop_f_log, "host: " + object_get_name(object_index) + " killed the partner (redirected death)");
 }

@@ -29,6 +29,7 @@ global.coop_host_sequence = 0;
 global.coop_host_hardmode = 0;
 global.coop_host_title = "";
 global.coop_host_pretitle = "";
+global.coop_death_sprite = -1;
 // Diagnostics: PSTATE messages sent / received (logged by objCoopNet every 3 s).
 global.coop_ps_out = 0;
 global.coop_ps_in = 0;
