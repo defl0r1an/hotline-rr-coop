@@ -16,6 +16,9 @@ _tools/deps/
 *.log
 coop_log.txt
 
+# Local downloads (not part of the mod)
+*.apk
+
 # IDE / OS
 .vs/
 *.suo

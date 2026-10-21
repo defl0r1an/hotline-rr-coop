@@ -49,6 +49,16 @@ To package a standalone ready-to-run release zip:
 powershell -NoProfile -ExecutionPolicy Bypass -File coop\package_release.ps1
 ```
 
+## Releasing
+
+Release notes are tracked in the repository, in English: `docs/RELEASE_NOTES_v<version>.md`.
+Publish (or update) the GitHub release from that file, never from a gitignored local note:
+
+```powershell
+gh release create v<version> _dist\Hotline_Miami_Super_RR_Coop.zip --notes-file docs\RELEASE_NOTES_v<version>.md
+gh release edit v<version> --notes-file docs\RELEASE_NOTES_v<version>.md
+```
+
 ## Folder Structure
 
 | Path | Description |

@@ -514,3 +514,25 @@ sends the client back to menu.
   * Host-authoritative dialogue progression: client mouse clicks (Mouse 53 advance, Mouse 51/57 skip) in objPhoneConversation are disabled via hooks. Only the host controls the conversation; when host advances or skips, the client updates or closes simultaneously.
   * Remote phone answering (message 51 REQ_PHONE): if client interacts with a ringing phone while both players are near, client sends REQ_PHONE to host, triggering phone answering on host.
   * Build: 74 co-op code files, 68 hooks.
+
+- 2026-10-21 **v1.0.0 release prepared (no gameplay changes):**
+  * `coop\package_release.ps1` — stages `_work\game` (excluding `coop_log.txt`, `*.exp`, `*.lib`), copies `Music`
+    from `_backup_original`, writes a clean `coop.ini` and zips to `_dist\Hotline_Miami_Super_RR_Coop.zip` (~326 MiB).
+  * `coop\run_test.ps1 -HostLevel N -TestAuto 1..10 -TestTarget X -DurationSec N` — one-PC host+client harness:
+    syncs `data.win` + DLL into `_work\game_client`, writes test coop.ini for both copies (auto=host/join,
+    test_level, test_auto, test_target), runs them for N seconds and prints the last 35 log lines of each.
+  * `README.md` (English: features, quick start, build, config) rewritten for the release; `_dist\release_notes_v1.md`
+    is the Russian text for the GitHub release. The older beta notes moved to `_dist\archive\release_notes_beta.md`.
+  * Release build state: 74 code files, 68 hooks, AI retarget 43 scripts + 18 special events; `_work\game\data.win`
+    sha256 `553909A803422BA4FC4F61550CB6A0F0EA0CA225ABC9B60C66D702C811F2E409` (`_work\data.win` is identical),
+    `SuperRRCoop.dll` matches `coop\dll\build\` (sha256 `B2C0A3EA…`), the zip was packed from that same data.win.
+  * Housekeeping: `*.apk` added to `.gitignore` — the repo root held an unrelated Hotline Miami 1.0.118 Android APK.
+    `_work\android\` has its unpacked `game.droid` + `libyoyo.so` and one dumped `gml_Script_scrPlayerDieMelee`
+    (5.8 KB vs 22.8 KB on PC): that is the original HM1 Android port, **not** Super R-R — not part of the mod.
+  * Test configs reset again: `_work\game\coop.ini` = `coop.ini.example` (no test keys); `_work\game_client\coop.ini`
+    = ip 127.0.0.1 / name Client / windowed 1; `_work\game_client\data.win` and `SuperRRCoop.dll` re-synced from
+    `_work\game` (they were a day older, so a manual launch would have failed the CRC check).
+  * The GitHub release v1.0.0 body was Russian: it had been published verbatim from `_dist\release_notes_v1.md`
+    (gitignored, written for the user), while the repo (README, commits, code) is English. Fixed: the body now
+    comes from the tracked `docs\RELEASE_NOTES_v1.0.0.md` (`gh release edit v1.0.0 --notes-file ...`), and README
+    has a "Releasing" section. Rule: release text lives in the repo, in English; `_dist\` is build output only.
